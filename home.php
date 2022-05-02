@@ -7,6 +7,11 @@
     }    
 ?>
 
+<?php include 'home_actions.php'; 
+      include 'home_functions.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +21,22 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <SCript>
+    function fillResults(){
+        document.getElementById('content').style.display = 'block';   
+        document.getElementById('content').innerHTML="<?php echo GetResults(); ?>";
+    }
+
+    function ViewEmployee(){
+        document.getElementById("results_table").style.display = 'none';
+	    document.getElementById("results_Container").style.display = 'inline';
+	    xmlhttp=new XMLHttpRequest();
+	    var url = "home_actions.php?action=Getemployee_details&SongID="+SongID;
+	    xmlhttp.open("GET", url, false);
+	    xmlhttp.send(null);
+	    document.getElementById("results_Container").innerHTML = xmlhttp.responseText;
+    }
+    </SCript>
 </head>
 <body>
     <form action="" method="POST">
@@ -66,27 +87,27 @@
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
                 <hr class="dropdown-divider">
                 <div class="card-body">
-                    <center><button type="submit" name="property" data-bs-toggle="button" autocomplete="off">Property</button></center>
+                    <center><button type="submit" name="property" value="property" data-bs-toggle="button" autocomplete="off">Property</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="submit" name="service_register" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
+                    <center><button type="submit" name="service_register" value="service_register" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button type="submit" name="seniority" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
+                    <center><button type="submit" name="seniority" value="seniority" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="submit" name="running_note" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
+                    <center><button type="submit" name="running_note" value="running_note" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
                 </div>
             </div>
             </div>
-            <button type="submit" name="leave_entry" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
-            <button type="submit" name="posting" data-bs-toggle="button" autocomplete="off">Posting/Tracking</button>
-            <button type="submit" name="complaints" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
-            <button type="submit" name="query_builder" data-bs-toggle="button" autocomplete="off">Query Builder</button>
+            <button type="submit" name="leave_entry" value="leave_entry" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
+            <button type="submit" name="posting" value="posting" data-bs-toggle="button" autocomplete="off">Posting/Tracking</button>
+            <button type="submit" name="complaints" value="complaints" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
+            <button type="submit" name="query_builder" value="query_builder" data-bs-toggle="button" autocomplete="off">Query Builder</button>
             </div>
         </div>
         <div id="content">
-            <?php echo GetResults(); ?>
+            <script>fillResults();</script>
         </div>
     </div>
     </div>
@@ -106,5 +127,3 @@
     </script>
 </body>
 </html>
-
-<?php include 'home_actions.php'; ?>

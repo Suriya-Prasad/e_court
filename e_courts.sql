@@ -15,6 +15,8 @@ CREATE TABLE `employee` (
   `native_district` varchar(30) DEFAULT NULL,
   `date_of_birth` date,
   `gender` varchar(10) NOT NULL,
+  `marital_status` varchar(10) NOT NULL,
+  `spouse/father_name` varchar(100) NOT NULL,
   `differently_abled` varchar(10) NOT NULL,
   `aadhar_number` varchar(12) NOT NULL,
   `pan_number` varchar(10) NOT NULL,
@@ -29,15 +31,15 @@ CREATE TABLE `employee` (
 
 -- Table structure for `Posting` ;
 
-DROP TABLE IF EXISTS `postings`;
+DROP TABLE IF EXISTS `designation`;
 
-CREATE TABLE `posting` (
+CREATE TABLE `designation` (
   `employeeID` int(20) NOT NULL,
   `posting` varchar(255) NOT NULL,
   `court` varchar(255) NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date DEFAULT NULL,
-  CONSTRAINT `fk_employeeID_posting` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_employeeID_designation` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Table structure for `spouse details` ;
@@ -76,10 +78,27 @@ CREATE TABLE `bank_details` (
   CONSTRAINT `fk_employeeID_bank_details` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Table structure for `additional_info` ;
+-- Table structure for `disciplinary_proceeding` ;
 
--- DROP TABLE IF EXISTS `additional_info`;
+DROP TABLE IF EXISTS `disciplinary_proceeding`;
 
--- CREATE TABLE `additional_info`(
+CREATE TABLE `disciplinary_proceeding`(
+  `employeeID` int(20) NOT NULL,
+  `disciplinary_proceeding_court_name` varchar(200) NOT NULL,
+  `disciplinary_proceeding_status` varchar(10) NOT NULL,
+  `disciplinary_proceeding_details` varchar(500) NOT NULL,
+  CONSTRAINT `fk_employeeID_disciplinary_proceeding` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
--- );
+-- Table structure for `leave_entry` ;
+
+DROP TABLE IF EXISTS `leave_entry`;
+
+CREATE TABLE `leave_entry`(
+  `employeeID` int(20) NOT NULL,
+  `reason` varchar(500) NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `status` varchar(10) NOT NULL,
+  CONSTRAINT `fk_employeeID_leave_entry` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
+);
