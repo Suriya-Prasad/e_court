@@ -102,9 +102,3 @@ CREATE TABLE `leave_entry`(
   `status` varchar(10) NOT NULL,
   CONSTRAINT `fk_employeeID_leave_entry` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-INSERT INTO `employee` (`employeeID`, `employee_name`, `password`, `first_name`, `last_name`, `e_mail`, `phone_number`, 
-`service_joining_date`, `native_district`, `date_of_birth`, `gender`, `marital_status`, `spouse/father_name`, 
-`differently_abled`, `aadhar_number`, `pan_number`, `religion`, `community`, `caste`, `permanent_address`, `current_address`) 
-VALUES ('1', 'abcd', 'abcd', 'ab', 'cd', 'abcd@abcd.com', '1234567890', '2022-05-02', 'xxx', '2022-04-08', 'male', 'no', 'cd', 'no', 
-'123412341234', '1234123412', 'rrr', 'ccc', 'ccc', 'xxx,yyy,zzz', 'xxx,yyy,zzz');
