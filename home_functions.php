@@ -29,6 +29,9 @@
         else if (isset($_POST['employee_details'])) {
             return Getemployee_details();
         }
+        else if (isset($_POST['seniority'])) {
+             return GetSeniority();
+        }
         // else if (isset($_POST['staff_info'])) {
         //     return GetHistory();
         // }

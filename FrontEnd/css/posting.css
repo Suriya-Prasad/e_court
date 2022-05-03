@@ -1,0 +1,32 @@
+#content{
+    padding: 0;
+}
+#postn{
+    float: left;
+    width: 50%;
+    height: 3rem;
+    padding: .75rem;
+    background-color: rgb(73, 125, 208);
+    border: solid black 2px; 
+    border-right: 0;
+}
+#transn{
+    float: right;
+    width: 50%;
+    height: 3rem;
+    padding: .75rem;
+    background-color: rgb(73, 125, 208);
+    border: solid black 2px;
+}
+#content select{
+    width: 40%;
+}
+
+@media (max-width: 767px){
+    #content select{
+        width: 60%;
+    }
+    #content option{
+        font-size: medium;
+    }
+}
