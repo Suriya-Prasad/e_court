@@ -7,7 +7,7 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/posting.css">
+    <link rel="stylesheet" type="text/css" href="css/seniority.css">
 </head>
 <body>
     <div id="navbar">
@@ -63,7 +63,7 @@
                     <center><button type="button" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button onclick="document.location.href='seniority.html'" type="button" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
+                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
                 </div>
                 <div class="card-body">
                     <center><button type="button" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
@@ -71,7 +71,7 @@
             </div>
             </div>
             <button type="button" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Posting</button>
+            <button type="button" onclick="document.location.href='posting.html'" data-bs-toggle="button" autocomplete="off">Posting</button>
             <button type="button" onclick="document.location.href='transfer.html'" data-bs-toggle="button" autocomplete="off">Transfer</button>
             <button type="button" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
             <button type="button" data-bs-toggle="button" autocomplete="off">Query Builder</button>
@@ -81,47 +81,44 @@
 
 
         <div id="content">
-        <center>
-            <br><br>
-            <form>
-                <div id="posti">
-                    <h2>POSTING</h2>
-                    <br>
-                    <label for="fname">EMPLOYEE ID: </label>
-                    <input type="text" id="fname" name="fname">
-                    <br><br><br>
-                    <p>FROM :
-                    <select id="post-from" class="form-select">
+            <center>
+                <br><br>
+                <form>
+                <p>POST :
+                <select id="post" class="form-select" onchange="postTable()">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Court One</option>
-                        <option value="2">Court Two</option>
-                        <option value="3">Court Three</option>
-                    </select></p>
-                    <br>
-                    <p>TO   :
-                    <select id="post-to" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Court One</option>
-                        <option value="2">Court Two</option>
-                        <option value="3">Court Three</option>
-                    </select></p>
-                    <br>
-                    <p>TO POSTING   :
-                    <select id="post-to" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Court One</option>
-                        <option value="2">Court Two</option>
-                        <option value="3">Court Three</option>
-                    </select></p>
-                </div>
+                        <option value="1">Post One</option>
+                        <option value="2">Post Two</option>
+                        <option value="3">Post Three</option>
+                </select></p>
+                </form>
+            </center>
+            <br>
+            <div id="post_table">
+                <h2>POST ONE</h2>
                 <br>
-                <button type="button" class="btn btn-outline-success">SUBMIT</button>
-            </form> 
-        <center>
+                <table class="table table-info table-hover">
+                    <tr>
+                        <th>S.No</th><th>Name</th><th>Current Court</th><th>Disciplinary Proceedings</th>
+                    </tr>
+                    <tr>
+                        <td>1</td></td><td>Vishwa</td><td>Court 1</td><td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>2</td></td><td>Bala</td><td>Court 2</td><td>No</td>
+                    </tr>
+                    <tr>
+                        <td>3</td></td><td>Agalya</td><td>Court 3</td><td>No</td>
+                    </tr>
+                    <tr>
+                        <td>4</td></td><td>Chandru</td><td>Court 4</td><td>No</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
-
                 
+
+
     </div>    
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

@@ -13,3 +13,10 @@ function openNav() {
         document.getElementById("main").style.marginLeft = "0";
     }        
 }
+function postTable() {
+    var x = document.getElementById("post").value;
+    if (x !== "<--None-->")
+        document.getElementById("post_table").style.display = "block";
+    else
+        document.getElementById("post_table").style.display = "none";
+}

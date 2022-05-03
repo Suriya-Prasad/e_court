@@ -1,0 +1,15 @@
+#content select{
+    width: 40%;
+}
+#content #post_table{
+    display: none;
+}
+
+@media (max-width: 767px){
+    #content select{
+        width: 60%;
+    }
+    #content option{
+        font-size: medium;
+    }
+}
