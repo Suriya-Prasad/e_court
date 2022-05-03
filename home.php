@@ -7,8 +7,9 @@
     }    
 ?>
 
-<?php include 'home_actions.php'; 
-      include 'home_functions.php';
+<?php 
+// include 'home_actions.php'; 
+include 'home_functions.php';
 ?>
 
 
