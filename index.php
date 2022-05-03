@@ -42,7 +42,7 @@
     <div class="form-signin">
         <h1 class="h2 mb-3 fw-bold">STAFF LOGIN</h1><br>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="username" style="background-color: #8ED6FF;">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="username"  style="background-color: #8ED6FF;">
             <label for="floatingInput">User Name</label>
         </div><br>
         <div class="form-floating">
