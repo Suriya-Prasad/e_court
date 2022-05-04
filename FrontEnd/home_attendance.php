@@ -1,3 +1,7 @@
+<?php
+require "navigation.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +11,14 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script>
+    function fillResults(){
+        document.getElementById('content').style.display = 'block';   
+    }
+    </script>
 </head>
 <body>
+    <form action="" method="POST">
     <div id="navbar">
         <div id="main" class="d-md-none">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
@@ -29,24 +39,26 @@
                 <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">
                     <hr class="dropdown-divider">
                     <div class="card-body">
-                        <center><button onclick="location.href='change_pass.html'"><b>Change Password</b></button></center>
+                        <center><button type="submit" name="change_password"><b>Change Password</b></button></center>
                     </div>
                     <div class="card-body">
-                        <center><button><b>LOGOUT</b></button></center>
+                        <center><button type="submit" name="logout"><b>LOGOUT</b></button></center>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    </form>
+    
     <div id="side_content">
         <div id="sidebar">
+        <form action="" method="POST">
             <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
-            <button type="button" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Attendance</button>
+            <button type="submit" data-bs-toggle="button" autocomplete="off" name="attendance" aria-pressed="true">Attendance</button>
             <div id="accordion2" class="card" type="button" data-bs-toggle="button" autocomplete="off">
             <div class="card-header">
-                <button type="button" autocomplete="off" data-bs-toggle="collapse" href="#collapseTwo">
+                <button type="button" autocomplete="off" name="staff_information" data-bs-toggle="collapse" href="#collapseTwo">
                     Staff Information
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -56,30 +68,32 @@
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
                 <hr class="dropdown-divider">
                 <div class="card-body">
-                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Property</button></center>
+                    <center><button type="submit" name="property" data-bs-toggle="button" autocomplete="off">Property</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
+                    <center><button type="submit" name="service_register" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button onclick="document.location.href='seniority.html'" type="button" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
+                    <center><button type="submit" name="seniority" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
+                    <center><button type="submit" name="running_note" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
                 </div>
             </div>
             </div>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
-            <button type="button" onclick="location.href='posting.html'" data-bs-toggle="button" autocomplete="off">Posting</button>
-            <button type="button" onclick="location.href='transfer.html'" data-bs-toggle="button" autocomplete="off">Transfer</button>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Query Builder</button>
+            <button type="submit" name="leave_entry" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
+            <button type="submit" name="posting" data-bs-toggle="button" autocomplete="off">Posting</button>
+            <button type="submit" name="transfer" data-bs-toggle="button" autocomplete="off">Transfer</button>
+            <button type="submit" name="complaints_greviance" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
+            <button type="submit" name="query_builder" data-bs-toggle="button" autocomplete="off">Query Builder</button>
             </div>
+        </form>
         </div>
 
 
 
         <div id="content">
+            <script>fillResults();</script>
             <table class="table table-info table-hover">
                 <tr>
                     <th>S.No</th><th>Date</th><th>Name</th><th>Id</th><th>Attendance</th><th>Time</th>
@@ -98,12 +112,8 @@
                 </tr>
             </table>
         </div>
-
-
-
     </div>
-    </div>    
-
+    </div>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

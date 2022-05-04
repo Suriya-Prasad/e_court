@@ -1,3 +1,7 @@
+<?php
+    require "navigation.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +12,14 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/posting.css">
+    <script>
+    function fillResults(){
+        document.getElementById('content').style.display = 'block';   
+    }
+    </script>
 </head>
 <body>
+    <form action="" method="POST">
     <div id="navbar">
         <div id="main" class="d-md-none">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
@@ -30,21 +40,22 @@
                 <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">
                     <hr class="dropdown-divider">
                     <div class="card-body">
-                        <center><button onclick="document.location.href='change_pass.html'"><b>Change Password</b></button></center>
+                        <center><button type="submit" name="change_password"><b>Change Password</b></button></center>
                     </div>
                     <div class="card-body">
-                        <center><button><b>LOGOUT</b></button></center>
+                        <center><button type="submit" name="logout"><b>LOGOUT</b></button></center>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 
     <div id="side_content">
         <div id="sidebar">
             <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
-            <button type="button" onclick="document.location.href='attendance.html'" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Attendance</button>
+            <button type="submit" name="attendance" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Attendance</button>
             <div id="accordion2" class="card" type="button" data-bs-toggle="button" autocomplete="off">
             <div class="card-header">
                 <button type="button" autocomplete="off" data-bs-toggle="collapse" href="#collapseTwo">
@@ -57,24 +68,24 @@
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
                 <hr class="dropdown-divider">
                 <div class="card-body">
-                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Property</button></center>
+                    <center><button type="submit" name="property" data-bs-toggle="button" autocomplete="off">Property</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
+                    <center><button type="submit" name="service_register" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button onclick="document.location.href='seniority.html'" type="button" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
+                    <center><button type="submit" name="seniority" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="button" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
+                    <center><button type="submit" name="running_note" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
                 </div>
             </div>
             </div>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
-            <button type="button" onclick="document.location.href='posting.html'" data-bs-toggle="button" autocomplete="off">Posting</button>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Transfer</button>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
-            <button type="button" data-bs-toggle="button" autocomplete="off">Query Builder</button>
+            <button type="submit" name="leave_entry" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
+            <button type="submit" name="posting" data-bs-toggle="button" autocomplete="off">Posting</button>
+            <button type="submit" name="transfer" data-bs-toggle="button" autocomplete="off">Transfer</button>
+            <button type="submit" name="complaints_greviance" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
+            <button type="submit" name="query_builder" data-bs-toggle="button" autocomplete="off">Query Builder</button>
             </div>
         </div>
 
@@ -84,14 +95,14 @@
         <center>
             <br><br>
             <form>
-                <div id="transf">
-                    <h2>TRANSFER</h2>
+                <div id="posti">
+                    <h2>POSTING</h2>
                     <br>
                     <label for="fname">EMPLOYEE ID: </label>
                     <input type="text" id="fname" name="fname">
                     <br><br><br>
                     <p>FROM :
-                    <select id="post-to" class="form-select">
+                    <select id="post-from" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
                         <option value="1">Court One</option>
                         <option value="2">Court Two</option>
@@ -105,16 +116,22 @@
                         <option value="2">Court Two</option>
                         <option value="3">Court Three</option>
                     </select></p>
+                    <br>
+                    <p>TO POSTING   :
+                    <select id="post-to" class="form-select">
+                        <option selected>&lt;--None--&gt;</option>
+                        <option value="1">Court One</option>
+                        <option value="2">Court Two</option>
+                        <option value="3">Court Three</option>
+                    </select></p>
                 </div>
                 <br>
-                <button type="button" class="btn btn-outline-success">SUBMIT</button>
+                <button type="submit" name="submit_posting" class="btn btn-outline-success">SUBMIT</button>
             </form> 
         <center>
-        </div>
-                
-
-
-    </div>    
+        </div>                
+    </div>
+    </form>    
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

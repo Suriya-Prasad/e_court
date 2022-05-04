@@ -1,3 +1,13 @@
+<?php
+    //Session started for each user login and user ID is extracted to provide user specific functionalities.
+    session_start();
+
+    if(! isset ($_SESSION['employeeID'])) {
+        header("Location:index.php");    
+    }
+    require "navigation.php";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +37,7 @@
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Confirm Password</label>
         </div><br>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">SUBMIT</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit_change_password">SUBMIT</button>
     </div>
 </body>
 </html>

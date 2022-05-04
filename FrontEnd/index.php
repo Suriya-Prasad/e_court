@@ -10,6 +10,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Log in</title>
 </head>
 
@@ -18,24 +19,27 @@
         <div id = 'log'><center><img src="utilities/download.png" alt="logo" style="height: auto; width: 20%;"></center><br><center><h1>Tiruppur Jurisdiction</h1></center></div>
     </div>
 
-    <div id = 'firsth'><center>
-
+    <form action="" method="POST">
+    <div id = 'firsth'><center>  
     <div class="form-signin">
         <h1 class="h2 mb-3 fw-bold">STAFF LOGIN</h1><br>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Name" style="background-color: #8ED6FF;">
-            <label for="floatingInput">User Name</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="employeeID" style="background-color: #8ED6FF;">
+            <label for="floatingInput">Employee ID</label>
         </div><br>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: #8ED6FF;">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" style="background-color: #8ED6FF;">
             <label for="floatingPassword">Password</label>
         </div><br>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Log In</button>
     </div></center>
     </div>
+    </form>
 
     <div id = 'secondh'>
         <div id = 'logo'><center><img src="utilities/download.png" alt="logo" style="height: auto; width: 47%;"></center><br><center><h1>Tiruppur Jurisdiction</h1></center></div>
     </div>
 </body>
 </html>
+
+<?php require 'login_function.php'; ?>
