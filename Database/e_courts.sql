@@ -5,7 +5,6 @@ USE `e_courts`;
 
 CREATE TABLE `employee` (
   `employeeID` int(20) NOT NULL AUTO_INCREMENT,
-  `employee_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE `employee` (
   UNIQUE KEY `employee_name_UNIQUE` (`employee_name`)
 ) AUTO_INCREMENT=1;
 
-INSERT INTO employee VALUES ('1', 'abcd', 'abcd', 'ab', 'cd', 'abcd@abcd.com', '1234567890', '2022-05-02', 'xxx', '2022-04-08', 'male', 'no', 'cd', 'no', 
+INSERT INTO employee VALUES ('1', 'abcd', 'ab', 'cd', 'abcd@abcd.com', '1234567890', '2022-05-02', 'xxx', '2022-04-08', 'male', 'no', 'cd', 'no', 
 '123412341234', '1234123412', 'rrr', 'ccc', 'ccc', 'xxx,yyy,zzz', 'xxx,yyy,zzz');
 
 
