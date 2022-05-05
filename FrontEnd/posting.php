@@ -1,5 +1,5 @@
 <?php
-    require "navigation.php";
+include "navigation.php";
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
                 <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">
                     <hr class="dropdown-divider">
                     <div class="card-body">
-                        <center><button type="submit" name="change_password"><b>Change Password</b></button></center>
+                        <center><button name="change_password"><b>Change Password</b></button></center>
                     </div>
                     <div class="card-body">
                         <center><button type="submit" name="logout"><b>LOGOUT</b></button></center>
@@ -53,9 +53,10 @@
 
     <div id="side_content">
         <div id="sidebar">
+            <form action="" method="POST">
             <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
-            <button type="submit" name="attendance" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Attendance</button>
+            <button type="submit" name="attendance">Attendance</button>
             <div id="accordion2" class="card" type="button" data-bs-toggle="button" autocomplete="off">
             <div class="card-header">
                 <button type="button" autocomplete="off" data-bs-toggle="collapse" href="#collapseTwo">
@@ -68,33 +69,33 @@
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
                 <hr class="dropdown-divider">
                 <div class="card-body">
-                    <center><button type="submit" name="property" data-bs-toggle="button" autocomplete="off">Property</button></center>
+                    <center><button type="submit" name="property">Property</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="submit" name="service_register" data-bs-toggle="button" autocomplete="off">Service Register</button></center>
+                    <center><button type="submit" name="service_register">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button type="submit" name="seniority" data-bs-toggle="button" autocomplete="off">Seniority</button></center>
+                    <center><button type="submit" name="seniority">Seniority</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="submit" name="running_note" data-bs-toggle="button" autocomplete="off">Running Note</button></center>
+                    <center><button type="submit" name="running_note">Running Note</button></center>
                 </div>
             </div>
             </div>
-            <button type="submit" name="leave_entry" data-bs-toggle="button" autocomplete="off">Leave Entry</button>
-            <button type="submit" name="posting" data-bs-toggle="button" autocomplete="off">Posting</button>
-            <button type="submit" name="transfer" data-bs-toggle="button" autocomplete="off">Transfer</button>
-            <button type="submit" name="complaints_greviance" data-bs-toggle="button" autocomplete="off">Complaints/Greviance</button>
-            <button type="submit" name="query_builder" data-bs-toggle="button" autocomplete="off">Query Builder</button>
+            <button type="submit" name="leave_entry">Leave Entry</button>
+            <button type="submit" name="posting">Posting</button>
+            <button type="submit" name="transfer">Transfer</button>
+            <button type="submit" name="complaints_greviance">Complaints/Greviance</button>
+            <button type="submit" name="query_builder">Query Builder</button>
             </div>
+            </form>
         </div>
-
 
 
         <div id="content">
         <center>
             <br><br>
-            <form>
+            <form action="" method="POST">
                 <div id="posti">
                     <h2>POSTING</h2>
                     <br>
@@ -130,8 +131,7 @@
             </form> 
         <center>
         </div>                
-    </div>
-    </form>    
+    </div>  
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
