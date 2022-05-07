@@ -6,6 +6,7 @@
         header("Location:index.php");    
     }
     require "navigation.php";
+    // include "actions.php";
 ?>
 
 <!doctype html>
@@ -23,21 +24,23 @@
     <title>Change Password</title>
 </head>
 <body class="text-center">
+    <form action="" method="POST">
     <div class="form-signin">
         <h1 class="h2 mb-3 fw-bold">CHANGE PASSWORD</h1><br>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Old Password</label>
+            <input type="password" class="form-control" placeholder="Password">
+            <label >Old Password</label>
         </div><br>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">New Password</label>
+            <input type="password" class="form-control" placeholder="Password">
+            <label >New Password</label>
         </div><br>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="Password">
+            <label >Confirm Password</label>
         </div><br>
         <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit_change_password">SUBMIT</button>
     </div>
+    </form>
 </body>
 </html>

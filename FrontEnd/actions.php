@@ -78,6 +78,12 @@
         }
     }
 
+
+    
+    else if (isset($_POST['submit_change_password'])) {
+        
+    }
+
     //Function to display the seriority of a posting
     function seniorityTable($result){
         if(mysqli_num_rows($result)==0){
