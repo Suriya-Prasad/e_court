@@ -1,8 +1,5 @@
 <?php
 
-    //connecting to the database
-    include "db_connection.php";
-
     //creates session for each user
     session_start();
 
@@ -45,3 +42,18 @@
             header("Location:home_attendance.php");        
         }
     }
+
+    function connectDB()
+    {
+        $connection = mysqli_connect("localhost:3306", "root", "", "e_courts");   
+    
+        if (!$connection) 
+        {
+            echo "Error: Unable to connect to MySQL." . PHP_EOL;
+            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+            exit;
+        }
+        return $connection;
+    }
+?>

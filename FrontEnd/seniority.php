@@ -1,5 +1,11 @@
 <?php
+    //Session started for each user login and user ID is extracted to provide user specific functionalities.
+    session_start();
+    if(! isset ($_SESSION['employeeID'])) {
+        header("Location:index.php");    
+    }
     include "navigation.php";
+    include "actions.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
     <script>
     function fillResults(){
@@ -142,13 +148,13 @@
 
 
 <?php
-    include "db_connection.php"
+    include "db_connection.php";
     if(isset($_POST["SeniorityForm"])) {
         $seniority = $_POST["SeniorityForm"];
         $conn = connectDB();      
         $query = "select employeeID, employee_name(first_name, last_name), (select employeeID from desgination where posting = {$seniority} and to_date is null)";
 
-        if(result = mysqli_query( $conn, $query)){
+        if($result == mysqli_query( $conn, $query)){
             $returnVal = seniorityTable($result);
             mysqli_close($conn);
             return $returnVal;

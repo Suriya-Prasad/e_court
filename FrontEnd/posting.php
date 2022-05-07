@@ -1,5 +1,11 @@
 <?php
-include "navigation.php";
+    //Session started for each user login and user ID is extracted to provide user specific functionalities.
+    session_start();
+    if(! isset ($_SESSION['employeeID'])) {
+        header("Location:index.php");    
+    }
+    include "navigation.php";
+    include "actions.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,13 +16,8 @@ include "navigation.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
     <link rel="stylesheet" type="text/css" href="css/posting.css">
-    <script>
-    function fillResults(){
-        document.getElementById('content').style.display = 'block';   
-    }
-    </script>
 </head>
 <body>
     <form action="" method="POST">
@@ -99,31 +100,24 @@ include "navigation.php";
                 <div id="posti">
                     <h2>POSTING</h2>
                     <br>
-                    <label for="fname">EMPLOYEE ID: </label>
-                    <input type="text" id="fname" name="fname">
+                    <label for="employeeID">EMPLOYEE ID: </label>
+                    <input type="text" id="employeeID" name="employeeID">
                     <br><br><br>
-                    <p>FROM :
-                    <select id="post-from" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Court One</option>
-                        <option value="2">Court Two</option>
-                        <option value="3">Court Three</option>
-                    </select></p>
                     <br>
-                    <p>TO   :
-                    <select id="post-to" class="form-select">
+                    <p>TO COURT  :
+                    <select id="post-to" name="court_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Court One</option>
-                        <option value="2">Court Two</option>
-                        <option value="3">Court Three</option>
+                        <option value="court one">Court One</option>
+                        <option value="court two">Court Two</option>
+                        <option value="court three">Court Three</option>
                     </select></p>
                     <br>
                     <p>TO POSTING   :
-                    <select id="post-to" class="form-select">
+                    <select id="post-to" name="post_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Court One</option>
-                        <option value="2">Court Two</option>
-                        <option value="3">Court Three</option>
+                        <option value="post 1">Post One</option>
+                        <option value="post 2">Post Two</option>
+                        <option value="post 3">Post Three</option>
                     </select></p>
                 </div>
                 <br>

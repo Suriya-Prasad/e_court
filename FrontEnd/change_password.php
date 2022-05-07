@@ -19,7 +19,7 @@
         
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/change_pass.css">
+    <link rel="stylesheet" type="text/css" href="css/change_password.css">
     <title>Change Password</title>
 </head>
 <body class="text-center">

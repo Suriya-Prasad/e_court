@@ -47,7 +47,7 @@ CREATE TABLE `designation` (
   `employeeID` int(20) NOT NULL,
   `posting` varchar(255) NOT NULL,
   `court` varchar(255) NOT NULL,
-  `from_date` date NOT NULL,
+  `from_date` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
   CONSTRAINT `fk_employeeID_designation` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
