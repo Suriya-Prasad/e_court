@@ -20,8 +20,7 @@
     <link rel="stylesheet" type="text/css" href="css/posting.css">
 </head>
 <body>
-    <form action="" method="POST">
-    <div id="navbar">
+<div id="navbar">    
         <div id="main" class="d-md-none">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
         </div>
@@ -41,27 +40,29 @@
                 <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">
                     <hr class="dropdown-divider">
                     <div class="card-body">
-                        <center><button name="change_password"><b>Change Password</b></button></center>
+                         <form action="" method="POST">
+                        <center><button type="submit" id="change_password" name="change_password"><b>Change Password</b></button></center>
                     </div>
                     <div class="card-body">
-                        <center><button type="submit" name="logout"><b>LOGOUT</b></button></center>
+                        <center><button type="submit" id="logout" name="logout"><b>LOGOUT</b></button></center>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </form>
 
     <div id="side_content">
         <div id="sidebar">
-            <form action="" method="POST">
             <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
-            <button type="submit" name="attendance">Attendance</button>
-            <div id="accordion2" class="card" type="button" data-bs-toggle="button" autocomplete="off">
+            <form action="" method="POST">
+            <button type="submit" id="attendance" name="attendance">Attendance</button>
+            </form>
+            <div id="accordion2" class="card">
             <div class="card-header">
-                <button type="button" autocomplete="off" data-bs-toggle="collapse" href="#collapseTwo">
-                    Staff Information
+                <button type="button" name="staff_information" data-bs-toggle="collapse" href="#collapseTwo">
+                    <span>Staff Information<span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                     </svg>
@@ -70,26 +71,29 @@
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
                 <hr class="dropdown-divider">
                 <div class="card-body">
-                    <center><button type="submit" name="property">Property</button></center>
+                <form action="" method="POST">
+                    <center><button type="submit" id="property" name="property">Property</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="submit" name="service_register">Service Register</button></center>
+                    <center><button type="submit"  id="service_register" name="service_register">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button type="submit" name="seniority">Seniority</button></center>
+                    <center><button type="submit" id="seniority"  name="seniority">Seniority</button></center>
                 </div>
                 <div class="card-body">
-                    <center><button type="submit" name="running_note">Running Note</button></center>
+                    <center><button type="submit" id="running_note" name="running_note">Running Note</button></center>
+                </form>
                 </div>
             </div>
             </div>
-            <button type="submit" name="leave_entry">Leave Entry</button>
-            <button type="submit" name="posting">Posting</button>
-            <button type="submit" name="transfer">Transfer</button>
-            <button type="submit" name="complaints_greviance">Complaints/Greviance</button>
-            <button type="submit" name="query_builder">Query Builder</button>
-            </div>
+            <form action="" method="POST">
+            <button type="submit" id="leave_entry" name="leave_entry">Leave Entry</button>
+            <button type ="submit" id="posting" name="posting">Posting</button>
+            <button type="submit" id="transfer" name="transfer">Transfer</button>
+            <button type="submit" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
+            <button type="submit" id="query_builder" name="query_builder">Query Builder</button>
             </form>
+            </div>
         </div>
 
 
