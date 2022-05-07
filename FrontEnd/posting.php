@@ -5,7 +5,6 @@
         header("Location:index.php");    
     }
     include "navigation.php";
-    include "actions.php";
 ?>
 
 <!DOCTYPE html>
@@ -135,3 +134,5 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+<?php include "actions.php"; ?>

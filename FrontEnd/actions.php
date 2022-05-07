@@ -78,10 +78,23 @@
         }
     }
 
-
-    
+    //Function to change password
     else if (isset($_POST['submit_change_password'])) {
-        
+        $conn = ConnectDB();
+        $old_password = mysqli_real_escape_string($conn,$_POST['old_password']);
+        $new_password = mysqli_real_escape_string($conn,$_POST['new_password']);
+        $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
+        if($old_password === $new_password){
+            echo "<script>swal({title:'New password is same as old password',icon:'info'});</script>";
+        }
+        else if($new_password != $confirm_password){
+            echo "<script>swal({title:'New password does not match',icon:'info'});</script>";
+        }
+        else{
+            $employeeID = $_SESSION['employeeID'];
+            $query = "UPDATE employee SET password = '{$new_password}' where employeeID = {$employeeID}";
+            mysqli_query($conn,$query) or die($conn);
+        }
     }
 
     //Function to display the seriority of a posting
