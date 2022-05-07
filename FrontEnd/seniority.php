@@ -107,9 +107,9 @@
                 <p>POST :
                 <select id="post" class="form-select" name = "SeniorityForm" onchange="this.form.submit()">
                     <option selected>&lt;--None--&gt;</option>
-                    <option value="1">Post One</option>
-                    <option value="2">Post Two</option>
-                    <option value="3">Post Three</option>
+                    <option value="post 1">Post One</option>
+                    <option value="post 2">Post Two</option>
+                    <option value="post 3">Post Three</option>
                 </select></p>
                 </form>
             </center>
@@ -144,50 +144,3 @@
     <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-<?php
-    include "db_connection.php";
-    if(isset($_POST["SeniorityForm"])) {
-        $seniority = $_POST["SeniorityForm"];
-        $conn = connectDB();      
-        $query = "select employeeID, employee_name(first_name, last_name), (select employeeID from desgination where posting = {$seniority} and to_date is null)";
-
-        if($result == mysqli_query( $conn, $query)){
-            $returnVal = seniorityTable($result);
-            mysqli_close($conn);
-            return $returnVal;
-        }
-        else{
-            printf("Error: %s\n", mysqli_error($conn));
-        }
-    }
-
-
-    function seniorityTable($result){
-        if(mysqli_num_rows($result)==0){
-            return "<font color='red'><h3><center>No Result Found!</center></h3></font>";
-        }
-        $row_count = 1;
-        echo "<table border ='1' id='table_history' name='table_history'>";
-        echo "<tr>";
-        echo "<th><b>S.No</b></td>";
-        echo "<th><b>Song Title</b></th>";
-        echo "<th><b>Album</b></th>";
-        echo "<th><b>Last Played</b></th>";
-        echo "</tr>";
-        while ($row=mysqli_fetch_array($result)) {
-        
-        echo    "<tr>";
-        echo  "<td>" . (string)$row_count . "</td>";
-        echo  "<td>" . $row['Title'] . "</td>";
-        echo  "<td>" . $row['Album'] . "</td>";
-        echo  "<td>" . $row['played_time'] . "</td>";
-            
-        echo "</tr>"; 
-        $row_count++;     
-        }
-        echo "</table>";
-    }
-?>

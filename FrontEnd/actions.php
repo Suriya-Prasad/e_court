@@ -61,4 +61,47 @@
             echo "<script>swal({title:'No active Employee!',icon:'info'});</script>";
         }
     }
+
+    //Function to handle the seniorirty page
+    else if(isset($_POST["SeniorityForm"])) {
+        $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);
+        $conn = connectDB();      
+        $query = "SELECT employeeID,employee_name,current_court,disciplinary_proceeeesgs from employee as e, designation as d, disciplinary_proceeding as ds where e.employeeID IN (select employeeID from desgination where posting = '{$posting}' and (to_date is null and from_date is not null))";
+
+        if($result == mysqli_query( $conn, $query)){
+            $returnVal = seniorityTable($result);
+            mysqli_close($conn);
+            return $returnVal;
+        }
+        else{
+            printf("Error: %s\n", mysqli_error($conn));
+        }
+    }
+
+    //Function to display the seriority of a posting
+    function seniorityTable($result){
+        if(mysqli_num_rows($result)==0){
+            return "<script>swal({title:'No employee exist in this post',icon:'info'});</script>";
+        }
+        $row_count = 1;
+        echo "<table class='table table-info table-hover'>";
+        echo "<tr>";
+        echo "<th>S.No</td>";
+        echo "<th>Name</th>";
+        echo "<th>Current Court</th>";
+        echo "<th>Disciplinary Proceedings</th>";
+        echo "</tr>";
+        while ($row=mysqli_fetch_array($result)) {
+        
+        echo    "<tr>";
+        echo  "<td>" . (string)$row_count . "</td>";
+        echo  "<td>" . $row['employee_name'] . "</td>";
+        echo  "<td>" . $row['court'] . "</td>";
+        echo  "<td>" . $row['disciplinary_proceesing'] . "</td>";
+            
+        echo "</tr>"; 
+        $row_count++;     
+        }
+        echo "</table>";
+    }
 ?>
