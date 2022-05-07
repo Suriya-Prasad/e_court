@@ -1,0 +1,28 @@
+#content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: auto;
+}
+
+#content #half{
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+#content #full{
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;    
+}
+
+@media (max-width: 500px){
+    #content #half{
+        width: 99%;
+    }
+}
