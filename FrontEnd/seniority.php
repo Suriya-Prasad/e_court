@@ -17,11 +17,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
-    <script>
+    <!-- <script>
     function fillResults(){
-        document.getElementById('content').style.display = 'block';   
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="";   
     }
-    </script>
+    </script> -->
 </head>
 <body>
 <div id="navbar">    
@@ -104,7 +105,7 @@
 
             <center>
                 <br><br>
-                <form action="" method="POST">
+                <form action="actions.php" method="POST">
                 <p>POST :
                 <select id="post" class="form-select" name = "SeniorityForm" onchange="this.form.submit()">
                     <option selected>&lt;--None--&gt;</option>
@@ -116,27 +117,8 @@
             </center>
             <br>
             <div id="post_table">
-                <h2>POST ONE</h2>
-                <br>
-                <table class="table table-info table-hover">
-                    <tr>
-                        <th>S.No</th><th>Name</th><th>Current Court</th><th>Disciplinary Proceedings</th>
-                    </tr>
-                    <tr>
-                        <td>1</td></td><td>Vishwa</td><td>Court 1</td><td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>2</td></td><td>Bala</td><td>Court 2</td><td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3</td></td><td>Agalya</td><td>Court 3</td><td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4</td></td><td>Chandru</td><td>Court 4</td><td>No</td>
-                    </tr>
-                </table>
+                <!-- <script>fillResults();</script> -->
             </div>
-            <script>fillResults();</script>
         </div>
     </div>
     </form>    

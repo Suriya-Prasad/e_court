@@ -106,7 +106,6 @@
                     <label for="employeeID">EMPLOYEE ID: </label>
                     <input type="text" id="employeeID" name="employeeID">
                     <br><br><br>
-                    <br>
                     <p>TO COURT  :
                     <select id="post-to" name="court_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>

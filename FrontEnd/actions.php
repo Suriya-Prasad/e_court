@@ -1,4 +1,23 @@
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+
+<?php
+
+use LDAP\Result;
+
+    if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+        ?>
+        <script>
+            swal({
+                title:"<?php echo $_SESSION['status']; ?>",
+                icon:"<?php echo $_SESSION['status_code']; ?>",
+                button:"ok",
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['status_code']);
+    }
+?>
 
 <?php
     
@@ -28,14 +47,20 @@
         $result = mysqli_query($conn,$query1);
         if(mysqli_num_rows($result) == 1 ){
             $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`) VALUES({$employeeID},'{$court_to}','{$post_to}')";
-            mysqli_query($conn, $query2);
-            echo "<script>swal({title:'Mail sent successfully!',icon:'success'});</script>";
+            $query_run = mysqli_query($conn, $query2);
+            if($query_run){
+                $_SESSION['status'] = "Posting order sent successfully";
+                $_SESSION['status_code'] = "success";
+                header('Location: posting.php');
+            }
         }
         if(mysqli_num_rows($result) > 1){
-            echo "<script>swal({title:'Employee promotion order already exist!',icon:'info'});</script>";
+            $_SESSION['status'] = "Posting order already exist";
+            $_SESSION['status_code'] = "info";
         }
         else{
-            echo "<script>swal({title:'No active employee!',icon:'info'});</script>";
+            $_SESSION['status'] = "Employee does not exist";
+            $_SESSION['status_code'] = "warning";
         }
     }
 
@@ -51,32 +76,23 @@
         $posting = $row[1];
         if(mysqli_num_rows($result) == 1 ){
             $query2 = "INSERT INTO designation (employeeID,court,posting) VALUES({$employeeID},'{$court_to}','{$posting}')";
-            mysqli_query($conn, $query2) or die(mysqli_error($conn));
-            echo "<script>swal({title:'Mail sent successfully!',icon:'success'});</script>";
+            $query_run =  mysqli_query($conn, $query2);
+            if($query_run){
+                $_SESSION['status'] = "Transfer order sent successfully";
+                $_SESSION['status_code'] = "success";
+                header('Location: transfer.php');
+            }
         }
         else if(mysqli_num_rows($result) > 1){
-            echo "<script>swal({title:'Employee transfer order already exist!',icon:'info'});</script>";
+            $_SESSION['status'] = "Transfer order already exist";
+            $_SESSION['status_code'] = "info";
         }
         else{
-            echo "<script>swal({title:'No active Employee!',icon:'info'});</script>";
+            $_SESSION['status'] = "Employee does not exist";
+            $_SESSION['status_code'] = "warning";
         }
     }
 
-    //Function to handle the seniorirty page
-    else if(isset($_POST["SeniorityForm"])) {
-        $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);
-        $conn = connectDB();      
-        $query = "SELECT employeeID,employee_name,current_court,disciplinary_proceeeesgs from employee as e, designation as d, disciplinary_proceeding as ds where e.employeeID IN (select employeeID from desgination where posting = '{$posting}' and (to_date is null and from_date is not null))";
-
-        if($result == mysqli_query( $conn, $query)){
-            $returnVal = seniorityTable($result);
-            mysqli_close($conn);
-            return $returnVal;
-        }
-        else{
-            printf("Error: %s\n", mysqli_error($conn));
-        }
-    }
 
     //Function to change password
     else if (isset($_POST['submit_change_password'])) {
@@ -85,17 +101,45 @@
         $new_password = mysqli_real_escape_string($conn,$_POST['new_password']);
         $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
         if($old_password === $new_password){
-            echo "<script>swal({title:'New password is same as old password',icon:'info'});</script>";
+            $_SESSION['status'] = "New password same as old password";
+            $_SESSION['status_code'] = "info";
         }
         else if($new_password != $confirm_password){
-            echo "<script>swal({title:'New password does not match',icon:'info'});</script>";
+            $_SESSION['status'] = "New passwords does not match";
+            $_SESSION['status_code'] = "info";
         }
         else{
             $employeeID = $_SESSION['employeeID'];
             $query = "UPDATE employee SET password = '{$new_password}' where employeeID = {$employeeID}";
-            mysqli_query($conn,$query) or die($conn);
+            $query_run =  mysqli_query($conn,$query);
+            if($query_run){
+                $_SESSION['status'] = "Password changed successfully";
+                $_SESSION['status_code'] = "success";
+                header('Location: home_attendance.php');
+            }
         }
     }
+
+    //Function to handle the seniorirty page
+    
+        if(isset($_POST["SeniorityForm"])) {  
+            $conn = connectDB();
+            $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);      
+            $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
+            // $result = mysqli_query( $conn, $query) or die(mysqli_error($conn));
+            if($result = mysqli_query( $conn, $query)){
+                $returnVal = seniorityTable($result);
+                mysqli_close($conn);
+                return $returnVal;
+            }
+            else{
+                printf("Error: %s\n", mysqli_error($conn));
+            
+        }
+        }
+    
+
+    
 
     //Function to display the seriority of a posting
     function seniorityTable($result){
@@ -105,18 +149,18 @@
         $row_count = 1;
         echo "<table class='table table-info table-hover'>";
         echo "<tr>";
-        echo "<th>S.No</td>";
-        echo "<th>Name</th>";
-        echo "<th>Current Court</th>";
-        echo "<th>Disciplinary Proceedings</th>";
+        echo "<th>Employee ID</td>";
+        echo "<th>Employee Name</th>";
+        echo "<th>Posting joined date</th>";
+        // echo "<th>Disciplinary Proceedings</th>";
         echo "</tr>";
         while ($row=mysqli_fetch_array($result)) {
         
         echo    "<tr>";
-        echo  "<td>" . (string)$row_count . "</td>";
+        echo  "<td>" . $row['employeeID'] . "</td>";
         echo  "<td>" . $row['employee_name'] . "</td>";
-        echo  "<td>" . $row['court'] . "</td>";
-        echo  "<td>" . $row['disciplinary_proceesing'] . "</td>";
+        echo  "<td>" . $row['join_date'] . "</td>";
+        // echo  "<td>" . $row['disciplinary_proceesing'] . "</td>";
             
         echo "</tr>"; 
         $row_count++;     
