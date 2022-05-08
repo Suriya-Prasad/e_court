@@ -48,7 +48,7 @@
                     </select></p>
                 </div>
                 <br>
-                <button type="submit" name="submit_posting" class="btn btn-outline-success">SUBMIT</button>
+                <button type="submit" name="submit_posting" onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SUBMIT</button>
             </form> 
         <center>
         </div>                

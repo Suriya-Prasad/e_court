@@ -2,7 +2,6 @@
 
 <?php
 
-
     if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
         ?>
         <script>
@@ -43,22 +42,26 @@
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
         $post_to = mysqli_real_escape_string($conn,$_POST['post_to']);
         $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null";
-        $result = mysqli_query($conn,$query1);
-        if(mysqli_num_rows($result) == 1 ){
-            $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`) VALUES({$employeeID},'{$court_to}','{$post_to}')";
-            $query_run = mysqli_query($conn, $query2);
-            if($query_run){
-                $_SESSION['status'] = "Posting order sent successfully";
-                $_SESSION['status_code'] = "success";
-                header('Location: posting.php');
+        if($result = mysqli_query($conn,$query1)){
+            if(mysqli_num_rows($result) == 1 ){
+                $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`) VALUES({$employeeID},'{$court_to}','{$post_to}')";
+                $query_run = mysqli_query($conn, $query2);
+                if($query_run){
+                    $_SESSION['status'] = "Posting order sent successfully";
+                    $_SESSION['status_code'] = "success";
+                }
+            }
+            else if(mysqli_num_rows($result) > 1){
+                $_SESSION['status'] = "Posting order already exist";
+                $_SESSION['status_code'] = "info";
+            }
+            else{
+                $_SESSION['status'] = "Employee does not exist";
+                $_SESSION['status_code'] = "warning";
             }
         }
-        if(mysqli_num_rows($result) > 1){
-            $_SESSION['status'] = "Posting order already exist";
-            $_SESSION['status_code'] = "info";
-        }
         else{
-            $_SESSION['status'] = "Employee does not exist";
+            $_SESSION['status'] = "Something went wrong";
             $_SESSION['status_code'] = "warning";
         }
     }
@@ -70,24 +73,34 @@
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
         $court_from = mysqli_real_escape_string($conn,$_POST['court_from']);
         $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null";
-        $result = mysqli_query($conn,$query1);
-        $row = mysqli_fetch_row($result);
-        $posting = $row[1];
-        if(mysqli_num_rows($result) == 1 ){
-            $query2 = "INSERT INTO designation (employeeID,court,posting) VALUES({$employeeID},'{$court_to}','{$posting}')";
-            $query_run =  mysqli_query($conn, $query2);
-            if($query_run){
-                $_SESSION['status'] = "Transfer order sent successfully";
-                $_SESSION['status_code'] = "success";
-                header('Location: transfer.php');
+        if($result = mysqli_query($conn,$query1)){
+            $row = mysqli_fetch_row($result);
+            $posting = $row[1];
+            if(mysqli_num_rows($result) == 1 ){
+                if($court_from == $court_to){
+                    $_SESSION['status'] = "Employee works in the same court to be transfered";
+                    $_SESSION['status_code'] = "warning";
+                }
+                else{
+                    $query2 = "INSERT INTO designation (employeeID,court,posting) VALUES({$employeeID},'{$court_to}','{$posting}')";
+                    $query_run =  mysqli_query($conn, $query2);
+                    if($query_run){
+                        $_SESSION['status'] = "Transfer order sent successfully";
+                        $_SESSION['status_code'] = "success";
+                    }
+                }
+            }
+            else if(mysqli_num_rows($result) > 1){
+                $_SESSION['status'] = "Transfer order already exist";
+                $_SESSION['status_code'] = "info";
+            }
+            else{
+                $_SESSION['status'] = "Employee does not work in the selected court";
+                $_SESSION['status_code'] = "warning";
             }
         }
-        else if(mysqli_num_rows($result) > 1){
-            $_SESSION['status'] = "Transfer order already exist";
-            $_SESSION['status_code'] = "info";
-        }
         else{
-            $_SESSION['status'] = "Employee does not exist";
+            $_SESSION['status'] = "Something went wrong";
             $_SESSION['status_code'] = "warning";
         }
     }

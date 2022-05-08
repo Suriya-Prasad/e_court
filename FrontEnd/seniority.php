@@ -101,16 +101,12 @@ function seniorityTable($result){
     echo "<th>Employee ID</td>";
     echo "<th>Employee Name</th>";
     echo "<th>Posting joined date</th>";
-    // echo "<th>Disciplinary Proceedings</th>";
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
-    
     echo    "<tr>";
     echo  "<td>" . $row['employeeID'] . "</td>";
     echo  "<td>" . $row['employee_name'] . "</td>";
     echo  "<td>" . $row['join_date'] . "</td>";
-    // echo  "<td>" . $row['disciplinary_proceesing'] . "</td>";
-        
     echo "</tr>"; 
     $row_count++;     
     }

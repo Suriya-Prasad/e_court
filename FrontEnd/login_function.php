@@ -1,3 +1,5 @@
+<script src="js/sweetalert.min.js"></script>
+
 <?php
 
     //creates session for each user
@@ -27,6 +29,7 @@
                 if($password == $row['password']){
                     $_SESSION['employeeID'] = $row['employeeID'];
                     echo isset($_SESSION['employeeID']);
+                    header("Location:home_attendance.php");
                 }
                 else{
                     echo "<script>swal({title:'Invalid Employee ID / Password',icon:'info'});</script>";
@@ -35,11 +38,6 @@
             else{
               echo "<script>swal({title:'Invalid Employee ID / Password',icon:'info'});</script>";
             }       
-        }
-
-        //Once the user is succcessfully validated home page.
-        if(isset($_SESSION['employeeID'])) {
-            header("Location:home_attendance.php");        
         }
     }
 

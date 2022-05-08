@@ -10,7 +10,6 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <script src="js/sweetalert.min.js"></script>
     <title>Log in</title>
 </head>
 
