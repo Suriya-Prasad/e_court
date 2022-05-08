@@ -27,16 +27,16 @@
     <div class="form-signin">
         <h1 class="h2 mb-3 fw-bold">CHANGE PASSWORD</h1><br>
         <div class="form-floating">
-            <input type="password" class="form-control" name="old_password" placeholder="Password">
-            <label >Old Password</label>
+            <input type="password" name="old_password" class="form-control" id="password" placeholder="Password">
+            <label for="password">Old Password</label>
         </div><br>
         <div class="form-floating">
-            <input type="password" class="form-control" name="new_password" placeholder="Password">
-            <label >New Password</label>
+            <input type="password" name="new_password" class="form-control" id="newPassword" placeholder="Password">
+            <label for="newPassword">New Password</label>
         </div><br>
         <div class="form-floating">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Password">
-            <label >Confirm Password</label>
+            <input type="password" name="confirm_password" class="form-control" id="confirmPassword" placeholder="Password">
+            <label for="confirmPassword">Confirm Password</label>
         </div><br>
         <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit_change_password">SUBMIT</button>
     </div>

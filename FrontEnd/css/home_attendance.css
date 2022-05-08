@@ -1,8 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 body{
     margin: 0;
     padding: 0;
@@ -154,7 +149,7 @@ form{
     min-height: 84vh;
     text-align: center;
 }
-table{
+#content .table{
     text-align: center;
 }
 
@@ -195,6 +190,9 @@ table{
         padding: 0;
         margin: 0;
     }
+    #content table{
+        font-size: medium;
+    }
 }
 
 @media (max-width: 500px){
@@ -227,7 +225,10 @@ table{
         padding: 0;
         margin: 0;
     }
-    #s_no{
+    #content table{
+        font-size: smaller;
+    }
+    #content #op_table tr th:nth-child(1),tr td:nth-child(1){
         display: none;
     }
 }

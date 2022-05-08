@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+</head>
+<body>
+    <div id="navbar">    
+        <div id="main" class="d-md-none">
+            <button class="openbtn" onclick="openNav()">&#9776;</button>
+        </div>
+        <div id="logo_name">
+            <span><img src="utilities/download.png" alt="logo"></span>
+            <span><h2>Tiruppur Jurisdiction</h2></span>
+        </div>
+        <div id="profile">
+            <div id="accordion1" class="card">
+                <div class="card-header">
+                    <button type="button" data-bs-toggle="collapse" href="#collapseOne">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg><h5>UserName</h5>
+                    </button>
+                </div>
+                <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">
+                    <hr class="dropdown-divider">
+                    <div class="card-body">
+                         <form action="" method="POST">
+                        <center><button type="submit" id="change_password" name="change_password"><b>Change Password</b></button></center>
+                    </div>
+                    <div class="card-body">
+                        <center><button type="submit" id="logout" name="logout"><b>LOGOUT</b></button></center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       
+    <div id="side_content">
+        <div id="sidebar">
+            <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
+            <form action="" method="POST">
+            <button type="submit" class="btn btn-outline-info" id="attendance" name="attendance">Attendance</button>
+            </form>
+            <div id="accordion2" class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-secondary" name="staff_information" data-bs-toggle="collapse" href="#collapseTwo">
+                    <span>Staff Information<span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
+                <hr class="dropdown-divider">
+                <div class="card-body">
+                <form action="" method="POST">
+                    <center><button type="submit" id="property" name="property">Property</button></center>
+                </div>
+                <div class="card-body">
+                    <center><button type="submit"  id="service_register" name="service_register">Service Register</button></center>
+                    </div>
+                <div class="card-body">
+                    <center><button type="submit" id="seniority"  name="seniority">Seniority</button></center>
+                </div>
+                <div class="card-body">
+                    <center><button type="submit" id="running_note" name="running_note">Running Note</button></center>
+                </form>
+                </div>
+            </div>
+            </div>
+            <form action="" method="POST">
+            <button type="submit" class="btn btn-info" id="leave_entry" name="leave_entry">Leave Entry</button>
+            <button type ="submit" class="btn btn-outline-success" id="posting" name="posting">Posting</button>
+            <button type="submit" class="btn btn-outline-secondary" id="transfer" name="transfer">Transfer</button>
+            <button type="submit" class="btn btn-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
+            <button type="submit" class="btn btn-success" id="query_builder" name="query_builder">Query Builder</button>
+            </form>
+            </div>
+        </div>
+
+
+
+        <form>
+        <div id="content">
+            <h2>REGISTRATION</h2>
+            <div id="half">
+            <table>
+            <tr>
+                <td><label for="employeeID">EMPLOYEE ID: </label>
+                <td><input type="text" id="employeeID" name="employeeID" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+            </tr>
+            <tr>
+                <td><label for="fname">FIRST NAME: </label></td>
+                <td><input type="text" id="fname" name="fisrt_name"></td>
+            </tr>
+            <tr>
+                <td><label for="emailID">E-MAIL: </label></td>
+                <td><input type="email" id="emailID" name="e_mail"></td>
+            </tr>
+            <tr>
+                <td><label for="service_joinDate">SERVICE-JOINING DATE: </label></td>
+                <td><input type="date" id="service_joinDate" name="service_joining_date"></td>
+            </tr>
+            <tr>
+                <td><label for="native_district">NATIVE-DISTRICT: </label></td>
+                <td><input type="text" id="native_district" name="native_district"></td>
+            </tr>
+            <tr>
+                <td><span>MARITAL-STATUS:</span></td>
+                <td><label for="status1">YES</label>
+                <input type="radio" id="marital_status1" name="marital_status">
+                <label for="status2">NO</label>
+                <input type="radio" id="marital_status2" name="marital_status"></td>
+            </tr>
+            <tr>
+                <td><span>DIFFERENTLY-ABLED:</span></td>
+                <td><label for="diff_abled1">YES</label>
+                <input type="radio" id="diff_abled1" name="differently_abled">
+                <label for="diff_abled2">NO</label>
+                <input type="radio" id="diff_abled2" name="differently_abled"></td>
+            </tr>
+            <tr>
+                <td><label for="aadhar_num">AADHAR-NUMBER: </label></td>
+                <td><input type="text" id="aadhar_num" name="aadhar_number" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"></td>
+            </tr>
+            <tr>
+                <td><label for="community">COMMUNITY: </label></td>
+                <td><input type="text" id="community" name="community"></td>
+            </tr>
+            </table>
+            </div>
+
+            <div id="half">
+            <table>
+            <tr>
+                <td><label for="password">PASSWORD: </label></td>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+            <tr>
+                <td><label for="lname">LAST-NAME: </label></td>
+                <td><input type="text" id="lname" name="last_name"></td>
+            </tr>
+            <tr>
+                <td><label for="phone_num">PHONE-NUMBER: </label></td>
+                <td><input type="text" id="phone_num" name="phone_number" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"></td>
+            </tr>
+            <tr>
+                <td><label for="dob">DATE-OF-BIRTH: </label></td>
+                <td><input type="date" id="dob" name="date_of_birth"></td>
+            </tr>
+            <tr>
+                <td><span>GENDER:</span></td>
+                <td><label for="gender1">MALE</label>
+                <input type="radio" id="gender1" name="gender">
+                <label for="gender2">FEMALE</label>
+                <input type="radio" id="gender2" name="gender">
+                <label for="gender3">OTHER</label>
+                <input type="radio" id="gender3" name="gender"></td>
+            </tr>
+            <tr>
+                <td><label for="s_f_name">SPOUSE/FATHER-NAME: </label></td>
+                <td><input type="text" id="s_f_name" name="spouse/father_name"></td>
+            </tr>
+            <tr>
+                <td><label for="religion">RELIGION: </label></td>
+                <td><input type="text" id="religion" name="religion"></td>
+            </tr>
+            <tr>
+                <td><label for="pan_num">PAN-NUMBER: </label></td>
+                <td><input type="text" id="pan_num" name="pan_number" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"></td>
+            </tr>
+            <tr>
+                <td><label for="cast">CAST: </label></td>
+                <td><input type="text" id="cast" name="cast"></td>
+            </tr>
+            </table>
+            </div>
+
+            <div id="half">
+            <table>
+            <tr>
+                <td><label for="p_address">PERMANENT-ADDRESS: </label></td>
+                <td><input type="text" id="p_address" name="permanent_address"></td>
+            </tr>
+            <tr>
+                <td><label for="c_address">CURRENT-ADDRESS: </label></td>
+                <td><input type="text" id="c_address" name="current_address"></td>
+            </tr>
+            </table>
+            </div>
+
+            <div id="half">
+            <table>
+            <tr>
+                <td><label for="s_f_occupation">SPOUSE/FATHER-OCCUPATION: </label></td>
+                <td><input type="text" id="s_f_occupation" name="spouse/father_occupation"></td>
+            </tr>
+            <tr>
+                <td><label for="num_child">NUMBER-OF-CHILDREN: </label></td>
+                <td><input type="number" id="num_child" name="number_of_children"></td>
+            </tr>
+            </table>
+            </div>
+
+            <div id="half">
+            <table>
+            <tr>
+                <td><label for="s_f_curr_district">SPOUSE/FATHER-DISTRICT: </label></td>
+                <td><input type="text" id="s_f_curr_district" name="spouse/father_current_district"></td>
+            </tr>
+            <tr>
+                <td><span>SPECIAL-CHILD:</span></td>
+                <td><label for="special_cild1">YES</label>
+                <input type="radio" id="special_cild1" name="special_cild">
+                <label for="special_cild2">NO</label>
+                <input type="radio" id="special_cild2" name="special_cild"></td>
+            </tr>
+            </table>
+            </div>
+
+            <div id="half">
+            <table>
+            <tr>
+                <td><label for="details">DETAILS-OF-SPECIAL-CHILD: </label></td>
+                <td><input type="text" id="details" name="details"></td>
+            </tr>
+            </table>
+            </div>
+        </div>
+        </form>
+
+
+
+    </div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
