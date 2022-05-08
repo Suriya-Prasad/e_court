@@ -2,7 +2,6 @@
 
 <?php
 
-use LDAP\Result;
 
     if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
         ?>
@@ -122,11 +121,10 @@ use LDAP\Result;
 
     //Function to handle the seniorirty page
     
-        if(isset($_POST["SeniorityForm"])) {  
+    else if(isset($_POST["SeniorityForm"])) {  
             $conn = connectDB();
             $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);      
             $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
-            // $result = mysqli_query( $conn, $query) or die(mysqli_error($conn));
             if($result = mysqli_query( $conn, $query)){
                 $returnVal = seniorityTable($result);
                 mysqli_close($conn);
@@ -134,12 +132,8 @@ use LDAP\Result;
             }
             else{
                 printf("Error: %s\n", mysqli_error($conn));
-            
-        }
-        }
-    
-
-    
+            }
+    }
 
     //Function to display the seriority of a posting
     function seniorityTable($result){
