@@ -70,6 +70,7 @@
             <button type="submit" class="btn btn-outline-secondary" id="transfer" name="transfer">Transfer</button>
             <button type="submit" class="btn btn-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
             <button type="submit" class="btn btn-success" id="query_builder" name="query_builder">Query Builder</button>
+            <button type="submit" class="btn btn-success" id="employee_registration" name="employee_registration">Employee Registration</button>
             </form>
             </div>
         </div>

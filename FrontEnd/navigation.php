@@ -18,4 +18,7 @@
         else if (isset($_POST['change_password'])) {
             header("Location:change_password.php");
         }
+        else if (isset($_POST['employee_registration'])) {
+            header("Location:employee_registration.php");
+        }
 ?>
