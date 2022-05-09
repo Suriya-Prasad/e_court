@@ -235,7 +235,4 @@ form{
     #content table{
         font-size: smaller;
     }
-    #content #op_table tr th:nth-child(1),tr td:nth-child(1){
-        display: none;
-    }
 }
