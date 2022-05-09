@@ -20,7 +20,6 @@
 </head>
 <body>
         <?php include "navbars.php"; ?>
-
         <div id="content">
         <center>
             <br><br>
@@ -52,7 +51,12 @@
             </form> 
         <center>
         </div>                
-    </div>  
+    </div>
+    <script>
+        var element = document.getElementById("posting");
+        element.classList.remove("btn-outline-secondary");
+        element.classList.add("btn-secondary");
+    </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
