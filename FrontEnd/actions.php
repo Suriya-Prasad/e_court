@@ -8,7 +8,7 @@
             swal({
                 title:"<?php echo $_SESSION['status']; ?>",
                 icon:"<?php echo $_SESSION['status_code']; ?>",
-                button:"ok",
+                button:"OK",
             });
         </script>
     <?php
