@@ -4,7 +4,7 @@
     if(! isset ($_SESSION['employeeID'])) {
         header("Location:index.php");    
     }
-    include "navigation.php";
+    include_once "navigation.php";
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="css/posting.css">
 </head>
 <body>
-    <?php include "navbars.php"; ?>
+    <?php include_once "navbars.php"; ?>
 
         <div id="content">
         <center>
@@ -65,4 +65,4 @@
 </body>
 </html>
 
-<?php include "actions.php"; ?>
+<?php include_once "actions.php"; ?>

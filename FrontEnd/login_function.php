@@ -41,17 +41,5 @@
         }
     }
 
-    function connectDB()
-    {
-        $connection = mysqli_connect("localhost:3306", "root", "", "e_courts");   
-    
-        if (!$connection) 
-        {
-            echo "Error: Unable to connect to MySQL." . PHP_EOL;
-            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-            exit;
-        }
-        return $connection;
-    }
+include_once "db_connection.php";
 ?>
