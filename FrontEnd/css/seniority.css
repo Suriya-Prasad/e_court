@@ -1,5 +1,12 @@
+#content{
+    padding: 0;
+}
+#content h2{
+    padding: 25px;
+}
 #content select{
     width: 40%;
+    margin-bottom: 30px;
 }
 #content #post_table{
     display: none;
@@ -11,5 +18,10 @@
     }
     #content option{
         font-size: medium;
+    }
+}
+@media (max-width: 500px){
+    #content table{
+        font-size: smaller;
     }
 }
