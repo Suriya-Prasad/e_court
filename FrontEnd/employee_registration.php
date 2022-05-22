@@ -191,7 +191,25 @@
                 <div class="input1 col-lg-8 col-md-7 col-sm-8">
                     <textarea id="c_address" required name="current_address" rows="5" cols="55"></textarea>
                 </div>
-                <center><button id="r_btn" class="btn btn-outline-success" name="submit_registration">REGISTER</button></center>
+                <div class="label col-lg-3 col-md-6 col-sm-3">
+                    <label for="acc_name">BANK ACCOUNT NAME: </label>
+                </div>
+                <div class="input col-lg-3 col-md-6 col-sm-3">
+                    <input type="text" id="acc_name" name=""/>
+                </div>
+                <div class="label col-lg-3 col-md-6 col-sm-3">
+                    <label for="acc_num">ACCOUNT NUMBER: </label>
+                </div>
+                <div class="input col-lg-3 col-md-6 col-sm-3">
+                    <input type="text" id="acc_num" name=""/>
+                </div>
+                <div class="label col-lg-3 col-md-6 col-sm-3">
+                    <label for="idfc_num">IDFC NUMBER: </label>
+                </div>
+                <div class="input col-lg-8 col-md-6 col-sm-8">
+                    <input type="text" id="idfc_num" name=""/>
+                </div>
+                <center><button id="r_btn" class="btn btn-outline-success">REGISTER</button></center>
             </form>
             </div>
 

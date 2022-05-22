@@ -6,6 +6,8 @@ form{
     margin: 0;
 }
 #navbar{
+    position: -moz-sticky;
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     background-color: #8ED6FF;
@@ -58,7 +60,9 @@ form{
 #sidebar{
     float: left;
     margin: 15px;
+    height: -webkit-fill-content;
     height: fit-content;
+    height: -webkit-fill-available;
 }
 .sidebar {
     height: 100%;

@@ -44,7 +44,7 @@
                 </select></p>
                 <button type="submit" name="submit_transfer" onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SUBMIT</button>
             </form> 
-            <center>
+        <center>
         </div>
         </div>
     </div>    
