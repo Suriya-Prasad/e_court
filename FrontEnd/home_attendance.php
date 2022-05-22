@@ -28,6 +28,7 @@
 
 
         <div id="content">
+            <div id="attendance">
             <h2>ATTENDANCE</h2>
             <script>fillResults();</script>
             <label for="date">DATE: </label>
@@ -49,6 +50,7 @@
                     <td>4</td></td><td>25/04/2022</td><td>Arul</td><td>2353463111</td><td>YES</td><td>9:30</td>
                 </tr>
             </table>
+            </div>
         </div>
 
         
