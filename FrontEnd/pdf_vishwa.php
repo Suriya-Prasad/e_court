@@ -1,5 +1,6 @@
 <?php
-require('fpdf184/fpdf.php');
+require_once('fpdf184/fpdf.php');
+
 $pdf = new FPDF('P','mm','A4'); 
 $pdf->AddPage();
 
