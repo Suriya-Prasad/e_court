@@ -64,7 +64,7 @@ INSERT INTO designation (`employeeID`,`posting`,`court`,`from_date`) VALUES ('3'
 
 DROP TABLE IF EXISTS `spouse_father_details`;
 
-CREATE TABLE `spouse/father_details`(
+CREATE TABLE `spouse_father_details`(
   `employeeID` int (20) NOT NULL,
   `spouse_father_name` varchar(255) DEFAULT NULL,
   `spouse_father_occupation` varchar(255) DEFAULT NULL,
