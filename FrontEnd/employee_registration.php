@@ -206,7 +206,7 @@
                 <div class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="idfc_num">IFSC NUMBER: </label>
                 </div>
-                <div class="input col-lg-8 col-md-6 col-sm-8">
+                <div class="input col-lg-9 col-md-6 col-sm-9">
                     <input type="text" id="idfc_num" name="ifsc_number"/>
                 </div>
                 <center><button id="r_btn" class="btn btn-outline-success">REGISTER</button></center>
