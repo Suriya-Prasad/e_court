@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/posting.css">
 </head>
 <body>
@@ -42,7 +42,20 @@
                         <option value="post 3">Post Three</option>
                     </select></p>
                 </form> 
-                <button type="submit" name="submit_posting" onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SUBMIT</button>
+                <button type="submit" name="submit_posting" href="javascript:void(0)" onclick="
+                swal('Are you sure?','Please enter your password to ensure:',{
+                    dangerMode: true,
+                    buttons: true,
+                    content: {
+                        element: 'input',
+                        attributes: {
+                            placeholder: 'Type your password',
+                            type: 'password',
+                        },
+                    },
+                    buttons: {cancel: 'CANCEL', confirm: 'YES',},
+                });"
+                class="btn btn-outline-success">SUBMIT</button>
             <center>
             </div>
         </div>                
@@ -52,6 +65,7 @@
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
     </script>
+    <script src="js/sweetalert.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

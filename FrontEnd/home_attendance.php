@@ -15,7 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/attendance.css">
     <script>
     function fillResults(){
         document.getElementById('content').style.display = 'block';   
@@ -27,6 +28,7 @@
 
 
         <div id="content">
+            <div id="attendance">
             <h2>ATTENDANCE</h2>
             <script>fillResults();</script>
             <label for="date">DATE: </label>
@@ -48,6 +50,7 @@
                     <td>4</td></td><td>25/04/2022</td><td>Arul</td><td>2353463111</td><td>YES</td><td>9:30</td>
                 </tr>
             </table>
+            </div>
         </div>
 
         
