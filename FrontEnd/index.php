@@ -41,4 +41,4 @@
 </body>
 </html>
 
-<?php require 'login_function.php'; ?>
+<?php require_once 'login_function.php'; ?>

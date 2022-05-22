@@ -19,21 +19,7 @@
 
 <?php
     
-    //Function to coonect to database
-    function connectDB()
-    {
-        $connection = mysqli_connect("localhost:3306", "root", "", "e_courts");   
-    
-        if (!$connection) 
-        {
-            echo "Error: Unable to connect to MySQL." . PHP_EOL;
-            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-            exit;
-        }
-        return $connection;
-    }
-
+    include_once "db_connection.php";
 
     //Function to add an entry to designation table when submit clicked at posting page
     if(isset($_POST['submit_posting'])){
@@ -130,48 +116,5 @@
                 header('Location: home_attendance.php');
             }
         }
-    }
-
-    //Function to handle the seniorirty page
-    
-    // else if(isset($_POST["SeniorityForm"])) {  
-    //         $conn = connectDB();
-    //         $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);      
-    //         $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
-    //         if($result = mysqli_query( $conn, $query)){
-    //             $returnVal = seniorityTable($result,$posting);
-    //             mysqli_close($conn);
-    //             return $returnVal;
-    //         }
-    //         else{
-    //             printf("Error: %s\n", mysqli_error($conn));
-    //         }
-    // }
-
-    // //Function to display the seriority of a posting
-    // function seniorityTable($result,$posting){
-    //     if(mysqli_num_rows($result)==0){
-    //         return "<script>swal({title:'No employee exist in this post',icon:'info'});</script>";
-    //     }
-    //     $row_count = 1;
-    //     echo "<table class='table table-info table-hover'>";
-    //     echo "<tr>";
-    //     echo "<th>Employee ID</td>";
-    //     echo "<th>Employee Name</th>";
-    //     echo "<th>Posting joined date</th>";
-    //     // echo "<th>Disciplinary Proceedings</th>";
-    //     echo "</tr>";
-    //     while ($row=mysqli_fetch_array($result)) {
-        
-    //     echo    "<tr>";
-    //     echo  "<td>" . $row['employeeID'] . "</td>";
-    //     echo  "<td>" . $row['employee_name'] . "</td>";
-    //     echo  "<td>" . $row['join_date'] . "</td>";
-    //     // echo  "<td>" . $row['disciplinary_proceesing'] . "</td>";
-            
-    //     echo "</tr>"; 
-    //     $row_count++;     
-    //     }
-    //     echo "</table>";
-    // }
+    }    
 ?>

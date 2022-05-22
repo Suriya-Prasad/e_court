@@ -1,25 +1,16 @@
 #content{
     padding: 0;
 }
-#postn{
-    float: left;
-    width: 50%;
-    height: 3rem;
-    padding: .75rem;
-    background-color: rgb(73, 125, 208);
-    border: solid black 2px; 
-    border-right: 0;
+#content h2{
+    padding: 25px;
 }
-#transn{
-    float: right;
-    width: 50%;
-    height: 3rem;
-    padding: .75rem;
-    background-color: rgb(73, 125, 208);
-    border: solid black 2px;
+#content input{
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 #content select{
     width: 40%;
+    margin-bottom: 40px;
 }
 
 @media (max-width: 767px){
@@ -28,5 +19,11 @@
     }
     #content option{
         font-size: medium;
+    }
+}
+
+@media (max-width: 500px){
+    #posting{
+        font-size: smaller;
     }
 }

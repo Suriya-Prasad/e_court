@@ -4,7 +4,8 @@
     if(! isset ($_SESSION['employeeID'])) {
         header("Location:index.php");    
     }
-    include "navigation.php";
+    include_once "navigation.php";
+    include_once "actions.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,12 +21,12 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php echo GetResults(); ?>";   
+        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
     }
     </script>
 </head>
 <body>
-    <?php include "navbars.php"; ?>
+    <?php include_once "navbars.php"; ?>
 
         <div id="content">
 
@@ -66,38 +67,24 @@
 
 <?php
 
-function connectDB()
-    {
-        $connection = mysqli_connect("localhost:3306", "root", "", "e_courts");   
-    
-        if (!$connection) 
-        {
-            echo "Error: Unable to connect to MySQL." . PHP_EOL;
-            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-            exit;
-        }
-        return $connection;
-    }
+include_once "db_connection.php";
 
-function GetResults(){
-    if(isset($_POST["SeniorityForm"])) {  
-        $conn = connectDB();
-        $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);      
-        $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
-        if($result = mysqli_query( $conn, $query)){
-            $returnVal = seniorityTable($result,$posting);
-            mysqli_close($conn);
-            return $returnVal;
+//Function to handle the seniorirty page
+    
+function GetSeniority(){
+    $conn = connectDB();
+    $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);      
+    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
+    if($result = mysqli_query( $conn, $query)){
+        $returnVal = seniorityTable($result,$posting);
+        mysqli_close($conn);
+        return $returnVal;
         }
-        else{
-            printf("Error: %s\n", mysqli_error($conn));
-        }
-    }
     else{
-        return "";
+        printf("Error: %s\n", mysqli_error($conn));
     }
 }
+
 //Function to display the seriority of a posting
 function seniorityTable($result,$posting){
     if(mysqli_num_rows($result)==0){
