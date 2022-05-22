@@ -192,22 +192,22 @@
                     <textarea id="c_address" required name="current_address" rows="5" cols="55"></textarea>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="acc_name">BANK ACCOUNT NAME: </label>
+                    <label for="acc_name">BANK ACCOUNT HOLDER NAME: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="acc_name" name=""/>
+                    <input type="text" id="acc_name" name="account_holder_name"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="acc_num">ACCOUNT NUMBER: </label>
+                    <label for="acc_num">BANK ACCOUNT NUMBER: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="acc_num" name=""/>
+                    <input type="text" id="acc_num" name="account_number"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="idfc_num">IDFC NUMBER: </label>
+                    <label for="idfc_num">IFSC NUMBER: </label>
                 </div>
                 <div class="input col-lg-8 col-md-6 col-sm-8">
-                    <input type="text" id="idfc_num" name=""/>
+                    <input type="text" id="idfc_num" name="ifsc_number"/>
                 </div>
                 <center><button id="r_btn" class="btn btn-outline-success">REGISTER</button></center>
             </form>
