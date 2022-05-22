@@ -15,7 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/home_attendance.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/attendance.css">
     <script>
     function fillResults(){
         document.getElementById('content').style.display = 'block';   
