@@ -1,7 +1,7 @@
 <script src="js/sweetalert.min.js"></script>
 
 <?php
-
+    include_once "db_connection.php";
     //creates session for each user
     session_start();
 
@@ -41,5 +41,5 @@
         }
     }
 
-include_once "db_connection.php";
+
 ?>
