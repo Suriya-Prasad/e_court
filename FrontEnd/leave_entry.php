@@ -87,10 +87,10 @@
                         <option value="2">Afternoon</option>
                     </select>
                 </div>
-                <div class="label col-lg-5 col-md-5 col-sm-4">
+                <div class="label1 col-lg-4 col-md-5 col-sm-4">
                     <label for="l_reason">REASON: </label>
                 </div>
-                <div class="input col-lg-7 col-md-7 col-sm-8">
+                <div class="input1 col-lg-8 col-md-7 col-sm-8">
                     <textarea id="l_reason" name="current_address" form="usrform" rows="4" cols="40"></textarea>
                 </div>
                 <center><button id="l_btn" class="btn btn-outline-success">APPLY</button></center>

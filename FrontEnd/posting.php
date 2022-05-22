@@ -41,12 +41,17 @@
                         <option value="post 2">Post Two</option>
                         <option value="post 3">Post Three</option>
                     </select></p>
-                </form> 
-                <button type="submit" name="submit_posting" class="btn btn-outline-success">SUBMIT</button>
+                    <button type="submit" name="submit_posting" class="btn btn-outline-success">SUBMIT</button>
+                </form>
             <center>
             </div>
         </div>                
     </div>
+    <script>
+        var element = document.getElementById("posting");
+        element.classList.remove("btn-outline-secondary");
+        element.classList.add("btn-secondary");
+    </script>
     <script src="js/sweetalert.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
