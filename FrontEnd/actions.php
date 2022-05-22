@@ -116,5 +116,54 @@
                 header('Location: home_attendance.php');
             }
         }
-    }    
+    }
+    
+    
+    //Function to register a new employee
+    else if(isset($_POST['submit_registration'])){
+        $conn = ConnectDB();
+        $employeeID = $_POST['employeeID'];
+        $password = $employeeID;
+        $fisrt_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $e_mail = $_POST['e_mail'];
+        $phone_number = $_POST['phone_number'];
+        $service_joining_date = $_POST['service_joining_date'];
+        $date_of_birth = $_POST['date_of_birth'];
+        $aadhar_number = $_POST['aadhar_number'];
+        $pan_number = $_POST['pan_number'];
+        $differently_abled = $_POST['differently_abled'];
+        $gender = $_POST['gender'];
+        $native_district = $_POST['native_district'];
+        $community = $_POST['community'];
+        $religion = $_POST['religion'];
+        $caste = $_POST['caste'];
+        $marital_status = $_POST['marital_status'];
+        $spouse_father_name = $_POST['spouse/father_name'];
+        $spouse_father_occupation = $_POST['spouse/father_occupation'];
+        $spouse_father_current_district = $_POST['spouse/father_current_district'];
+        $number_of_children = $_POST['number_of_children'];
+        $special_child = $_POST['special_child'];
+        $sp_ch_details = $_POST['sp_ch_details'];
+        $permanent_address = $_POST['permanent_address'];
+        $current_address = $_POST['current_address'];
+        $query="select * from employee where employeeID='{$employeeID}';";
+            $result=mysqli_query($conn,$query);            
+            if(mysqli_num_rows($result) > 0 ){
+                
+                echo "<script>swal({title:'Employee is already registered.',icon:'info'});</script>";
+            }
+            // else {
+            //     $query = "INSERT INTO user (user_name, password, first_name, last_name, e_mail) VALUES ('{$user_name}', '{$hash}', '{$first_name}', '{$last_name}','{$e_mail}')";
+               
+            //     if (!mysqli_query($conn, $query))
+            //     {
+            //         $error = mysqli_error($conn);
+            //         echo $error;
+            //     }
+            //     header('Location: registersuccess.html');
+                
+            //    return;
+            // }       
+    }
 ?>
