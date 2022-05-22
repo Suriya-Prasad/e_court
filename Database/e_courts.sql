@@ -15,7 +15,7 @@ CREATE TABLE `employee` (
   `date_of_birth` date,
   `gender` varchar(10) NOT NULL,
   `marital_status` varchar(10) NOT NULL,
-  `spouse/father_name` varchar(100) NOT NULL,
+  `spouse_father_name` varchar(100) NOT NULL,
   `differently_abled` varchar(10) NOT NULL,
   `aadhar_number` varchar(12) NOT NULL,
   `pan_number` varchar(10) NOT NULL,
@@ -62,13 +62,13 @@ INSERT INTO designation (`employeeID`,`posting`,`court`,`from_date`) VALUES ('3'
 
 -- Table structure for `spouse details` ;
 
-DROP TABLE IF EXISTS `spouse/father_details`;
+DROP TABLE IF EXISTS `spouse_father_details`;
 
 CREATE TABLE `spouse/father_details`(
   `employeeID` int (20) NOT NULL,
-  `spouse/father_name` varchar(255) DEFAULT NULL,
-  `spouse/father_occupation` varchar(255) DEFAULT NULL,
-  `spouse/father_current_district` varchar(255) DEFAULT NULL,
+  `spouse_father_name` varchar(255) DEFAULT NULL,
+  `spouse_father_occupation` varchar(255) DEFAULT NULL,
+  `spouse_father_current_district` varchar(255) DEFAULT NULL,
   CONSTRAINT `fk_employeeID_spouse/father_details` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

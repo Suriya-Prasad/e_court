@@ -144,19 +144,19 @@
                     <label for="s_f_name">SPOUSE/FATHER-NAME: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="s_f_name" required name="spouse/father_name"/>
+                    <input type="text" id="s_f_name" required name="spouse_father_name"/>
                 </div>
                 <div  class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="s_f_occupation">SPOUSE/FATHER-OCCUPATION: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="s_f_occupation" required name="spouse/father_occupation"/>
+                    <input type="text" id="s_f_occupation" required name="spouse_father_occupation"/>
                 </div>
                 <div  class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="s_f_curr_district">SPOUSE/FATHER-DISTRICT: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="s_f_curr_district" required name="spouse/father_current_district"/>
+                    <input type="text" id="s_f_curr_district" required name="spouse_father_current_district"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="num_child">NUMBER-OF-CHILDREN: </label>
