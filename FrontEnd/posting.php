@@ -21,15 +21,12 @@
 <body>
         <?php include_once "navbars.php"; ?>
         <div id="content">
-        <center>
-            <br><br>
-            <form action="" method="POST">
-                <div id="posti">
+            <div id="posting">
+            <center>
+                <form action="" method="POST">
                     <h2>POSTING</h2>
-                    <br>
                     <label for="employeeID">EMPLOYEE ID: </label>
                     <input type="text" id="employeeID" name="employeeID">
-                    <br><br><br>
                     <p>TO COURT  :
                     <select id="post-to" name="court_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
@@ -37,7 +34,6 @@
                         <option value="court two">Court Two</option>
                         <option value="court three">Court Three</option>
                     </select></p>
-                    <br>
                     <p>TO POSTING   :
                     <select id="post-to" name="post_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
@@ -45,11 +41,10 @@
                         <option value="post 2">Post Two</option>
                         <option value="post 3">Post Three</option>
                     </select></p>
-                </div>
-                <br>
+                </form> 
                 <button type="submit" name="submit_posting" onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SUBMIT</button>
-            </form> 
-        <center>
+            <center>
+            </div>
         </div>                
     </div>
     <script>

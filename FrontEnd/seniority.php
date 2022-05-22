@@ -29,9 +29,9 @@
     <?php include_once "navbars.php"; ?>
 
         <div id="content">
-
+        <div id="seniority">
             <center>
-                <br><br>
+                <h2>SENIORITY</h2>
                 <form action="" method="POST">
                 <p>POST :
                 <select id="post" class="form-select" name = "SeniorityForm" onchange="this.form.submit()">
@@ -42,13 +42,13 @@
                 </select></p>
                 </form>
             </center>
-            <br>
             <div id="post_table">
                 <script>fillResults();</script>
             </div>
         </div>
+        </div>
     </div>
-    </form>
+
     <script>
         var element = document.getElementById("seniority");
         element.classList.remove("btn-outline-secondary");

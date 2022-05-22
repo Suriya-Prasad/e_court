@@ -24,14 +24,13 @@
 </head>
 <body>
         <?php include_once "navbars.php"; ?>
+
+
         <div id="content">
-            <br><br>
             <h2>ATTENDANCE</h2>
             <script>fillResults();</script>
-            <br><br>
             <label for="date">DATE: </label>
             <input type="date" id="date" name="date">
-            <br><br><br>
             <table id="op_table" class="table table-info table-hover">
                 <tr>
                     <th>S.No</th><th>Date</th><th>Name</th><th>Id</th><th>Attendance</th><th>Time</th>
@@ -50,6 +49,8 @@
                 </tr>
             </table>
         </div>
+
+        
     </div>
     <script>
         var element = document.getElementById("attendance");

@@ -22,35 +22,30 @@
     <?php include_once "navbars.php"; ?>
 
         <div id="content">
+        <div id="transfer">
         <center>
-            <br><br>
+            <h2>TRANSFER</h2>
             <form action="" method="POST" >
-                <div id="transf">
-                    <h2>TRANSFER</h2>
-                    <br>
-                    <label for="employeeID">EMPLOYEE ID: </label>
-                    <input type="text" id="employeeID" name="employeeID">
-                    <br><br><br>
-                    <p>FROM COURT :
-                    <select id="court-from" name="court_from" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
-                        <option value="court one">Court One</option>
-                        <option value="court two">Court Two</option>
-                        <option value="court three">Court Three</option>
-                    </select></p>
-                    <br>
-                    <p>TO COURT  :
-                    <select id="post-to" name="court_to" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
-                        <option value="court one">Court One</option>
-                        <option value="court two">Court Two</option>
-                        <option value="court three">Court Three</option>
-                    </select></p>
-                </div>
-                <br>
+                <label for="employeeID">EMPLOYEE ID: </label>
+                <input type="text" id="employeeID" name="employeeID">
+                <p>FROM COURT :
+                <select id="court-from" name="court_from" class="form-select">
+                    <option selected>&lt;--None--&gt;</option>
+                    <option value="court one">Court One</option>
+                    <option value="court two">Court Two</option>
+                    <option value="court three">Court Three</option>
+                </select></p>
+                <p>TO COURT  :
+                <select id="post-to" name="court_to" class="form-select">
+                    <option selected>&lt;--None--&gt;</option>
+                    <option value="court one">Court One</option>
+                    <option value="court two">Court Two</option>
+                    <option value="court three">Court Three</option>
+                </select></p>
                 <button type="submit" name="submit_transfer" onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SUBMIT</button>
             </form> 
-        <center>
+            <center>
+        </div>
         </div>
     </div>    
     </form>

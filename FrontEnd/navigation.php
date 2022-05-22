@@ -20,4 +20,7 @@
         else if (isset($_POST['employee_registration'])) {
             header("Location:employee_registration.php");
         }
+        else if (isset($_POST['leave_entry'])) {
+            header("Location:leave_entry.php");
+        }
 ?>
