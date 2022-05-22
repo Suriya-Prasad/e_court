@@ -16,8 +16,7 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/regi
-    ster.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
         <?php include_once "navbars.php"; ?>
