@@ -116,5 +116,5 @@
                 header('Location: home_attendance.php');
             }
         }
-    }    
+    }
 ?>
