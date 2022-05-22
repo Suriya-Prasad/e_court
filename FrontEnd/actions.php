@@ -139,31 +139,38 @@
         $religion = $_POST['religion'];
         $caste = $_POST['caste'];
         $marital_status = $_POST['marital_status'];
-        $spouse_father_name = $_POST['spouse/father_name'];
-        $spouse_father_occupation = $_POST['spouse/father_occupation'];
-        $spouse_father_current_district = $_POST['spouse/father_current_district'];
+        $spouse_father_name = $_POST['spouse_father_name'];
+        $spouse_father_occupation = $_POST['spouse_father_occupation'];
+        $spouse_father_current_district = $_POST['spouse_father_current_district'];
         $number_of_children = $_POST['number_of_children'];
         $special_child = $_POST['special_child'];
         $sp_ch_details = $_POST['sp_ch_details'];
         $permanent_address = $_POST['permanent_address'];
         $current_address = $_POST['current_address'];
+        $account_holder_name = $_POST['account_holder_name'];
+        $ifsc_number = $_POST['ifsc_number'];
+        $account_number = $_POST['account_number'];
         $query="select * from employee where employeeID='{$employeeID}';";
             $result=mysqli_query($conn,$query);            
             if(mysqli_num_rows($result) > 0 ){
                 
                 echo "<script>swal({title:'Employee is already registered.',icon:'info'});</script>";
             }
-            // else {
-            //     $query = "INSERT INTO user (user_name, password, first_name, last_name, e_mail) VALUES ('{$user_name}', '{$hash}', '{$first_name}', '{$last_name}','{$e_mail}')";
-               
-            //     if (!mysqli_query($conn, $query))
-            //     {
-            //         $error = mysqli_error($conn);
-            //         echo $error;
-            //     }
-            //     header('Location: registersuccess.html');
+            else {
+                $query1 .= "INSERT INTO employee (employeeID, password, fisrt_name, last_name, e_mail,phone_number,service_joining_date,date_of_birth,aadhar_number,pan_number,differently_abled,gender,native_district,community,religion,caste,marital_status,permanent_address,current_address,spouse_father_name) 
+                VALUES ('{$employeeID}', '{$password}', '{$fisrt_name}', '{$last_name}','{$e_mail}','{$phone_number}','{$service_joining_date}','{$date_of_birth}','{$aadhar_number}','{$pan_number}','{$differently_abled}','{$gender}','{$native_district}','{$community}','{$religion}','{$caste}','{$marital_status}','{$permanent_address}','{$current_address}','{$spouse_father_name}')";
+                $query1 .= "INSERT INTO spouse_father_details(employeeID,spouse_father_name,spouse_father_occupation,spouse_father_current_district) VALUES('{$employeeID}','{$spouse_father_name}','{$spouse_father_occupation}','{$spouse_father_current_district}')";
+                $query1 .= "INSERT INTO bank_details(employeeID,account_holder_name,account_number,ifsc_number) VALUES('{$employeeID}','{$account_holder_name}','{$account_number}','{$ifsc_number}')";               
+                if (!mysqli_multi_query($conn, $query1))
+                {
+                    $error = mysqli_error($conn);
+                    echo $error;
+                }
+                $_SESSION['status'] = "Registration successfull";
+                $_SESSION['status_code'] = "success";
+                header('Location: employee_registration.php');
                 
-            //    return;
-            // }       
+               return;
+            }       
     }
 ?>
