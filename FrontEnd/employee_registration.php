@@ -208,7 +208,7 @@
                 <div class="input col-lg-9 col-md-6 col-sm-9">
                     <input type="text" id="ifsc_num" name="ifsc_number"/>
                 </div>
-                <center><button type="submit" id="r_btn" class="btn btn-outline-success">REGISTER</button></center>
+                <center><button type="submit" id="r_btn" name="submit_registration" class="btn btn-outline-success">REGISTER</button></center>
             </form>
             </div>
     </div>
