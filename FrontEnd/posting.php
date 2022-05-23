@@ -59,34 +59,34 @@
             </div>
         </div>                
     </div>
-    <!-- <script>
+    <script>
         var element = document.getElementById("posting");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
     
-        document.querySelector('#check').addEventListener('click', function(e){
-            var form = this;
-            e.preventDefault();
-            swal({
-                title: "Are you sure?",
-                text: "You cant undo this operation",
-                buttons: [
-                    'CANCEL',
-                    'YES'
-                ],
-            }).then(function(isConfirm) {
-            if (isConfirm) {
-                swal({
-                    text: "POSTED",
-                    icon: 'success',
-                    buttons: false
-                }).then(function() {
-                    form.submit();
-                });
-            }
-            })
-        });
-    </script> -->
+        // document.querySelector('#check').addEventListener('click', function(e){
+        //     var form = this;
+        //     e.preventDefault();
+        //     swal({
+        //         title: "Are you sure?",
+        //         text: "You cant undo this operation",
+        //         buttons: [
+        //             'CANCEL',
+        //             'YES'
+        //         ],
+        //     }).then(function(isConfirm) {
+        //     if (isConfirm) {
+        //         swal({
+        //             text: "POSTED",
+        //             icon: 'success',
+        //             buttons: false
+        //         }).then(function() {
+        //             form.submit();
+        //         });
+        //     }
+        //     })
+        // });
+    </script>
     <script src="js/sweetalert.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
