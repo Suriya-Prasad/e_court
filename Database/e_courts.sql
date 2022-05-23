@@ -134,6 +134,37 @@ CREATE TABLE `postings`(
   PRIMARY KEY (`postingID`)
 );
 
+INSERT INTO  `postings` (`postingID`, `postingName`) 
+VALUES 
+(1,'Cheif Administrative Officer'),
+(2,'Sherishtadar (category-1)'),
+(3,'Bench Clerk Grade-1'),
+(4,'Head Clerk (Cat-2/Senior Sherishtadar (Cat-11)/Protocal Officer/Central Nazir'),
+(5,'Head Clerk (Cat-3)/Superintendent/Deputy Nazir/Translator'),
+(6,'Executive Assistent'),
+(7,'Gr. I Steno Typist'),
+(8,'Grade 2 Bench Clerk'),(9,'Head Clerk Criminal Court(Cat-4)'),
+(10,'Assistent'),
+(11,'Steno-Typist(Gr.3)'),
+(12,'Junior Assistent+Junior Superintendent od copyist=(2 posts)'),
+(13,'Typist/Copyist'),
+(14,'Computer Operator'),
+(15,'Examiner/Reader'),
+(16,'Senior Bailiff'),
+(17,'Junior Bailiff'),
+(18,'Driver'),
+(19,'Xerox Machine operator'),
+(20,'Record Clerk'),
+(21,'Office Assistent'),
+(22,'Scavenger'),
+(23,'Sanitary Worker'),
+(24,'Sweeper'),
+(25,'Garder'),
+(26,'Watchmen'),
+(27,'Night Watchman'),
+(28,'Masalchi cum Night Watchman'),
+(29,'Masalchi');
+
 --Table structure for `courts` ;
 
 DROP TABLE IF EXISTS `courts`;
@@ -144,3 +175,43 @@ CREATE TABLE `courts`(
   `courtPlace` varchar(500) NOT NULL,
   PRIMARY KEY (`courtID`)
 );
+
+INSERT INTO  `courts` (`courtID`,'courtPlace','courtName') 
+values 
+(1,'Tiruppur','District Court'),
+(2,'Tiruppur','Addl. District Court'),
+(3,'Tiruppur', 'Addl. District Court'),
+( 4,'Tiruppur','C.J.M. Court'),
+(5,'Tiruppur','Mahila Court'),
+(6,'Tiruppur' ,'MACOP Court'),
+(7,'Tiruppur','Family Court'),
+( 8,'Tiruppur',' Principal Sub Court'),
+(9,'Tiruppur',' Additional SubCourt'),
+(10,'Tiruppur','District Munsif Court'),
+(11,'Tiruppur','J.M.Court No.1'),
+(12,'Tiruppur','J.M.Court No.2'),
+(13,'Tiruppur','J.M.Court No.3'),
+(14,'Tiruppur','J.M.Court NO.4'),
+(15,'Tiruppur','J.M.Spl.,Court(L.G.)'),
+(16,'Tiruppur','J.M.Court.,(FTC)'),
+(17,'Tiruppur','Additional Mahila Court'),
+(18,'Tiruppur','Additional Dtsrict Munsif court'),
+(19,'Udumalpet','Sub Court'),
+(20,'Udumalpet','District Munsif Court'),
+(21,'Udumalpet','J.M.No.1 Court'),
+(22,'Udumalpet','J.M.Court'),
+(23,'Dharapuram','3 ADJ Court'),
+(24,'Dharapuram','Sub Court'),
+(25,'Dharapuram','District Munsif Court'),
+(26,'Dharapuram','J.M.Court'),
+(27,'Kangayam','Sub Court, Kangeyam'),
+(28,'Kangayam','District Munsif Court'),
+(29,'Kangayam','J.M.Court'),
+(30,'Palladam','Sub Court, Palladam'),
+(31,'Palladam','District Munsif Court'),
+(32,'Palladam','J.M.Court'),
+(33,'Avinashi','Sub Court'),
+(34,'Avinashi','District Munsif Court'),
+(35,'Avinashi','J.M.Court'),
+(36,'Madathukulam','DM-CUM-JM'),
+(37,'Uthukuli','DM-CUM-JM');
