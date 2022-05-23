@@ -53,13 +53,13 @@
                     <div class="input col-lg-4 col-md-6 col-sm-4">
                         <input type="date" id="leave_date" required name="relive_date"/>
                     </div>
-                    <button type="button" id="check" name="submit_posting" class="btn btn-outline-success">SUBMIT</button>
+                    <a href="javascript:void(0)" class="submit_ajax btn btn-outline-success">SUBMIT</a>
                 </form>
             <center>
             </div>
         </div>                
     </div>
-    <script>
+    <!-- <script>
         var element = document.getElementById("posting");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
@@ -86,7 +86,7 @@
             }
             })
         });
-    </script>
+    </script> -->
     <script src="js/sweetalert.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

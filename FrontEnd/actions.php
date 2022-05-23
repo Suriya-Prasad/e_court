@@ -219,7 +219,6 @@
 ?>
 
 <?php
-
     if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
         ?>
         <script>
@@ -234,3 +233,12 @@
         unset($_SESSION['status_code']);
     }
 ?>
+
+<script>
+    $(document).ready(function () {
+        $('.submit_ajax').click(function (e) { 
+        e.preventDefault();
+            console.log('Hello');
+    });
+    });
+</script>
