@@ -22,7 +22,11 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
+<<<<<<< Updated upstream
         document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
+=======
+        document.getElementById('post_table').innerHTML="<?php GetLeaveRequests()?>";   
+>>>>>>> Stashed changes
     }
     </script>
 </head>
@@ -41,3 +45,46 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+<?php
+function GetLeaveRequests(){
+    $conn = connectDB();     
+    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
+    if($result = mysqli_query( $conn, $query)){
+        $returnVal = seniorityTable($result);
+        mysqli_close($conn);
+        return $returnVal;
+        }
+    else{
+        printf("Error: %s\n", mysqli_error($conn));
+    }
+}
+
+function seniorityTable($result){
+    if(mysqli_num_rows($result)==0){
+        return "<script>swal({title:'No pending leave requests',icon:'info'});</script>";
+    }
+    echo "<br><br>";
+    $row_count = 1;
+    echo "<table id='req_table' class='table table-info table-hover'>";
+    echo "<tr>";
+    echo "<th>Employee ID</th>";
+    echo "<th>Employee Name</th>";
+    echo "<th>Leave Date</th>";
+    echo "<th>Day Type</th>";
+    echo "<th>Leave Type</th>";
+    echo "<th>Reason</th>";
+    echo "<th>Action</th>";
+    echo "</tr>";
+    while ($row=mysqli_fetch_array($result)) {
+    echo    "<tr>";
+    echo  "<td>" . $row['employeeID'] . "</td>";
+    echo  "<td>" . $row['employee_name'] . "</td>";
+    echo  "<td>" . $row['join_date'] . "</td>";
+    echo "</tr>"; 
+    $row_count++;     
+    }
+    echo "</table>";
+}
+
+?>

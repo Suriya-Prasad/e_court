@@ -94,7 +94,7 @@ function seniorityTable($result,$posting){
     $row_count = 1;
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";
-    echo "<th>Employee ID</td>";
+    echo "<th>Employee ID</th>";
     echo "<th>Employee Name</th>";
     echo "<th>Posting joined date</th>";
     echo "</tr>";

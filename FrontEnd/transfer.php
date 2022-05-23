@@ -25,7 +25,7 @@
         <div id="transfer">
         <center>
             <h2>TRANSFER</h2>
-            <form action="" method="POST" >
+            <form action="" method="POST" onsubmit="return submitForm(this)">
                 <label for="employeeID">EMPLOYEE ID: </label>
                 <input type="text" id="employeeID" name="employeeID">
                 <p>FROM COURT :
@@ -54,7 +54,7 @@
                 <div class="input col-lg-4 col-md-6 col-sm-4">
                     <input type="date" id="leave_date" required name="relive_date"/>
                 </div>
-                <button type="submit" id="check" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
+                <button type="submit" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
             </form> 
         <center>
         </div>
@@ -65,28 +65,21 @@
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
     
-        // document.querySelector('#check').addEventListener('click', function(e){
-        //     var form = this;
-        //     e.preventDefault();
-        //     swal({
-        //         title: "Are you sure?",
-        //         text: "You cant undo this operation",
-        //         buttons: [
-        //             'CANCEL',
-        //             'YES'
-        //         ],
-        //     }).then(function(isConfirm) {
-        //     if (isConfirm) {
-        //         swal({
-        //             text: "POSTED",
-        //             icon: 'success',
-        //             buttons: false
-        //         }).then(function() {
-        //             form.submit();
-        //         });
-        //     }
-        //     })
-        // });
+        function submitForm(form) {
+            swal({
+                title: "Are you sure?",
+                text: "This form will be submitted.",
+                icon: "warning",
+                button: true,
+                dangerMode = true,
+            })
+            .then((isOkay)=> {
+                if (isOkay) {
+                    form.submit();
+                }
+            });
+            return false;
+        }
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
