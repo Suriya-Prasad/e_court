@@ -1,26 +1,9 @@
 <script src="js/sweetalert.min.js"></script>
 
 <?php
-
-    if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
-        ?>
-        <script>
-            swal({
-                title:"<?php echo $_SESSION['status']; ?>",
-                icon:"<?php echo $_SESSION['status_code']; ?>",
-                button:"OK",
-            });
-        </script>
-    <?php
-        unset($_SESSION['status']);
-        unset($_SESSION['status_code']);
-    }
-?>
-
-<?php
     
     include_once "db_connection.php";
-
+    include_once "pdf_generation.php";
     //Function to add an entry to designation table when submit clicked at posting page
     if(isset($_POST['submit_posting'])){
         $conn = connectDB();
@@ -123,7 +106,7 @@
     else if(isset($_POST['submit_registration'])){
         $conn = ConnectDB();
         $employeeID = $_POST['employeeID'];
-        $password = $employeeID;
+        $password = $_POST['password'];
         $fisrt_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $e_mail = $_POST['e_mail'];
@@ -150,7 +133,7 @@
         $account_holder_name = $_POST['account_holder_name'];
         $ifsc_number = $_POST['ifsc_number'];
         $account_number = $_POST['account_number'];
-        $query="select * from employee where employeeID='{$employeeID}';";
+        $query="select * from employee where employeeID={$employeeID};";
             $result=mysqli_query($conn,$query);            
             if(mysqli_num_rows($result) > 0 ){
                 
@@ -168,9 +151,24 @@
                 }
                 $_SESSION['status'] = "Registration successfull";
                 $_SESSION['status_code'] = "success";
-                header('Location: employee_registration.php');
-                
-               return;
             }       
     }
+?>
+
+<?php
+
+    if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+        ?>
+        <script>
+            swal({
+                title:"<?php echo $_SESSION['status']; ?>",
+                icon:"<?php echo $_SESSION['status_code']; ?>",
+                button:"OK",
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['status_code']);
+    }
+    include_once 'pdf_generation.php';
 ?>
