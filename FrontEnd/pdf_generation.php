@@ -44,8 +44,6 @@
     $pdf->Cell(3,5,'',0,0);
     $pdf->Cell(20,5,'/2022',0,0,'L');
     $pdf->Cell(70,5,'Dated: '.date("d.m.Y"),0,0,'R');
-    // $pdf->Cell(7,5,'',0,0);
-    // $pdf->Cell(0,5,'.2022',0,1,'L');
 
     $pdf->Cell(0,5,'',0,1);
 
@@ -62,9 +60,6 @@
     $pdf->Cell(50,5,'Ref:',0,0,'R');
     $pdf->Cell(5,5,'',0,0);
     $pdf->Cell(58,5,"This Court's Office Order, Dated ".date("d.m.Y"),0,0,'L');
-    // $pdf->Cell(15,5,'.',0,0,'R');
-    // $pdf->Cell(8,5,'.',0,0,'R');
-    // $pdf->Cell(0,5,'2022',0,1,'L');
 
     $pdf->Cell(0,7,'',0,1);
     $pdf->Cell(0,5,'--:0:--',0,1,'C');

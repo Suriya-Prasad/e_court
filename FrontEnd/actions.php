@@ -177,7 +177,7 @@
         $ifsc_number = $_POST['ifsc_number'];
         $account_number = $_POST['account_number'];
         $query="SELECT * from employee where employeeID={$employeeID};";
-        if($result=mysqli_query($conn,$query)){            
+        $result = mysqli_query($conn,$query);       
             if(mysqli_num_rows($result) > 0 ){
                 $_SESSION['status'] = "Employee is already registered";
                 $_SESSION['status_code'] = "info";
@@ -203,7 +203,7 @@
             $error = mysqli_error($conn);
             echo $error;
         }       
-    }
+
 ?>
 
 <?php
