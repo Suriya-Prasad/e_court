@@ -1,8 +1,25 @@
 <?php
-
-
-function generate_pdf($employeeName,$from_post,$from_court,$to_post,$to_court,$relive_date,$join_date){
+    session_start();
     require('fpdf184/fpdf.php');
+
+    $employeeName = $_SESSION['post_transfer_employeeName'];
+    $from_court = $_SESSION['from_court'];
+    $from_post = $_SESSION['from_post'];
+    $to_court = $_SESSION['court_to'];
+    $to_post = $_SESSION['post_to'];
+    $relive_date = $_SESSION['relive_date'];
+    $join_date = $_SESSION['join_date'];
+
+    
+    unset($_SESSION['post_transfer_employeeName']);
+    unset($_SESSION['from_court']);
+    unset($_SESSION['from_post']);
+    unset($_SESSION['court_to']);
+    unset($_SESSION['post_to']);
+    unset($_SESSION['relive_date']);
+    unset($_SESSION['join_date']);
+
+
     $pdf = new FPDF('P','mm','A4'); 
     $pdf->AddPage();
 
@@ -117,5 +134,4 @@ function generate_pdf($employeeName,$from_post,$from_court,$to_post,$to_court,$r
 
 
     $pdf->Output();
-}
 ?>

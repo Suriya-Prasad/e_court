@@ -42,7 +42,7 @@
                     <label for="fname">FIRST-NAME: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="fname" required name="fisrt_name"/>
+                    <input type="text" id="fname" required name="first_name"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="lname">LAST-NAME: </label>
@@ -212,11 +212,11 @@
             </form>
             </div>
     </div>
-    <script>
+    <!-- <script>
         var element = document.getElementById("employee_registration");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
-    </script>
+    </script> -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

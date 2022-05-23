@@ -10,23 +10,37 @@
         $conn = connectDB();
         $employeeID = $_POST['employeeID'];
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
+        $_SESSION['court_to'] = $court_to; 
         $post_to = mysqli_real_escape_string($conn,$_POST['post_to']);
-        $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null";
-        $relive_date = date("d.m.Y");
-        $join_date = $relive_date;
+        $_SESSION['post_to'] = $post_to;
+        $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
+        $relive_date = $_POST['relive_date'];
+        $join_date = $_POST['join_date'];
+        $_SESSION['relive_date'] = $relive_date;
+        $_SESSION['join_date'] = $join_date;
         if($result = mysqli_query($conn,$query1)){
             $row = mysqli_fetch_row($result);
             $from_court = $row[2];
             $from_post = $row[1];
+            $_SESSION['from_court'] = $from_court;
+            $_SESSION['from_post'] = $from_post;
             if(mysqli_num_rows($result) == 1 ){
-                $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`) VALUES({$employeeID},'{$court_to}','{$post_to}')";
+                $relive_date = strtotime(str_replace('.','-',$relive_date));
+                $relive_date = date("Y-m-d",$relive_date);
+                $join_date = strtotime(str_replace('.','-', $join_date));
+                $join_date = date("Y-m-d",$join_date);
+                $query1 = "INSERT INTO designation (to_date) VALUES('{$relive_date}') where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
                 $query_run = mysqli_query($conn, $query2);
                 $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                mysqli_query($conn,$query1);
                 $result2 = mysqli_query($conn,$query3);
                 $row = mysqli_fetch_row($result2);
-                    $employeeName = $row[0];
-                if($query_run){
-                    generate_pdf($employeeName,$from_post,$from_court,$to_post,$court_to,$relive_date,$join_date);
+                $employeeName = $row[0];
+                $_SESSION['post_transfer_employeeName'] = $employeeName;
+                if($query_run){?>
+                    <script>window.location.href = "pdf_generation.php";</script>
+                <?php
                 }
             }
             else if(mysqli_num_rows($result) > 1){
@@ -49,28 +63,42 @@
         $conn = connectDB();
         $employeeID = $_POST['employeeID'];
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
+        $_SESSION['court_to'] = $court_to;
         $court_from = mysqli_real_escape_string($conn,$_POST['court_from']);
-        $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null";
+        $_SESSION['from_court'] = $court_from;
+        $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
         $relive_date = date("d.m.Y");
         $join_date = $relive_date;
+        $_SESSION['relive_date'] = $relive_date;
+        $_SESSION['join_date'] = $join_date;
         if($result = mysqli_query($conn,$query1)){
             $row = mysqli_fetch_row($result);
             $from_court = $row[2];
-            $posting = $row[1];
+            $from_post = $row[1];
+            $_SESSION['from_post'] = $from_post;
+            $_SESSION['post_to'] = $from_post;
             if(mysqli_num_rows($result) == 1 ){
                 if($court_from == $court_to){
                     $_SESSION['status'] = "Employee works in the same court to be transfered";
                     $_SESSION['status_code'] = "warning";
                 }
                 else{
-                    $query2 = "INSERT INTO designation (employeeID,court,posting) VALUES({$employeeID},'{$court_to}','{$posting}')";
+                    $relive_date = strtotime(str_replace('.','-',$relive_date));
+                    $relive_date = date("Y-m-d",$relive_date);
+                    $join_date = strtotime(str_replace('.','-', $join_date));
+                    $join_date = date("Y-m-d",$join_date);
+                    $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                    $query2 = "INSERT INTO designation (employeeID,court,posting,from_date) VALUES({$employeeID},'{$court_to}','{$from_post}','{$join_date}')";
                     $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
                     $result2 = mysqli_query($conn,$query3);
                     $row = mysqli_fetch_row($result2);
                     $employeeName = $row[0];
+                    $_SESSION['post_transfer_employeeName'] = $employeeName;
+                    mysqli_query($conn,$query1);
                     $query_run =  mysqli_query($conn, $query2);
-                    if($query_run){
-                        generate_pdf($employeeName,$posting,$from_court,$posting,$court_to,$relive_date,$join_date);
+                    if($query_run){?>
+                    <script>window.location.href = "pdf_generation.php";</script>
+                    <?php
                     }
                 }
             }
@@ -148,14 +176,18 @@
         $account_holder_name = $_POST['account_holder_name'];
         $ifsc_number = $_POST['ifsc_number'];
         $account_number = $_POST['account_number'];
-        $query="select * from employee where employeeID={$employeeID};";
-            $result=mysqli_query($conn,$query);            
+        $query="SELECT * from employee where employeeID={$employeeID};";
+            if($result=mysqli_query($conn,$query)){            
             if(mysqli_num_rows($result) > 0 ){
-                
-                echo "<script>swal({title:'Employee is already registered.',icon:'info'});</script>";
+                $_SESSION['status'] = "Employee is already registered";
+                $_SESSION['status_code'] = "info";
             }
             else {
-                $query1 .= "INSERT INTO employee (employeeID, password, fisrt_name, last_name, e_mail,phone_number,service_joining_date,date_of_birth,aadhar_number,pan_number,differently_abled,gender,native_district,community,religion,caste,marital_status,permanent_address,current_address,spouse_father_name) 
+                $date_of_birth = strtotime(str_replace('.','-',$date_of_birth));
+                $date_of_birth = date("Y-m-d",$date_of_birth);
+                $service_joining_date = strtotime(str_replace('.','-',$service_joining_date));
+                $service_joining_date = date("Y-m-d",$service_joining_date);
+                $query1 = "INSERT INTO employee (employeeID, password, fisrt_name, last_name, e_mail,phone_number,service_joining_date,date_of_birth,aadhar_number,pan_number,differently_abled,gender,native_district,community,religion,caste,marital_status,permanent_address,current_address,spouse_father_name) 
                 VALUES ('{$employeeID}', '{$password}', '{$fisrt_name}', '{$last_name}','{$e_mail}','{$phone_number}','{$service_joining_date}','{$date_of_birth}','{$aadhar_number}','{$pan_number}','{$differently_abled}','{$gender}','{$native_district}','{$community}','{$religion}','{$caste}','{$marital_status}','{$permanent_address}','{$current_address}','{$spouse_father_name}')";
                 $query1 .= "INSERT INTO spouse_father_details(employeeID,spouse_father_name,spouse_father_occupation,spouse_father_current_district) VALUES('{$employeeID}','{$spouse_father_name}','{$spouse_father_occupation}','{$spouse_father_current_district}')";
                 $query1 .= "INSERT INTO bank_details(employeeID,account_holder_name,account_number,ifsc_number) VALUES('{$employeeID}','{$account_holder_name}','{$account_number}','{$ifsc_number}')";               
@@ -166,7 +198,12 @@
                 }
                 $_SESSION['status'] = "Registration successfull";
                 $_SESSION['status_code'] = "success";
-            }       
+            }
+        }
+        else{
+            $error = mysqli_error($conn);
+            echo $error;
+        }       
     }
 ?>
 

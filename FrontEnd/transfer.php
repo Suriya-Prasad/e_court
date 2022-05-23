@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="css/posting.css">
 </head>
 <body>
-    <?php include_once "navbars.php"; ?>
+<?php include_once "navbars.php";?>
 
         <div id="content">
         <div id="transfer">
@@ -42,23 +42,19 @@
                     <option value="court two">Court Two</option>
                     <option value="court three">Court Three</option>
                 </select></p>
-<<<<<<< Updated upstream
                 <div  class="label col-lg-4 col-md-6 col-sm-4">
                     <label for="join_date">JOINING-DATE: </label>
                 </div>
                 <div class="input col-lg-2 col-md-6 col-sm-2">
-                    <input type="date" id="joining_date" required name="joining_date"/>
+                    <input type="date" id="joining_date" required name="join_date"/>
                 </div>
                 <div class="label col-lg-2 col-md-6 col-sm-2">
-                    <label for="leave_date">LEAVE DATE: </label>
+                    <label for="leave_date">RELIVE DATE: </label>
                 </div>
                 <div class="input col-lg-4 col-md-6 col-sm-4">
-                    <input type="date" id="leave_date" required name="leave_date"/>
+                    <input type="date" id="leave_date" required name="relive_date"/>
                 </div>
-                <button type="button" id="check" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
-=======
                 <button type="submit" id="check" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
->>>>>>> Stashed changes
             </form> 
         <center>
         </div>
