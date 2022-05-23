@@ -12,6 +12,24 @@
     width: 40%;
     margin-bottom: 40px;
 }
+#content .label{
+    float: left;
+    text-align: end;
+    margin-top: 15px;
+}
+#content .input{
+    float: left;
+    text-align: start;
+    margin-top: 15px;
+    min-height: 78px;
+}
+#content .input input[type="date" i]{
+    text-align: center;
+}
+#content .input input{
+    margin: 0px;
+    margin-left: 5px;
+}
 
 @media (max-width: 767px){
     #content select{
