@@ -11,6 +11,9 @@
 #content #post_table{
     display: none;
 }
+#content .table{
+    text-align: center;
+}
 
 @media (max-width: 767px){
     #content select{
