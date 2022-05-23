@@ -93,7 +93,7 @@
                 <div class="input1 col-lg-8 col-md-7 col-sm-8">
                     <textarea id="l_reason" name="current_address" form="usrform" rows="4" cols="40"></textarea>
                 </div>
-                <center><button id="l_btn" class="btn btn-outline-success">APPLY</button></center>
+                <center><button type="submit" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
             </form>
             </div>
         </div>
