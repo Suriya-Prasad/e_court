@@ -212,14 +212,9 @@
         $session = $_POST['session'];
         $leave_reason = $_POST['leave_reason'];
 
-        
+        //$query = "INSERT INTO leave_entry(employeeID,reason,from_date,'session',leave_type,select_day_type) VALUES('{$employeeID}','{$leave_reason}','{$leave_date}','{$session}','{$leave_type}, '{$select_day_type}')";
 
     }
-
-
-
-
-
 
 ?>
 

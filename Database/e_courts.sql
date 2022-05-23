@@ -131,6 +131,7 @@ DROP TABLE IF EXISTS `postings`;
 CREATE TABLE `postings`(
   `postingID` int(4) NOT NULL,
   `postingName` varchar(500) NOT NULL,
+  `posting_authority` varchar(500) NOT NULL,
   PRIMARY KEY (`postingID`)
 );
 
