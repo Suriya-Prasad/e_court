@@ -33,22 +33,10 @@
                     <input type="text" id="employeeID" name="employeeID" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="password">PASSWORD: </label>
+                    <label for="fname">NAME: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="password" id="password" name="password"/>
-                </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="fname">FIRST-NAME: </label>
-                </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="fname" name="fisrt_name"/>
-                </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="lname">LAST-NAME: </label>
-                </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="lname" name="last_name"/>
+                    <input type="text" id="fname" name="first_name"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="select_dt">SELECT-DAY-TYPE: </label>
