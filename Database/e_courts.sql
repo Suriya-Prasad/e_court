@@ -166,7 +166,7 @@ VALUES
 (28,'Masalchi cum Night Watchman'),
 (29,'Masalchi');
 
---Table structure for `courts` ;
+-- Table structure for `courts` ;
 
 DROP TABLE IF EXISTS `courts`;
 
@@ -177,7 +177,7 @@ CREATE TABLE `courts`(
   PRIMARY KEY (`courtID`)
 );
 
-INSERT INTO courts (`courtID`,'courtPlace','courtName') 
+INSERT INTO courts (`courtID`,`courtPlace`,`courtName`) 
 values 
 (1,'Tiruppur','District Court'),
 (2,'Tiruppur','Addl. District Court'),
