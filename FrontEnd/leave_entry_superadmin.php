@@ -22,11 +22,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-<<<<<<< Updated upstream
-        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
-=======
         document.getElementById('post_table').innerHTML="<?php GetLeaveRequests()?>";   
->>>>>>> Stashed changes
     }
     </script>
 </head>
