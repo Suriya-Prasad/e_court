@@ -134,19 +134,19 @@ CREATE TABLE `postings`(
   PRIMARY KEY (`postingID`)
 );
 
-INSERT INTO  postings (`postingID`, `postingName`) 
+INSERT INTO postings (`postingID`, `postingName`) 
 VALUES 
 (1,'Cheif Administrative Officer'),
 (2,'Sherishtadar (category-1)'),
 (3,'Bench Clerk Grade-1'),
 (4,'Head Clerk (Cat-2/Senior Sherishtadar (Cat-11)/Protocal Officer/Central Nazir'),
 (5,'Head Clerk (Cat-3)/Superintendent/Deputy Nazir/Translator'),
-(6,'Executive Assistent'),
+(6,'Executive Assistant'),
 (7,'Gr. I Steno Typist'),
 (8,'Grade 2 Bench Clerk'),(9,'Head Clerk Criminal Court(Cat-4)'),
-(10,'Assistent'),
+(10,'Assistant'),
 (11,'Steno-Typist(Gr.3)'),
-(12,'Junior Assistent+Junior Superintendent od copyist=(2 posts)'),
+(12,'Junior Assistant+Junior Superintendent od copyist=(2 posts)'),
 (13,'Typist/Copyist'),
 (14,'Computer Operator'),
 (15,'Examiner/Reader'),
@@ -155,7 +155,7 @@ VALUES
 (18,'Driver'),
 (19,'Xerox Machine operator'),
 (20,'Record Clerk'),
-(21,'Office Assistent'),
+(21,'Office Assistant'),
 (22,'Scavenger'),
 (23,'Sanitary Worker'),
 (24,'Sweeper'),
