@@ -204,10 +204,10 @@
                     <input type="text" id="acc_num" name="account_number"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="idfc_num">IFSC NUMBER: </label>
+                    <label for="ifsc_num">IFSC NUMBER: </label>
                 </div>
                 <div class="input col-lg-9 col-md-6 col-sm-9">
-                    <input type="text" id="idfc_num" name="ifsc_number"/>
+                    <input type="text" id="ifsc_num" name="ifsc_number"/>
                 </div>
                 <center><button type="submit" id="r_btn" class="btn btn-outline-success">REGISTER</button></center>
             </form>
