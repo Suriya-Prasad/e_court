@@ -33,28 +33,16 @@
                     <input type="text" id="employeeID" name="employeeID" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="password">PASSWORD: </label>
+                    <label for="fname">NAME: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="password" id="password" name="password"/>
-                </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="fname">FIRST-NAME: </label>
-                </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="fname" name="fisrt_name"/>
-                </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
-                    <label for="lname">LAST-NAME: </label>
-                </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <input type="text" id="lname" name="last_name"/>
+                    <input type="text" id="fname" name="first_name"/>
                 </div>
                 <div class="label col-lg-3 col-md-6 col-sm-3">
                     <label for="select_dt">SELECT-DAY-TYPE: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <select id="select_dt" class="form-select">
+                    <select id="select_dt" name = "select_day_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
                         <option value="1">Half Day</option>
                         <option value="2">Full Day</option>
@@ -65,7 +53,7 @@
                     <label for="leave_ty">LEAVE-TYPE: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <select id="leave_ty" class="form-select">
+                    <select id="leave_ty" name = "leave_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
                         <option value="1">Leave</option>
                         <option value="2">Medical</option>
@@ -82,7 +70,7 @@
                     <label for="session">SESSION: </label>
                 </div>
                 <div class="input col-lg-3 col-md-6 col-sm-3">
-                    <select id="session" class="form-select">
+                    <select id="session" name = "session" class="form-select">
                         <option value="1">Forenoon</option>
                         <option value="2">Afternoon</option>
                     </select>
@@ -91,9 +79,9 @@
                     <label for="l_reason">REASON: </label>
                 </div>
                 <div class="input1 col-lg-8 col-md-7 col-sm-8">
-                    <textarea id="l_reason" name="current_address" form="usrform" rows="4" cols="40"></textarea>
+                    <textarea id="l_reason" name="leave_reason" form="usrform" rows="4" cols="40"></textarea>
                 </div>
-                <center><button type="submit" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
+                <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
             </form>
             </div>
         </div>

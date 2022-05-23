@@ -40,7 +40,7 @@
 
     $pdf->Cell(0,5,'',0,1);
 
-    $pdf->Cell(45,5,'A.No.',0,0,'R');
+    $pdf->Cell(55,5,'A.No.',0,0,'R');
     $pdf->Cell(3,5,'',0,0);
     $pdf->Cell(20,5,'/2022',0,0,'L');
     $pdf->Cell(70,5,'Dated: '.date("d.m.Y"),0,0,'R');
@@ -70,16 +70,16 @@
     $pdf->Cell(0,7,'',0,1);
 
     $pdf->Cell(34,5,'1. ',0,0,'R');
-    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', (Place) is transferred and posted as '.$to_post.', '. $to_court,0,1,'L');
+    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', (Place) is transferred and posted as '.$to_post.', ',0,1,'L');
     $pdf->Cell(34,5,'',0,0,'R');
-    $pdf->Cell(0,5,', (Place) vice '. $employeeName.' transferred.',0,1,'L');
+    $pdf->Cell(0,5,$to_court.', (Place) vice '. $employeeName.' transferred.',0,1,'L');
 
     $pdf->Cell(0,7,'',0,1);
 
     $pdf->Cell(34,5,'2. ',0,0,'R');
-    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', (Place) is transferred and posted as '.$to_post.', '. $to_court,0,1,'L');
+    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', (Place) is transferred and posted as '.$to_post.', ',0,1,'L');
     $pdf->Cell(34,5,'',0,0,'R');
-    $pdf->Cell(0,5,', (Place) in the existing vacancy.',0,1,'L');
+    $pdf->Cell(0,5,$to_court.', (Place) in the existing vacancy.',0,1,'L');
 
     $pdf->Cell(0,7,'',0,1);
     $pdf->Cell(39,5,'Note:',0,1,'R');

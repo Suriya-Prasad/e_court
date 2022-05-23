@@ -197,12 +197,29 @@
                 }
                 $_SESSION['status'] = "Registration successfull";
                 $_SESSION['status_code'] = "success";
-            }
-        }
-        else{
-            $error = mysqli_error($conn);
-            echo $error;
-        }       
+            }     
+    }
+
+
+    //Function to Submit Leave Entry
+    else if(isset($_POST['submit_leave_entry'])){
+        $conn = ConnectDB();
+        $employeeID = $_POST['employeeID'];
+        $fisrt_name = $_POST['first_name'];
+        $select_day_type = $_POST['select_day_type'];
+        $leave_type = $_POST['leave_entry'];
+        $leave_date = $_POST['leave_date'];
+        $session = $_POST['session'];
+        $leave_reason = $_POST['leave_reason'];
+
+        
+
+    }
+
+
+
+
+
 
 ?>
 

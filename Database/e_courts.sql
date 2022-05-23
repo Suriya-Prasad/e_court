@@ -117,6 +117,9 @@ CREATE TABLE `leave_entry`(
   `reason` varchar(500) NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
+  `session` varchar(20) NOT NULL,
+  `leave_type` varchar(20) NOT NULL,
+  `select_day_type` varchar(20) NOT NULL,
   `status` varchar(10) NOT NULL,
   CONSTRAINT `fk_employeeID_leave_entry` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
