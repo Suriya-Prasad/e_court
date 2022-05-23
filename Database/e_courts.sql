@@ -134,7 +134,7 @@ CREATE TABLE `postings`(
   PRIMARY KEY (`postingID`)
 );
 
-INSERT INTO  `postings` (`postingID`, `postingName`) 
+INSERT INTO  postings (`postingID`, `postingName`) 
 VALUES 
 (1,'Cheif Administrative Officer'),
 (2,'Sherishtadar (category-1)'),
@@ -176,7 +176,7 @@ CREATE TABLE `courts`(
   PRIMARY KEY (`courtID`)
 );
 
-INSERT INTO  `courts` (`courtID`,'courtPlace','courtName') 
+INSERT INTO courts (`courtID`,'courtPlace','courtName') 
 values 
 (1,'Tiruppur','District Court'),
 (2,'Tiruppur','Addl. District Court'),
