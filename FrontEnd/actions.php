@@ -150,7 +150,7 @@
         $conn = ConnectDB();
         $employeeID = $_POST['employeeID'];
         $password = $_POST['password'];
-        $fisrt_name = $_POST['first_name'];
+        $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $e_mail = $_POST['e_mail'];
         $phone_number = $_POST['phone_number'];
@@ -177,7 +177,7 @@
         $ifsc_number = $_POST['ifsc_number'];
         $account_number = $_POST['account_number'];
         $query="SELECT * from employee where employeeID={$employeeID};";
-            if($result=mysqli_query($conn,$query)){            
+        if($result=mysqli_query($conn,$query)){            
             if(mysqli_num_rows($result) > 0 ){
                 $_SESSION['status'] = "Employee is already registered";
                 $_SESSION['status_code'] = "info";
@@ -187,8 +187,7 @@
                 $date_of_birth = date("Y-m-d",$date_of_birth);
                 $service_joining_date = strtotime(str_replace('.','-',$service_joining_date));
                 $service_joining_date = date("Y-m-d",$service_joining_date);
-                $query1 = "INSERT INTO employee (employeeID, password, fisrt_name, last_name, e_mail,phone_number,service_joining_date,date_of_birth,aadhar_number,pan_number,differently_abled,gender,native_district,community,religion,caste,marital_status,permanent_address,current_address,spouse_father_name) 
-                VALUES ('{$employeeID}', '{$password}', '{$fisrt_name}', '{$last_name}','{$e_mail}','{$phone_number}','{$service_joining_date}','{$date_of_birth}','{$aadhar_number}','{$pan_number}','{$differently_abled}','{$gender}','{$native_district}','{$community}','{$religion}','{$caste}','{$marital_status}','{$permanent_address}','{$current_address}','{$spouse_father_name}')";
+                $query1 = "INSERT INTO employee (employeeID, `password`, first_name, last_name, e_mail,phone_number,service_joining_date,date_of_birth,aadhar_number,pan_number,differently_abled,gender,native_district,community,religion,caste,marital_status,permanent_address,current_address,spouse_father_name) VALUES ('{$employeeID}', '{$password}', '{$first_name}', '{$last_name}','{$e_mail}','{$phone_number}','{$service_joining_date}','{$date_of_birth}','{$aadhar_number}','{$pan_number}','{$differently_abled}','{$gender}','{$native_district}','{$community}','{$religion}','{$caste}','{$marital_status}','{$permanent_address}','{$current_address}','{$spouse_father_name}')";
                 $query1 .= "INSERT INTO spouse_father_details(employeeID,spouse_father_name,spouse_father_occupation,spouse_father_current_district) VALUES('{$employeeID}','{$spouse_father_name}','{$spouse_father_occupation}','{$spouse_father_current_district}')";
                 $query1 .= "INSERT INTO bank_details(employeeID,account_holder_name,account_number,ifsc_number) VALUES('{$employeeID}','{$account_holder_name}','{$account_number}','{$ifsc_number}')";               
                 if (!mysqli_multi_query($conn, $query1))

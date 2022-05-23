@@ -120,3 +120,24 @@ CREATE TABLE `leave_entry`(
   `status` varchar(10) NOT NULL,
   CONSTRAINT `fk_employeeID_leave_entry` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- Table structure for `postings` ;
+
+DROP TABLE IF EXISTS `postings`;
+
+CREATE TABLE `postings`(
+  `postingID` int(4) NOT NULL,
+  `postingName` varchar(500) NOT NULL,
+  PRIMARY KEY (`postingID`)
+);
+
+--Table structure for `courts` ;
+
+DROP TABLE IF EXISTS `courts`;
+
+CREATE TABLE `courts`(
+  `courtID` int(4) NOT NULL,
+  `courtName` varchar(500) NOT NULL,
+  `courtPlace` varchar(500) NOT NULL,
+  PRIMARY KEY (`courtID`)
+);
