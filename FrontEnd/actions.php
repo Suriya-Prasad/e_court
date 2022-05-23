@@ -3,7 +3,8 @@
 <?php
     
     include_once "db_connection.php";
-    include_once "pdf_generation.php";
+    
+
     //Function to add an entry to designation table when submit clicked at posting page
     if(isset($_POST['submit_posting'])){
         $conn = connectDB();
@@ -11,13 +12,21 @@
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
         $post_to = mysqli_real_escape_string($conn,$_POST['post_to']);
         $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null";
+        $relive_date = date("d.m.Y");
+        $join_date = $relive_date;
         if($result = mysqli_query($conn,$query1)){
+            $row = mysqli_fetch_row($result);
+            $from_court = $row[2];
+            $from_post = $row[1];
             if(mysqli_num_rows($result) == 1 ){
                 $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`) VALUES({$employeeID},'{$court_to}','{$post_to}')";
                 $query_run = mysqli_query($conn, $query2);
+                $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                $result2 = mysqli_query($conn,$query3);
+                $row = mysqli_fetch_row($result2);
+                    $employeeName = $row[0];
                 if($query_run){
-                    $_SESSION['status'] = "Posting order sent successfully";
-                    $_SESSION['status_code'] = "success";
+                    generate_pdf($employeeName,$from_post,$from_court,$to_post,$court_to,$relive_date,$join_date);
                 }
             }
             else if(mysqli_num_rows($result) > 1){
@@ -42,8 +51,11 @@
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
         $court_from = mysqli_real_escape_string($conn,$_POST['court_from']);
         $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null";
+        $relive_date = date("d.m.Y");
+        $join_date = $relive_date;
         if($result = mysqli_query($conn,$query1)){
             $row = mysqli_fetch_row($result);
+            $from_court = $row[2];
             $posting = $row[1];
             if(mysqli_num_rows($result) == 1 ){
                 if($court_from == $court_to){
@@ -52,10 +64,13 @@
                 }
                 else{
                     $query2 = "INSERT INTO designation (employeeID,court,posting) VALUES({$employeeID},'{$court_to}','{$posting}')";
+                    $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                    $result2 = mysqli_query($conn,$query3);
+                    $row = mysqli_fetch_row($result2);
+                    $employeeName = $row[0];
                     $query_run =  mysqli_query($conn, $query2);
                     if($query_run){
-                        $_SESSION['status'] = "Transfer order sent successfully";
-                        $_SESSION['status_code'] = "success";
+                        generate_pdf($employeeName,$posting,$from_court,$posting,$court_to,$relive_date,$join_date);
                     }
                 }
             }
@@ -170,5 +185,4 @@
         unset($_SESSION['status']);
         unset($_SESSION['status_code']);
     }
-    include_once 'pdf_generation.php';
 ?>

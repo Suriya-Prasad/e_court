@@ -1,7 +1,8 @@
 <?php
-require_once('fpdf184/fpdf.php');
+
 
 function generate_pdf($employeeName,$from_post,$from_court,$to_post,$to_court,$relive_date,$join_date){
+    require('fpdf184/fpdf.php');
     $pdf = new FPDF('P','mm','A4'); 
     $pdf->AddPage();
 

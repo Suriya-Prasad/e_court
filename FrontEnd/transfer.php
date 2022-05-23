@@ -42,6 +42,7 @@
                     <option value="court two">Court Two</option>
                     <option value="court three">Court Three</option>
                 </select></p>
+<<<<<<< Updated upstream
                 <div  class="label col-lg-4 col-md-6 col-sm-4">
                     <label for="join_date">JOINING-DATE: </label>
                 </div>
@@ -55,13 +56,15 @@
                     <input type="date" id="leave_date" required name="leave_date"/>
                 </div>
                 <button type="button" id="check" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
+=======
+                <button type="submit" id="check" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
+>>>>>>> Stashed changes
             </form> 
         <center>
         </div>
         </div>
     </div>    
-    </form>
-    <script>
+    <!-- <script>
         var element = document.getElementById("transfer");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
@@ -88,7 +91,7 @@
             }
             })
         });
-    </script>
+    </script> -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
