@@ -26,22 +26,22 @@
             <div id="leave">
             <form>
                 <h2>LEAVE ENTRY</h2>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
+                <div class="label col-lg-4 col-md-6 col-sm-3">
                     <label for="employeeID">EMPLOYEE-ID: </label>
                 </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
+                <div class="input col-lg-2 col-md-6 col-sm-3">
                     <input type="text" id="employeeID" name="employeeID" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"/>
                 </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
+                <div class="label col-lg-2 col-md-6 col-sm-3">
                     <label for="fname">NAME: </label>
                 </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
+                <div class="input col-lg-4 col-md-6 col-sm-3">
                     <input type="text" id="fname" name="first_name"/>
                 </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
+                <div class="label col-lg-4 col-md-6 col-sm-3">
                     <label for="select_dt">SELECT-DAY-TYPE: </label>
                 </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
+                <div class="input col-lg-2 col-md-6 col-sm-3">
                     <select id="select_dt" name = "select_day_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
                         <option value="1">Half Day</option>
@@ -49,10 +49,10 @@
                         <option value="3">Continuous Days</option>
                     </select>
                 </div>
-                <div  class="label col-lg-3 col-md-6 col-sm-3">
+                <div  class="label col-lg-2 col-md-6 col-sm-3">
                     <label for="leave_ty">LEAVE-TYPE: </label>
                 </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
+                <div class="input col-lg-4 col-md-6 col-sm-3">
                     <select id="leave_ty" name = "leave_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
                         <option value="1">Leave</option>
@@ -60,16 +60,16 @@
                         <option value="3">Exemption</option>
                     </select>
                 </div>
-                <div class="label col-lg-3 col-md-6 col-sm-3">
+                <div class="label col-lg-4 col-md-6 col-sm-3">
                     <label for="date">LEAVE-DATE: </label>
                 </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
+                <div class="input col-lg-2 col-md-6 col-sm-3">
                     <input type="date" id="l_date" name="leave_date">
                 </div>
-                <div  class="label col-lg-3 col-md-6 col-sm-3">
+                <div  class="label col-lg-2 col-md-6 col-sm-3">
                     <label for="session">SESSION: </label>
                 </div>
-                <div class="input col-lg-3 col-md-6 col-sm-3">
+                <div class="input col-lg-4 col-md-6 col-sm-3">
                     <select id="session" name = "session" class="form-select">
                         <option value="1">Forenoon</option>
                         <option value="2">Afternoon</option>
