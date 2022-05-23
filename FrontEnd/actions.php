@@ -234,11 +234,11 @@
     }
 ?>
 
-<script>
+<!-- <script>
     $(document).ready(function () {
         $('.submit_ajax').click(function (e) { 
         e.preventDefault();
             console.log('Hello');
     });
     });
-</script>
+</script> -->

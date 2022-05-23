@@ -1,7 +1,7 @@
 <?php
     //Session started for each user login and user ID is extracted to provide user specific functionalities.
     session_start();
-    if(! isset ($_SESSION['employeeID'])) {
+    if(!isset ($_SESSION['employeeID'])) {
         header("Location:index.php");    
     }
     include_once "navigation.php";
@@ -84,7 +84,7 @@
                 <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
 
                 <?php
-                    include_once "leave_statur.php";
+                    include_once "leave_status.php";
                 ?>
             </form>
             </div>
