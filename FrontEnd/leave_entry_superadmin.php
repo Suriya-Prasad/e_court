@@ -19,10 +19,18 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/leave_entry.css">
+    <script>
+    function fillResults(){
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
+    }
+    </script>
 </head>
 <body>
         <?php include_once "navbars.php"; ?>
-        <?php include_once "leave_status.php";?>
+        <div id="post_table">
+            <script>fillResults();</script>
+        </div>
     <script>
         var element = document.getElementById("leave_entry");
         element.classList.remove("btn-outline-secondary");

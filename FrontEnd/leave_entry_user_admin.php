@@ -4,6 +4,7 @@
     if(!isset ($_SESSION['employeeID'])) {
         header("Location:index.php");    
     }
+    
     include_once "navigation.php";
 ?>
 
@@ -17,6 +18,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/leave_entry.css">
+    <script>
+    function fillResults(){
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
+    }
+    </script>
 </head>
 <body>
         <?php include_once "navbars.php"; ?>
@@ -83,9 +90,9 @@
                 </div>
                 <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
 
-                <?php
-                    include_once "leave_status.php";
-                ?>
+                <div id="post_table">
+                    <script>fillResults();</script>
+                </div>
             </form>
             </div>
         </div>
