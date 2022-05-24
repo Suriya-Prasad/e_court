@@ -21,12 +21,14 @@
     </script>
 </head>
 <body onload="fillResults()">
-    <?php include_once "navbars.php"; ?>
+<?php include_once "navbars.php"; ?>
         <div id="content">
+        <div id="leave">
             <h1>Pending Requests</h1>
             <div id="post_table">
                 <script>fillResults();</script>
             </div>
+        </div>
         </div>
     <script>
         var element = document.getElementById("leave_entry");
@@ -44,7 +46,7 @@
 include_once "db_connection.php";
 
 function GetLeaveRequests(){
-    $conn = connectDB();     
+    $conn = connectDB();  
     $query = "SELECT l.employeeID,l.from_date,l.to_date,l.leave_type,l.reason FROM leave_entry as l WHERE l.status = 'pending'";
     if($result = mysqli_query( $conn, $query)){
         $returnVal = TablePendingLeaveRequests($result);
