@@ -24,7 +24,7 @@
 <?php include_once "navbars.php"; ?>
         <div id="content">
         <div id="leave">
-            <h1>Pending Requests</h1>
+            <h2>PENDING REQUESTS</h2>
             <div id="post_table">
                 <script>fillResults();</script>
             </div>
