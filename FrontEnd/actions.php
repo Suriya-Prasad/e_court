@@ -204,16 +204,21 @@
     //Function to Submit Leave Entry
     else if(isset($_POST['submit_leave_entry'])){
         $conn = ConnectDB();
-        $employeeID = $_POST['employeeID'];
-        $fisrt_name = $_POST['first_name'];
         $select_day_type = $_POST['select_day_type'];
-        $leave_type = $_POST['leave_entry'];
-        $leave_date = $_POST['leave_date'];
-        $session = $_POST['session'];
+        $number_of_days = $_POST['number_of_days'];
+        $leave_type = $_POST['leave_type'];
+        $from_date = $_POST['from_date'];
+        $to_date = $_POST['to_date'];
         $leave_reason = $_POST['leave_reason'];
 
-        //$query = "INSERT INTO leave_entry(employeeID,reason,from_date,'session',leave_type,select_day_type) VALUES('{$employeeID}','{$leave_reason}','{$leave_date}','{$session}','{$leave_type}, '{$select_day_type}')";
-
+        $query = "INSERT INTO leave_entry(employeeID,reason,from_date,to_date,leave_type,select_day_type,`status`) VALUES('{$_SESSION['employeeID']}','{$leave_reason}','{$from_date}','{$to_date}','{$leave_type}, '{$select_day_type}','pending')";
+        if(! mysqli_query($conn,$query)){
+            $error = mysqli_error($conn);
+            echo $error;
+        }
+        $_SESSION['status'] = "Leave Requested";
+        $_SESSION['status_code'] = "success";
+        header("Location:leave_entry_user_admin.php");
     }
 
 ?>
