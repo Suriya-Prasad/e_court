@@ -205,20 +205,28 @@
     else if(isset($_POST['submit_leave_entry'])){
         $conn = ConnectDB();
         $select_day_type = $_POST['select_day_type'];
-        $number_of_days = $_POST['number_of_days'];
         $leave_type = $_POST['leave_type'];
         $from_date = $_POST['from_date'];
         $to_date = $_POST['to_date'];
-        $leave_reason = $_POST['leave_reason'];
-
-        $query = "INSERT INTO leave_entry(employeeID,reason,from_date,to_date,leave_type,select_day_type,`status`) VALUES('{$_SESSION['employeeID']}','{$leave_reason}','{$from_date}','{$to_date}','{$leave_type}, '{$select_day_type}','pending')";
-        if(! mysqli_query($conn,$query)){
-            $error = mysqli_error($conn);
-            echo $error;
+        $leave_reason = "";
+        $status = "pending";
+        $query="SELECT * from leave_entry where (employeeID='{$_SESSION['employeeID']}' and from_date = '{$from_date}' and to_date = '{$to_date}' and day_type = '{$select_day_type}')";
+        $result = mysqli_query($conn,$query);
+        if(mysqli_num_rows($result) > 0 ){
+            $_SESSION['status'] = "Employee is already registered";
+            $_SESSION['status_code'] = "info";
         }
-        $_SESSION['status'] = "Leave Requested";
-        $_SESSION['status_code'] = "success";
-        header("Location:leave_entry_user_admin.php");
+        else{
+            $query = "INSERT INTO leave_entry(employeeID,reason,from_date,to_date,leave_type,day_type,`status`) VALUES('{$_SESSION['employeeID']}','{$leave_reason}','{$from_date}','{$to_date}','{$leave_type}','{$select_day_type}','{$status}')";
+            if(! mysqli_query($conn,$query)){
+                $error = mysqli_error($conn);
+                echo $error;
+            }
+            else{
+                $_SESSION['status'] = "Leave Requested";
+                $_SESSION['status_code'] = "success";
+            }
+        }
     }
 
 ?>
@@ -238,12 +246,3 @@
         unset($_SESSION['status_code']);
     }
 ?>
-
-<!-- <script>
-    $(document).ready(function () {
-        $('.submit_ajax').click(function (e) { 
-        e.preventDefault();
-            console.log('Hello');
-    });
-    });
-</script> -->

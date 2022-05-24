@@ -1,6 +1,6 @@
 <?php
-    // session_start();
     include_once "navigation.php";
+    include_once "actions.php";
 ?>
 
 <!DOCTYPE html>
@@ -32,10 +32,10 @@
                 <div class="input col-lg-2 col-md-6 col-sm-3">
                     <select id="select_dt" name = "select_day_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Forenoon</option>
-                        <option value="2">Afternoon</option>
-                        <option value="3">Full Day</option>
-                        <option value="4">Continuous Days</option>
+                        <option value="forenoon">Forenoon</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="fullday">Full Day</option>
+                        <option value="continuousday">Continuous Days</option>
                     </select>
                 </div>
                 <div  class="label col-lg-2 col-md-6 col-sm-3">
@@ -44,16 +44,16 @@
                 <div class="input col-lg-4 col-md-6 col-sm-3">
                     <select id="leave_ty" name = "leave_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Leave</option>
-                        <option value="2">Medical</option>
-                        <option value="3">Exemption</option>
+                        <option value="leave">Leave</option>
+                        <option value="medical">Medical</option>
+                        <option value="exemption">Exemption</option>
                     </select>
                 </div>
                 <div class="label col-lg-4 col-md-6 col-sm-3">
-                    <label for="l_date">LEAVE-DATE: </label>
+                    <label for="l_date">FROM-DATE: </label>
                 </div>
                 <div class="input col-lg-2 col-md-6 col-sm-3">
-                    <input type="date" id="l_date" name="leave_date">
+                    <input type="date" id="l_date" name="from_date">
                 </div>
                 <div class="label col-lg-2 col-md-6 col-sm-3">
                     <label for="to_date">TO-DATE: </label>
@@ -94,13 +94,12 @@
 include_once "db_connection.php";
 
 function GetLeaveStatus($employeeID){
-    $conn = connectDB();     
-    $query = "SELECT number_of_days,from_date,to_date,leave_type,reason,`status` FROM leave_entry WHERE employeeID = {$employeeID}";
+    $conn = connectDB();    
+    $query = "SELECT from_date,to_date,leave_type,reason,`status` FROM leave_entry WHERE employeeID = {$employeeID}";
     if($result = mysqli_query( $conn, $query)){
-        echo $employeeID;
-        // $returnVal = TableLeaveStatus($result);
+        $returnVal = TableLeaveStatus($result);
         mysqli_close($conn);
-        // return $returnVal;
+        return $returnVal;
     }
     else{
         printf("Error: %s\n", mysqli_error($conn));
@@ -109,13 +108,12 @@ function GetLeaveStatus($employeeID){
 
 function TableLeaveStatus($result){
     if(mysqli_num_rows($result)==0){
-        return "<script>swal({title:'No pending leave requests',icon:'info'});</script>";
+        return "<h1>NO pending requests</h1>";
     }
     echo "<br><br>";
     $row_count = 1;
     echo "<table id='req_table' class='table table-info table-hover'>";
     echo "<tr>";
-    echo "<th>Number of Days</th>";
     echo "<th>From date</th>";
     echo "<th>To date</th>";
     echo "<th>Leave Type</th>";
@@ -124,7 +122,6 @@ function TableLeaveStatus($result){
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
     echo  "<tr>";
-    echo  "<td>" . $row['number_of_days'] . "</td>";
     echo  "<td>" . $row['from_date'] . "</td>";
     echo  "<td>" . $row['to_date'] . "</td>";
     echo  "<td>" . $row['leave_type'] . "</td>";

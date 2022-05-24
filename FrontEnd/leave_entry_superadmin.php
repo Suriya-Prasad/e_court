@@ -1,5 +1,6 @@
 <?php
     include_once "navigation.php";
+    include_once "actions.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +16,17 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="";   
+        document.getElementById('post_table').innerHTML="<?php GetLeaveRequests();?>";   
     }
     </script>
 </head>
-<body>
-        <?php include_once "navbars.php"; ?>
-        <div id="post_table">
-            <script>fillResults();</script>
+<body onload="fillResults()">
+    <?php include_once "navbars.php"; ?>
+        <div id="content">
+            <h1>Pending Requests</h1>
+            <div id="post_table">
+                <script>fillResults();</script>
+            </div>
         </div>
     <script>
         var element = document.getElementById("leave_entry");
@@ -41,7 +45,7 @@ include_once "db_connection.php";
 
 function GetLeaveRequests(){
     $conn = connectDB();     
-    $query = "SELECT l.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,l.number_of_days,l.from_date,l.to_date,l.leave_type,l.reason FROM employee as e,leave_entry as l WHERE l.status = 'pending' and e.employeeID = l.employeeID";
+    $query = "SELECT l.employeeID,l.from_date,l.to_date,l.leave_type,l.reason FROM leave_entry as l WHERE l.status = 'pending'";
     if($result = mysqli_query( $conn, $query)){
         $returnVal = TablePendingLeaveRequests($result);
         mysqli_close($conn);
@@ -61,8 +65,7 @@ function TablePendingLeaveRequests($result){
     echo "<table id='req_table' class='table table-info table-hover'>";
     echo "<tr>";
     echo "<th>Employee ID</th>";
-    echo "<th>Employee Name</th>";
-    echo "<th>Number of Days</th>";
+    // echo "<th>Employee Name</th>";
     echo "<th>From date</th>";
     echo "<th>To date</th>";
     echo "<th>Leave Type</th>";
@@ -72,8 +75,7 @@ function TablePendingLeaveRequests($result){
     while ($row=mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $row['l.employeeID'] . "</td>";
-    echo "<td>" . $row['employee_name'] . "</td>";
-    echo "<td>" . $row['l.number_of_days'] . "</td>";
+    // echo "<td>" . $row['employee_name'] . "</td>";
     echo "<td>" . $row['l.from_date'] . "</td>";
     echo "<td>" . $row['l.to_date'] . "</td>";
     echo "<td>" . $row['l.leave_type'] . "</td>";
@@ -85,7 +87,5 @@ function TablePendingLeaveRequests($result){
     }
     echo "</table>";
 }
-
-
 
 ?>
