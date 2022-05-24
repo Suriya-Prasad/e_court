@@ -85,6 +85,9 @@
     #leave table , #acc , #dec{
         font-size: medium;
     }
+    #acc , #dec{
+        padding: 3.5px;
+    }
 }
 
 @media (max-width: 577px){
