@@ -1,11 +1,4 @@
 <?php
-    //Session started for each user login and user ID is extracted to provide user specific functionalities.
-    session_start();
-    if(!isset ($_SESSION['employeeID'])) {
-        header("Location:index.php");    
-    } elseif ($_SESSION['employeeID'] > 1) { // if not admin, redirect to user page
-        header("Location:leave_entry_user_admin.php");  
-    }
     include_once "navigation.php";
 ?>
 
@@ -22,7 +15,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetLeaveRequests()?>";   
+        document.getElementById('post_table').innerHTML="";   
     }
     </script>
 </head>
@@ -43,6 +36,9 @@
 </html>
 
 <?php
+
+include_once "db_connection.php";
+
 function GetLeaveRequests(){
     $conn = connectDB();     
     $query = "SELECT l.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,l.number_of_days,l.from_date,l.to_date,l.leave_type,l.reason FROM employee as e,leave_entry as l WHERE l.status = 'pending' and e.employeeID = l.employeeID";

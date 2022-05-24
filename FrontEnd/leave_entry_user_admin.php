@@ -1,10 +1,5 @@
 <?php
-    //Session started for each user login and user ID is extracted to provide user specific functionalities.
-    session_start();
-    if(!isset ($_SESSION['employeeID'])) {
-        header("Location:index.php");    
-    }
-    
+    // session_start();
     include_once "navigation.php";
 ?>
 
@@ -21,17 +16,15 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetLeaveStatus()?>";   
+        document.getElementById('post_table').innerHTML="<?php echo $_SESSION['employeeID'];?>";   
     }
     </script>
 </head>
-<body>
+<body onload="fillResults()">
         <?php include_once "navbars.php"; ?>
-
-
         <div id="content">
             <div id="leave">
-            <form>
+                <form action="" method="POST">
                 <h2>LEAVE ENTRY</h2>
                 <div class="label col-lg-4 col-md-6 col-sm-3">
                     <label for="employeeID">EMPLOYEE-ID: </label>
@@ -89,11 +82,10 @@
                     <textarea id="l_reason" name="leave_reason" form="usrform" rows="4" cols="40"></textarea>
                 </div>
                 <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
-
+                </form>
                 <div id="post_table">
                     <script>fillResults();</script>
                 </div>
-            </form>
             </div>
         </div>
 
@@ -109,10 +101,15 @@
 </body>
 </html>
 
+<script src="js/sweetalert.min.js" ></script>
+
 <?php
+
+include_once "db_connection.php";
+
 function GetLeaveStatus(){
     $conn = connectDB();     
-    $query = "SELECT l.number_of_days,l.from_date,l.to_date,l.leave_type,l.reason,l.status FROM leave_entry as l WHERE l.employeeID = {$_SESSION['employeeID']}";
+    $query = "SELECT number_of_days,from_date,to_date,leave_type,reason,`status` FROM leave_entry WHERE employeeID = {$_SESSION['employeeID']}";
     if($result = mysqli_query( $conn, $query)){
         $returnVal = TableLeaveStatus($result);
         mysqli_close($conn);

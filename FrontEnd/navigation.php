@@ -1,4 +1,10 @@
 <?php
+        session_start();
+        if(! isset ($_SESSION['employeeID'])) {
+            header("Location:index.php");    
+        }
+
+        
         if (isset($_POST['posting'])) {
             header("Location:posting.php");
         }

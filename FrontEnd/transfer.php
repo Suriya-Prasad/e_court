@@ -1,9 +1,4 @@
 <?php
-    //Session started for each user login and user ID is extracted to provide user specific functionalities.
-    session_start();
-    if(! isset ($_SESSION['employeeID'])) {
-        header("Location:index.php");    
-    }
     include_once "navigation.php";
 ?>
 
