@@ -71,18 +71,19 @@ function TablePendingLeaveRequests($result){
     echo "<th>To date</th>";
     echo "<th>Leave Type</th>";
     echo "<th>Reason</th>";
-    echo "<th>Action</th>";
+    echo "<th colspan='2'>Action</th>";
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
-    echo    "<tr>";
-    echo  "<td>" . $row['l.employeeID'] . "</td>";
-    echo  "<td>" . $row['employee_name'] . "</td>";
-    echo  "<td>" . $row['l.number_of_days'] . "</td>";
-    echo  "<td>" . $row['l.from_date'] . "</td>";
-    echo  "<td>" . $row['l.to_date'] . "</td>";
-    echo  "<td>" . $row['l.leave_type'] . "</td>";
-    echo  "<td>" . $row['l.reason'] . "</td>";
-    echo  "<td>" . $row['l.reason'] . "</td>";
+    echo "<tr>";
+    echo "<td>" . $row['l.employeeID'] . "</td>";
+    echo "<td>" . $row['employee_name'] . "</td>";
+    echo "<td>" . $row['l.number_of_days'] . "</td>";
+    echo "<td>" . $row['l.from_date'] . "</td>";
+    echo "<td>" . $row['l.to_date'] . "</td>";
+    echo "<td>" . $row['l.leave_type'] . "</td>";
+    echo "<td>" . $row['l.reason'] . "</td>";
+    echo "<td><button type='submit' id='acc' class='btn btn-outline-success'>APPROVE</button></td>";
+    echo "<td><button type='submit' id='dec' class='btn btn-outline-danger'>DECLINE</button></td>";
     echo "</tr>"; 
     $row_count++;     
     }
