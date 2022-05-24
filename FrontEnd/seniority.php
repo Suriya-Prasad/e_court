@@ -45,7 +45,7 @@
     </div>
 
     <script>
-        var element = document.getElementById("seniority");
+        var element = document.getElementById("seniorityb");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
         var element2 = document.getElementById("staff_info");

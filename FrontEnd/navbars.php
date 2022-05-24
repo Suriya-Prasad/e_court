@@ -56,7 +56,7 @@
                     <center><button class="btn btn-outline-secondary" type="submit"  id="service_register" name="service_register">Service Register</button></center>
                     </div>
                 <div class="card-body">
-                    <center><button class="btn btn-outline-secondary" type="submit" id="seniority"  name="seniority">Seniority</button></center>
+                    <center><button class="btn btn-outline-secondary" type="submit" id="seniorityb"  name="seniority">Seniority</button></center>
                 </div>
                 <div class="card-body">
                     <center><button class="btn btn-outline-secondary" type="submit" id="running_note" name="running_note">Running Note</button></center>
@@ -68,7 +68,7 @@
             <form action="" method="POST">
             <button type="submit" class="btn btn-outline-secondary" id="leave_entry" name="leave_entry">Leave Entry</button>
             <button type="submit" class="btn btn-outline-secondary" id="posting" name="posting">Posting</button>
-            <button type="submit" class="btn btn-outline-secondary" id="transfer" name="transfer">Transfer</button>
+            <button type="submit" class="btn btn-outline-secondary" id="transfering" name="transfer">Transfer</button>
             <button type="submit" class="btn btn-outline-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
             <button type="submit" class="btn btn-outline-secondary" id="query_builder" name="query_builder">Query Builder</button>
             <button type="submit" class="btn btn-outline-secondary" id="employee_registration" name="employee_registration">Employee Registration</button>
