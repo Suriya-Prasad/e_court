@@ -29,7 +29,7 @@
                 $relive_date = date("Y-m-d",$relive_date);
                 $join_date = strtotime(str_replace('.','-', $join_date));
                 $join_date = date("Y-m-d",$join_date);
-                $query1 = "INSERT INTO designation (to_date) VALUES('{$relive_date}') where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
                 $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
                 $query_run = mysqli_query($conn, $query2);
                 $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
