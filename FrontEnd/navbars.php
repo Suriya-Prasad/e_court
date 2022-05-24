@@ -12,7 +12,7 @@
                     <button type="button" data-bs-toggle="collapse" href="#collapseOne">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg><h5>UserName</h5>
+                        </svg><h5><?php echo $_SESSION['page_employeeName'];?></h5>
                     </button>
                 </div>
                 <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">

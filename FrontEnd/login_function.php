@@ -28,6 +28,7 @@
 
                 if($password == $row['password']){
                     $_SESSION['employeeID'] = $row['employeeID'];
+                    $_SESSION['page_employeeName'] = $row['first_name'];
                     echo isset($_SESSION['employeeID']);
                     header("Location:home_attendance.php");
                 }
