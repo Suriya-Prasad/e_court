@@ -23,10 +23,12 @@
 <body onload="fillResults()">
     <?php include_once "navbars.php"; ?>
         <div id="content">
-            <h1>Pending Requests</h1>
+        <div id="leave">
+            <h2>PENDING REQUESTS</h2>
             <div id="post_table">
                 <script>fillResults();</script>
             </div>
+        </div>
         </div>
     <script>
         var element = document.getElementById("leave_entry");

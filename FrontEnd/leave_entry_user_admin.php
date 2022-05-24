@@ -61,12 +61,6 @@
                 <div class="input col-lg-4 col-md-6 col-sm-3">
                     <input type="date" id="to_date" name="to_date">
                 </div>
-                <div class="label1 col-lg-4 col-md-5 col-sm-4">
-                    <label for="l_reason">REASON: </label>
-                </div>
-                <div class="input1 col-lg-8 col-md-7 col-sm-8">
-                    <textarea id="l_reason" name="leave_reason" form="usrform" rows="4" cols="40"></textarea>
-                </div>
                 <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
                 </form>
                 <div id="post_table">
