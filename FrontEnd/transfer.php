@@ -37,16 +37,16 @@
                     <option value="court two">Court Two</option>
                     <option value="court three">Court Three</option>
                 </select></p>
-                <div  class="label col-lg-4 col-md-6 col-sm-4">
+                <div class="label col-lg-4 col-md-6 col-sm-6">
                     <label for="join_date">JOINING-DATE: </label>
                 </div>
-                <div class="input col-lg-2 col-md-6 col-sm-2">
+                <div class="input col-lg-2 col-md-6 col-sm-6">
                     <input type="date" id="joining_date" required name="join_date"/>
                 </div>
-                <div class="label col-lg-2 col-md-6 col-sm-2">
+                <div class="label col-lg-2 col-md-6 col-sm-6">
                     <label for="leave_date">RELIVE DATE: </label>
                 </div>
-                <div class="input col-lg-4 col-md-6 col-sm-4">
+                <div class="input col-lg-4 col-md-6 col-sm-6">
                     <input type="date" id="leave_date" required name="relive_date"/>
                 </div>
                 <button type="submit" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>

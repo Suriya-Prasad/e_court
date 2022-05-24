@@ -39,7 +39,28 @@
         font-size: medium;
     }
 }
-
+@media (max-width: 577px){
+    #posting .label{
+        float: left;
+        width: 50%;
+        font-size: revert;
+    }
+    #posting .input{
+        float: left;
+        width: 50%;
+        font-size: revert;
+    }
+    #transfer .label{
+        float: left;
+        width: 50%;
+        font-size: revert;
+    }
+    #transfer .input{
+        float: left;
+        width: 50%;
+        font-size: revert;
+    }
+}
 @media (max-width: 500px){
     #posting{
         font-size: smaller;
