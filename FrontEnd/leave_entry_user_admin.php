@@ -27,26 +27,15 @@
                 <form action="" method="POST">
                 <h2>LEAVE ENTRY</h2>
                 <div class="label col-lg-4 col-md-6 col-sm-3">
-                    <label for="employeeID">EMPLOYEE-ID: </label>
-                </div>
-                <div class="input col-lg-2 col-md-6 col-sm-3">
-                    <input type="text" id="employeeID" name="employeeID" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"/>
-                </div>
-                <div class="label col-lg-2 col-md-6 col-sm-3">
-                    <label for="fname">NAME: </label>
-                </div>
-                <div class="input col-lg-4 col-md-6 col-sm-3">
-                    <input type="text" id="fname" name="first_name"/>
-                </div>
-                <div class="label col-lg-4 col-md-6 col-sm-3">
                     <label for="select_dt">SELECT-DAY-TYPE: </label>
                 </div>
                 <div class="input col-lg-2 col-md-6 col-sm-3">
                     <select id="select_dt" name = "select_day_type" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="1">Half Day</option>
-                        <option value="2">Full Day</option>
-                        <option value="3">Continuous Days</option>
+                        <option value="1">Forenoon</option>
+                        <option value="2">Afternoon</option>
+                        <option value="3">Full Day</option>
+                        <option value="4">Continuous Days</option>
                     </select>
                 </div>
                 <div  class="label col-lg-2 col-md-6 col-sm-3">
@@ -61,19 +50,16 @@
                     </select>
                 </div>
                 <div class="label col-lg-4 col-md-6 col-sm-3">
-                    <label for="date">LEAVE-DATE: </label>
+                    <label for="l_date">LEAVE-DATE: </label>
                 </div>
                 <div class="input col-lg-2 col-md-6 col-sm-3">
                     <input type="date" id="l_date" name="leave_date">
                 </div>
-                <div  class="label col-lg-2 col-md-6 col-sm-3">
-                    <label for="session">SESSION: </label>
+                <div class="label col-lg-2 col-md-6 col-sm-3">
+                    <label for="to_date">TO-DATE: </label>
                 </div>
                 <div class="input col-lg-4 col-md-6 col-sm-3">
-                    <select id="session" name = "session" class="form-select">
-                        <option value="1">Forenoon</option>
-                        <option value="2">Afternoon</option>
-                    </select>
+                    <input type="date" id="to_date" name="to_date">
                 </div>
                 <div class="label1 col-lg-4 col-md-5 col-sm-4">
                     <label for="l_reason">REASON: </label>
