@@ -16,7 +16,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php echo $_SESSION['employeeID'];?>";   
+        document.getElementById('post_table').innerHTML="<?php GetLeaveStatus($_SESSION['employeeID'])?>";   
     }
     </script>
 </head>
@@ -107,13 +107,14 @@
 
 include_once "db_connection.php";
 
-function GetLeaveStatus(){
+function GetLeaveStatus($employeeID){
     $conn = connectDB();     
-    $query = "SELECT number_of_days,from_date,to_date,leave_type,reason,`status` FROM leave_entry WHERE employeeID = {$_SESSION['employeeID']}";
+    $query = "SELECT number_of_days,from_date,to_date,leave_type,reason,`status` FROM leave_entry WHERE employeeID = {$employeeID}";
     if($result = mysqli_query( $conn, $query)){
-        $returnVal = TableLeaveStatus($result);
+        echo $employeeID;
+        // $returnVal = TableLeaveStatus($result);
         mysqli_close($conn);
-        return $returnVal;
+        // return $returnVal;
     }
     else{
         printf("Error: %s\n", mysqli_error($conn));
@@ -136,14 +137,14 @@ function TableLeaveStatus($result){
     echo "<th>Status</th>";
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
-    echo    "<tr>";
-    echo  "<td>" . $row['l.number_of_days'] . "</td>";
-    echo  "<td>" . $row['l.from_date'] . "</td>";
-    echo  "<td>" . $row['l.to_date'] . "</td>";
-    echo  "<td>" . $row['l.leave_type'] . "</td>";
-    echo  "<td>" . $row['l.reason'] . "</td>";
-    echo  "<td>" . $row['l.status'] . "</td>";
-    echo "</tr>"; 
+    echo  "<tr>";
+    echo  "<td>" . $row['number_of_days'] . "</td>";
+    echo  "<td>" . $row['from_date'] . "</td>";
+    echo  "<td>" . $row['to_date'] . "</td>";
+    echo  "<td>" . $row['leave_type'] . "</td>";
+    echo  "<td>" . $row['reason'] . "</td>";
+    echo  "<td>" . $row['status'] . "</td>";
+    echo  "</tr>"; 
     $row_count++;     
     }
     echo "</table>";
