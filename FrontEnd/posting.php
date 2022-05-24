@@ -48,7 +48,7 @@
                     <div class="input col-lg-4 col-md-6 col-sm-4">
                         <input type="date" id="leave_date" required name="relive_date"/>
                     </div>
-                    <a href="javascript:void(0)" class="submit_ajax btn btn-outline-success">SUBMIT</a>
+                    <button name="submit_posting" class="submit_ajax btn btn-outline-success">SUBMIT</button>
                 </form>
             <center>
             </div>
