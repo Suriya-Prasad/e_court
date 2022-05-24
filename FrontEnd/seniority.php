@@ -99,10 +99,10 @@ function seniorityTable($result,$posting){
     echo "<th>Posting joined date</th>";
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
-    echo    "<tr>";
-    echo  "<td>" . $row['employeeID'] . "</td>";
-    echo  "<td>" . $row['employee_name'] . "</td>";
-    echo  "<td>" . $row['join_date'] . "</td>";
+    echo "<tr>";
+    echo "<td>" . $row['employeeID'] . "</td>";
+    echo "<td>" . $row['employee_name'] . "</td>";
+    echo "<td>" . $row['join_date'] . "</td>";
     echo "</tr>"; 
     $row_count++;     
     }

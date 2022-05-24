@@ -82,8 +82,11 @@
         height: 25px;
         width: 125px;
     }
-    #leave table{
+    #leave table , #acc , #dec{
         font-size: medium;
+    }
+    #acc , #dec{
+        padding: 3.5px;
     }
 }
 
@@ -115,7 +118,7 @@
         width: 90%;
         margin-left: 5px;
     }
-    #leave table{
+    #leave table , #acc , #dec{
         font-size: small;
     }
 }
