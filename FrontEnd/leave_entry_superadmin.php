@@ -45,18 +45,18 @@
 <?php
 function GetLeaveRequests(){
     $conn = connectDB();     
-    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{}' and to_date is null AND from_date is not null) AND posting = '{}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
+    $query = "SELECT l.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,l.number_of_days,l.from_date,l.to_date,l.leave_type,l.reason FROM employee as e,leave_entry as l WHERE l.status = 'pending' and e.employeeID = l.employeeID";
     if($result = mysqli_query( $conn, $query)){
-        $returnVal = seniorityTable($result);
+        $returnVal = TablePendingLeaveRequests($result);
         mysqli_close($conn);
         return $returnVal;
-        }
+    }
     else{
         printf("Error: %s\n", mysqli_error($conn));
     }
 }
 
-function seniorityTable($result){
+function TablePendingLeaveRequests($result){
     if(mysqli_num_rows($result)==0){
         return "<script>swal({title:'No pending leave requests',icon:'info'});</script>";
     }
@@ -66,21 +66,29 @@ function seniorityTable($result){
     echo "<tr>";
     echo "<th>Employee ID</th>";
     echo "<th>Employee Name</th>";
-    echo "<th>Leave Date</th>";
-    echo "<th>Day Type</th>";
+    echo "<th>Number of Days</th>";
+    echo "<th>From date</th>";
+    echo "<th>To date</th>";
     echo "<th>Leave Type</th>";
     echo "<th>Reason</th>";
     echo "<th>Action</th>";
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
     echo    "<tr>";
-    echo  "<td>" . $row['employeeID'] . "</td>";
+    echo  "<td>" . $row['l.employeeID'] . "</td>";
     echo  "<td>" . $row['employee_name'] . "</td>";
-    echo  "<td>" . $row['join_date'] . "</td>";
+    echo  "<td>" . $row['l.number_of_days'] . "</td>";
+    echo  "<td>" . $row['l.from_date'] . "</td>";
+    echo  "<td>" . $row['l.to_date'] . "</td>";
+    echo  "<td>" . $row['l.leave_type'] . "</td>";
+    echo  "<td>" . $row['l.reason'] . "</td>";
+    echo  "<td>" . $row['l.reason'] . "</td>";
     echo "</tr>"; 
     $row_count++;     
     }
     echo "</table>";
 }
+
+
 
 ?>

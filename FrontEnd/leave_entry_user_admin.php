@@ -21,7 +21,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
+        document.getElementById('post_table').innerHTML="<?php GetLeaveStatus()?>";   
     }
     </script>
 </head>
@@ -109,4 +109,47 @@
 </body>
 </html>
 
-<?php include_once "actions.php"; ?>
+<?php
+function GetLeaveStatus(){
+    $conn = connectDB();     
+    $query = "SELECT l.number_of_days,l.from_date,l.to_date,l.leave_type,l.reason,l.status FROM leave_entry as l WHERE l.employeeID = {$_SESSION['employeeID']}";
+    if($result = mysqli_query( $conn, $query)){
+        $returnVal = TableLeaveStatus($result);
+        mysqli_close($conn);
+        return $returnVal;
+    }
+    else{
+        printf("Error: %s\n", mysqli_error($conn));
+    }
+}
+
+function TableLeaveStatus($result){
+    if(mysqli_num_rows($result)==0){
+        return "<script>swal({title:'No pending leave requests',icon:'info'});</script>";
+    }
+    echo "<br><br>";
+    $row_count = 1;
+    echo "<table id='req_table' class='table table-info table-hover'>";
+    echo "<tr>";
+    echo "<th>Number of Days</th>";
+    echo "<th>From date</th>";
+    echo "<th>To date</th>";
+    echo "<th>Leave Type</th>";
+    echo "<th>Reason</th>";
+    echo "<th>Status</th>";
+    echo "</tr>";
+    while ($row=mysqli_fetch_array($result)) {
+    echo    "<tr>";
+    echo  "<td>" . $row['l.number_of_days'] . "</td>";
+    echo  "<td>" . $row['l.from_date'] . "</td>";
+    echo  "<td>" . $row['l.to_date'] . "</td>";
+    echo  "<td>" . $row['l.leave_type'] . "</td>";
+    echo  "<td>" . $row['l.reason'] . "</td>";
+    echo  "<td>" . $row['l.status'] . "</td>";
+    echo "</tr>"; 
+    $row_count++;     
+    }
+    echo "</table>";
+}
+
+?>
