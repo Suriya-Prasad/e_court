@@ -60,9 +60,12 @@
         width: 50%;
         font-size: revert;
     }
+    #content .input{
+        min-height: 55px;
+    }
 }
 @media (max-width: 500px){
-    #posting{
+    #posting , #transfer{
         font-size: smaller;
     }
 }
