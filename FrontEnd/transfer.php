@@ -56,25 +56,9 @@
         </div>
     </div>    
     <script>
-        var element = document.getElementById("transfer");
+        var element = document.getElementById("transfering");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
-    
-        function submitForm(form) {
-            swal({
-                title: "Are you sure?",
-                text: "This form will be submitted.",
-                icon: "warning",
-                button: true,
-                dangerMode = true,
-            })
-            .then((isOkay)=> {
-                if (isOkay) {
-                    form.submit();
-                }
-            });
-            return false;
-        }
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
