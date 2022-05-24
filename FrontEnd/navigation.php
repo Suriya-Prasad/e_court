@@ -21,6 +21,11 @@
             header("Location:employee_registration.php");
         }
         else if (isset($_POST['leave_entry'])) {
-            header("Location:leave_entry.php");
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] > 1){
+                header("Location:leave_entry_user_admin.php");
+            }
+            else if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:leave_entry_superadmin.php");
+            }
         }
 ?>
