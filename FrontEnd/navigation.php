@@ -34,4 +34,12 @@
                 header("Location:leave_entry_superadmin.php");
             }
         }
+        else if (isset($_POST['service_registry'])) {
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] > 1){
+                header("Location:service_registry_user_admin.php");
+            }
+            else if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:service_registry_superadmin.php");
+            }
+        }
 ?>
