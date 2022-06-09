@@ -21,15 +21,16 @@
     </script>
 </head>
 <body onload="fillResults()">
-<?php include_once "navbars.php"; ?>
+    <?php include_once "navbars.php"; ?>
         <div id="content">
-        <div id="leave">
-            <h2>PENDING REQUESTS</h2>
-            <div id="post_table">
-                <script>fillResults();</script>
+            <div id="leave">
+                <h2>PENDING REQUESTS</h2>
+                <div id="post_table">
+                    <script>fillResults();</script>
+                </div>
             </div>
         </div>
-        </div>
+    </div>
     <script>
         var element = document.getElementById("leave_entry");
         element.classList.remove("btn-outline-secondary");

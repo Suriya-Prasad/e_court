@@ -21,7 +21,7 @@
     </script>
 </head>
 <body onload="fillResults()">
-        <?php include_once "navbars.php"; ?>
+    <?php include_once "navbars.php"; ?>
         <div id="content">
             <div id="leave">
                 <form action="" method="POST">
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
 
     <script>
         var element = document.getElementById("leave_entry");

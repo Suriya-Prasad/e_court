@@ -13,44 +13,41 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
-    <script>
-    function fillResults(){
-        document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";   
-    }
-    </script>
+    
 </head>
 <body>
     <?php include_once "navbars.php"; ?>
 
         <div id="content">
-        <div id="seniority">
-            <center>
-                <h2>SENIORITY</h2>
-                <form action="" method="POST">
-                <p>POST :
-                <select id="post" class="form-select" name = "SeniorityForm" onchange="this.form.submit()">
-                    <option selected>&lt;--None--&gt;</option>
-                    <option value="post 1">Post One</option>
-                    <option value="post 2">Post Two</option>
-                    <option value="post 3">Post Three</option>
-                </select></p>
-                </form>
-            </center>
-            <div id="post_table">
-                <script>fillResults();</script>
+            <div id="seniority">
+                <center>
+                    <h2>SENIORITY</h2>
+                    <form action="" method="POST">
+                    <p>POST :
+                    <select id="post" class="form-select" name = "SeniorityForm" onchange="this.form.submit()">
+                        <option selected>&lt;--None--&gt;</option>
+                        <option value="post 1">Post One</option>
+                        <option value="post 2">Post Two</option>
+                        <option value="post 3">Post Three</option>
+                    </select></p>
+                    </form>
+                </center>
+                <div id="post_table"></div>
             </div>
-        </div>
         </div>
     </div>
 
     <script>
-        var element = document.getElementById("seniorityb");
+        var element = document.getElementById("staff_info");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
-        var element2 = document.getElementById("staff_info");
+        var element2 = document.getElementById("senior");
         element2.classList.remove("btn-outline-secondary");
         element2.classList.add("btn-secondary");
+    </script>
+    <script>
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="<?php GetSeniority()?>";
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

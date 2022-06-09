@@ -51,7 +51,7 @@
         
     </div>
     <script>
-        var element = document.getElementById("attendance");
+        var element = document.getElementById("attend");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
     </script>

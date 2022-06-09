@@ -55,7 +55,7 @@
         </div>                
     </div>
     <script>
-        var element = document.getElementById("posting");
+        var element = document.getElementById("posti");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
     </script>

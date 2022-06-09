@@ -12,36 +12,32 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/seniority.css">  <!-- need change-->
-    <script>
-    function fillResults(){
-        document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetServiceRegistry()?>";   
-    }
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/seniority.css">
 </head>
-<body onload="fillresults();">
+<body>
     <?php include_once "navbars.php"; ?>
 
         <div id="content">
-        <div id="seniority">   <!-- Straight away table so nothing needed...change css if necessary --> 
-            <center>
-                <h2>VIEW SERVICE REGISTRY</h2>
-            </center>
-            <div id="post_table">
-                <script>fillResults();</script>
+            <div id="sr_u">
+                <center>
+                    <h2>VIEW SERVICE REGISTRY</h2>
+                </center>
+                <div id="post_table">
+                </div>
             </div>
-        </div>
         </div>
     </div>
 
     <script>
-        var element = document.getElementById("seniorityb");
+        var element = document.getElementById("staff_info");
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
-        var element2 = document.getElementById("staff_info");
+        var element2 = document.getElementById("service_register");
         element2.classList.remove("btn-outline-secondary");
         element2.classList.add("btn-secondary");
+    </script>
+    <script>
+        document.getElementById('post_table').innerHTML="<?php GetServiceRegistry()?>"; 
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
