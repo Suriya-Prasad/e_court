@@ -13,19 +13,21 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
-    <script>
-    
-    </script>
 </head>
 <body>
     <?php include_once "navbars.php"; ?>
-
+        
         <div id="content">
             <div id="sr_sa">
+            <form action="" method="POST">
                 <label for="employeeID">EMPLOYEE ID: </label>
                 <input type="text" id="employeeID" name="employeeID"/>
-                <button type="submit" class="btn btn-outline-success" onclick="fillresults();">VIEW</button>
-            </div>
+                <button type="submit" class="btn btn-outline-success">VIEW</button>
+            </form>
+                <div id = "post_table">
+                <script>fillresults();</script>
+                </div>
+            </div>    
         </div>
     </div>
 
@@ -36,15 +38,14 @@
         var element2 = document.getElementById("service_register");
         element2.classList.remove("btn-outline-secondary");
         element2.classList.add("btn-secondary");
-    </script> -->
+    </script>
+    <script>
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="<?php GetServiceRegistry();?>";   
+    </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js">
-        function fillResults() {
-            document.getElementById('post_table').style.display = 'block';
-            document.getElementById('post_table').innerHTML="<?php GetServiceRegistry()?>";   
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 
@@ -55,8 +56,11 @@ include_once "db_connection.php";
 
 function GetServiceRegistry(){
     $conn = ConnectDB();
+    if(!isset($_POST['employeeID'])){
+        return "candyman";
+    }
     $employeeID = $_POST['employeeID'];
-    $query="SELECT CONCAT(e.first_name,' ',e.last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
+    $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1 ){
         $query1 = "SELECT * from designation where employeeID ={$employeeID} ORDER BY from_date;";
@@ -71,7 +75,7 @@ function GetServiceRegistry(){
         }
     }
     else{
-        printf("Error: %s\n", mysqli_error($conn));
+        return "fuck off";
     }
 }
 
