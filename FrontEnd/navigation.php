@@ -42,4 +42,9 @@
                 header("Location:service_register_superadmin.php");
             }
         }
+        elseif(isset($_POST['disciplinary_proceedings'])){
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:disciplinary_proceedings.php");
+            }
+        }
 ?>

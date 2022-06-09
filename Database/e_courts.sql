@@ -103,8 +103,9 @@ DROP TABLE IF EXISTS `disciplinary_proceeding`;
 CREATE TABLE `disciplinary_proceeding`(
   `employeeID` int(20) NOT NULL,
   `disciplinary_proceeding_court_name` varchar(200) NOT NULL,
-  `disciplinary_proceeding_status` varchar(10) NOT NULL,
   `disciplinary_proceeding_details` varchar(500) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   CONSTRAINT `fk_employeeID_disciplinary_proceeding` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

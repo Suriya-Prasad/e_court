@@ -54,7 +54,7 @@ include_once "db_connection.php";
 function GetServiceRegistry(){
     $conn = ConnectDB();
     if(!isset($_POST['employeeID'])){
-        return "candyman";
+        return " ";
     }
     $employeeID = $_POST['employeeID'];
     $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";

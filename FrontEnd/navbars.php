@@ -72,6 +72,7 @@
             <button type="submit" class="btn btn-outline-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
             <button type="submit" class="btn btn-outline-secondary" id="query_builder" name="query_builder">Query Builder</button>
             <button type="submit" class="btn btn-outline-secondary" id="employee_registration" name="employee_registration">Employee Registration</button>
+            <button type="submit" class="btn btn-outline-secondary" id="disciplinary_proceedings" name="disciplinary_proceedings">Disciplinary Proceedings</button>
             </form>
             </div>
         </div>

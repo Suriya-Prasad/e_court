@@ -13,8 +13,14 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
+    <script>
+    function fillResults(){
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="<?php GetServiceRegistry($_SESSION['employeeID'])?>";   
+    }
+    </script>
 </head>
-<body>
+<body onload="fillResults();">
     <?php include_once "navbars.php"; ?>
         <div id="content">
             <div id="sr_u">
@@ -32,9 +38,6 @@
         element2.classList.remove("btn-outline-secondary");
         element2.classList.add("btn-secondary");
     </script>
-    <script>
-        document.getElementById('post_table').innerHTML="<?php GetServiceRegistry()?>"; 
-    </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
@@ -47,10 +50,9 @@
 
 include_once "db_connection.php";
 
-function GetServiceRegistry(){
+function GetServiceRegistry($employeeID){
     $conn = ConnectDB();
-    $employeeID = $_SESSION['employeeID'];
-    $query="SELECT CONCAT(e.first_name,' ',e.last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
+    $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1 ){
         $query1 = "SELECT * from designation where employeeID ={$employeeID} ORDER BY from_date;";
@@ -75,10 +77,10 @@ function service_registryTable($result1,$result,$employeeID){
         return "<script>swal({title:'No employee record found',icon:'info'});</script>";
     }
     $row=mysqli_fetch_array($result);
-    echo "<h2>Employee ID : ".$employeeID." </h2><br>";
+    echo  "<h2>Employee ID : ".$employeeID." </h2><br>";
     echo "<h2>Employee Name : ".strtoupper($row['employee_name'])." </h2><br>";
     echo "<h2>Service Joining Date : ".$row['service_joining_date']." </h2><br>";  //display employee name and service joining date here
-    $row_count = 1;
+    $row = mysqli_fetch_array($result1);
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";
     echo "<th>POST</th>";
@@ -86,15 +88,12 @@ function service_registryTable($result1,$result,$employeeID){
     echo "<th>JOIN DATE</th>";
     echo "<th>RELIVE DATE</th>";
     echo "</tr>";
-    while ($row=mysqli_fetch_array($result1)) {
     echo "<tr>";
     echo "<td>" . $row['posting'] . "</td>";
     echo "<td>" . $row['court'] . "</td>";
     echo "<td>" . $row['from_date'] . "</td>";
     echo "<td>" . $row['to_date'] . "</td>";
-    echo "</tr>"; 
-    $row_count++;     
-    }
+    echo "</tr>";
     echo "</table>";
 }
 
