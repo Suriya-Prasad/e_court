@@ -36,7 +36,7 @@
         var element2 = document.getElementById("service_register");
         element2.classList.remove("btn-outline-secondary");
         element2.classList.add("btn-secondary");
-    </script>
+    </script> -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js">
@@ -49,7 +49,6 @@
 </html>
 
 <script src="js/sweetalert.min.js" ></script>
-
 <?php
 
 include_once "db_connection.php";
@@ -72,8 +71,7 @@ function GetServiceRegistry(){
         }
     }
     else{
-        $_SESSION['status'] = "Employee does not exist";
-        $_SESSION['status_code'] = "warning";
+        printf("Error: %s\n", mysqli_error($conn));
     }
 }
 
