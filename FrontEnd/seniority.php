@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <?php
     include_once "navigation.php";
     include_once "actions.php";
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +13,9 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
-    
 </head>
 <body>
     <?php include_once "navbars.php"; ?>
-
         <div id="content">
             <div id="seniority">
                 <center>
@@ -51,11 +49,11 @@
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.min.js" ></script>
     <script src="js/main.js"></script>
 </body>
 </html>
 
-<script src="js/sweetalert.min.js" ></script>
 
 <?php
 
@@ -71,7 +69,7 @@ function GetSeniority(){
         $returnVal = seniorityTable($result,$posting);
         mysqli_close($conn);
         return $returnVal;
-        }
+    }
     else{
         printf("Error: %s\n", mysqli_error($conn));
     }

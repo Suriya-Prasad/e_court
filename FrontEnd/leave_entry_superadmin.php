@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <?php
     include_once "navigation.php";
     include_once "actions.php";
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <script>
         var element = document.getElementById("leave_entry");
         element.classList.remove("btn-outline-secondary");

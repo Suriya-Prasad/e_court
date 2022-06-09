@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <?php
     include_once "navigation.php";
     include_once "actions.php";
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,17 +15,16 @@
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
 </head>
 <body>
-    <?php include_once "navbars.php"; ?>
-        
+    <?php include_once "navbars.php"; ?> 
         <div id="content">
             <div id="sr_sa">
-            <form action="" method="POST">
-                <label for="employeeID">EMPLOYEE ID: </label>
-                <input type="text" id="employeeID" name="employeeID"/>
-                <button type="submit" class="btn btn-outline-success">VIEW</button>
-            </form>
-                <div id = "post_table">
-                <script>fillresults();</script>
+                <form action="" method="POST">
+                    <label for="employeeID">EMPLOYEE ID: </label>
+                    <input type="text" id="employeeID" name="employeeID"/>
+                    <button type="submit" class="btn btn-outline-success">VIEW</button>
+                </form>
+                <div id="post_table">
+                    <script>fillresults();</script>
                 </div>
             </div>    
         </div>
@@ -79,31 +78,28 @@ function GetServiceRegistry(){
     }
 }
 
-function service_registryTable($result1,$result,$employeeID){
+//Function to display the seriority of a posting
+function seniorityTable($result,$posting){
     if(mysqli_num_rows($result)==0){
-        return "<script>swal({title:'No employee record found',icon:'info'});</script>";
+        return "<script>swal({title:'No employee exist in this post',icon:'info'});</script>";
     }
-    $row=mysqli_fetch_array($result);
-    echo "<h2>Employee ID : ".$employeeID." </h2><br>";
-    echo "<h2>Employee Name : ".strtoupper($row['employee_name'])." </h2><br>";
-    echo "<h2>Service Joining Date : ".$row['service_joining_date']." </h2><br>";  //display employee name and service joining date here
+    echo "<h2>".strtoupper($posting)."</h2><br>";
     $row_count = 1;
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";
-    echo "<th>POST</th>";
-    echo "<th>COURT</th>";
-    echo "<th>JOIN DATE</th>";
-    echo "<th>RELIVE DATE</th>";
+    echo "<th>Employee ID</th>";
+    echo "<th>Employee Name</th>";
+    echo "<th>Posting joined date</th>";
     echo "</tr>";
-    while ($row=mysqli_fetch_array($result1)) {
+    while ($row=mysqli_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['posting'] . "</td>";
-    echo "<td>" . $row['court'] . "</td>";
-    echo "<td>" . $row['from_date'] . "</td>";
-    echo "<td>" . $row['to_date'] . "</td>";
+    echo "<td>" . $row['employeeID'] . "</td>";
+    echo "<td>" . $row['employee_name'] . "</td>";
+    echo "<td>" . $row['join_date'] . "</td>";
     echo "</tr>"; 
     $row_count++;     
     }
     echo "</table>";
 }
+
 ?>

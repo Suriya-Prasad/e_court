@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <?php
     include_once "navigation.php";
     include_once "actions.php";
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,14 +16,10 @@
 </head>
 <body>
     <?php include_once "navbars.php"; ?>
-
         <div id="content">
             <div id="sr_u">
-                <center>
-                    <h2>VIEW SERVICE REGISTRY</h2>
-                </center>
-                <div id="post_table">
-                </div>
+                <h2>VIEW SERVICE REGISTRY</h2>
+                <div id="post_table"></div>
             </div>
         </div>
     </div>

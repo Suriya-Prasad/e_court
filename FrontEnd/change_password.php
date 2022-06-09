@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <?php
     include_once "navigation.php"; 
 ?>
 
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">

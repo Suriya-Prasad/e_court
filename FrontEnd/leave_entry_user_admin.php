@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <?php
     include_once "navigation.php";
     include_once "actions.php";
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
