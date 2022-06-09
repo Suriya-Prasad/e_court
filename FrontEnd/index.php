@@ -21,15 +21,15 @@
     <form action="" method="POST">
     <div id = 'firsth'><center>  
     <div class="form-signin">
-        <h1 class="h2 mb-3 fw-bold">STAFF LOGIN</h1><br>
+        <h1 class="h2 mb-3 fw-bold">STAFF LOGIN</h1>
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="employeeID" style="background-color: #8ED6FF;">
             <label for="floatingInput">Employee ID</label>
-        </div><br>
+        </div>
         <div class="form-floating">
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" style="background-color: #8ED6FF;">
             <label for="floatingPassword">Password</label>
-        </div><br>
+        </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Log In</button>
     </div></center>
     </div>

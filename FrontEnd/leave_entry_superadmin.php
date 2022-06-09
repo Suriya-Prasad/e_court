@@ -64,7 +64,6 @@ function TablePendingLeaveRequests($result){
     if(mysqli_num_rows($result)==0){
         return "<script>swal({title:'No pending leave requests',icon:'info'});</script>";
     }
-    echo "<br><br>";
     $row_count = 1;
     echo "<table id='req_table' class='table table-info table-hover'>";
     echo "<tr>";

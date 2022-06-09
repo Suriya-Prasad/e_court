@@ -1,6 +1,9 @@
 #content{
     padding: 0;
 }
+#content #seniority, #sr{
+    padding: 20px 10px;
+}
 #content h2{
     padding: 25px;
 }
@@ -27,4 +30,9 @@
     #content table{
         font-size: smaller;
     }
+}
+
+/* service register */
+.service_content{
+    padding: 10px 0px;
 }

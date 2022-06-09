@@ -35,6 +35,9 @@
     margin-bottom: 10px;
     border-radius: 10px;
 }
+.form-floating{
+    margin: 10px 0px 20px;
+}
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;

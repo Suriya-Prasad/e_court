@@ -23,7 +23,7 @@
 <body onload="fillResults();">
     <?php include_once "navbars.php"; ?>
         <div id="content">
-            <div id="sr_u">
+            <div id="sr">
                 <h2>VIEW SERVICE REGISTRY</h2>
                 <div id="post_table"></div>
             </div>
@@ -77,9 +77,9 @@ function service_registryTable($result1,$result,$employeeID){
         return "<script>swal({title:'No employee record found',icon:'info'});</script>";
     }
     $row=mysqli_fetch_array($result);
-    echo  "<h2>Employee ID : ".$employeeID." </h2><br>";
-    echo "<h2>Employee Name : ".strtoupper($row['employee_name'])." </h2><br>";
-    echo "<h2>Service Joining Date : ".$row['service_joining_date']." </h2><br>";  //display employee name and service joining date here
+    echo "<h5 class='service_content'>Employee ID : ".$employeeID." </h5>";
+    echo "<h5 class='service_content'>Employee Name : ".strtoupper($row['employee_name'])." </h5>";
+    echo "<h5 class='service_content'>Service Joining Date : ".$row['service_joining_date']." </h5>";  //display employee name and service joining date here
     $row = mysqli_fetch_array($result1);
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";

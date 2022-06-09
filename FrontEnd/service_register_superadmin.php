@@ -17,11 +17,16 @@
 <body>
     <?php include_once "navbars.php"; ?> 
         <div id="content">
-            <div id="sr_sa">
+            <div id="sr">
+                <h2>SERVICE REGISTRY</h2>
                 <form action="" method="POST">
                     <label for="employeeID">EMPLOYEE ID: </label>
                     <input type="text" id="employeeID" name="employeeID"/>
-                    <button type="submit" class="btn btn-outline-success">VIEW</button>
+                    <button type="submit" class="btn btn-outline-success" style=
+                        "padding: 2px;
+                        margin-bottom: 5px;
+                        width: 55px;"
+                    >VIEW</button>
                 </form>
                 <div id="post_table"></div>
             </div>    
@@ -83,9 +88,9 @@ function service_registryTable($result1,$result,$employeeID){
         return "<script>swal({title:'No employee record found',icon:'info'});</script>";
     }
     $row=mysqli_fetch_array($result);
-    echo "<h2>Employee ID : ".$employeeID." </h2><br>";
-    echo "<h2>Employee Name : ".strtoupper($row['employee_name'])." </h2><br>";
-    echo "<h2>Service Joining Date : ".$row['service_joining_date']." </h2><br>";  //display employee name and service joining date here
+    echo "<h5 class='service_content'>Employee ID : ".$employeeID." </h5>";
+    echo "<h5 class='service_content'>Employee Name : ".strtoupper($row['employee_name'])." </h5>";
+    echo "<h5 class='service_content'>Service Joining Date : ".$row['service_joining_date']." </h5>";  //display employee name and service joining date here
     $row_count = 1;
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";

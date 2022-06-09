@@ -1,6 +1,9 @@
 #content{
     padding: 0px;
 }
+#content #attendance{
+    padding: 20px 10px;
+}
 #attendance h2{
     padding: 25px;
 }

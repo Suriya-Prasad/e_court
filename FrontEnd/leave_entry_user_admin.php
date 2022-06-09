@@ -104,7 +104,6 @@ function TableLeaveStatus($result){
     if(mysqli_num_rows($result)==0){
         return "<h1>NO pending requests</h1>";
     }
-    echo "<br><br>";
     $row_count = 1;
     echo "<table id='req_table' class='table table-info table-hover'>";
     echo "<tr>";
