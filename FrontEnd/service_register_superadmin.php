@@ -23,9 +23,7 @@
                     <input type="text" id="employeeID" name="employeeID"/>
                     <button type="submit" class="btn btn-outline-success">VIEW</button>
                 </form>
-                <div id="post_table">
-                    <script>fillresults();</script>
-                </div>
+                <div id="post_table"></div>
             </div>    
         </div>
     </div>
