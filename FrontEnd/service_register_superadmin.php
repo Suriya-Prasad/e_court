@@ -72,28 +72,34 @@ function GetServiceRegistry(){
         }
     }
     else{
-        return "fuck off";
+        $_SESSION['status'] = "Employee does not exist";
+        $_SESSION['status_code'] = "warning";
     }
 }
 
 //Function to display the seriority of a posting
-function seniorityTable($result,$posting){
+function service_registryTable($result1,$result,$employeeID){
     if(mysqli_num_rows($result)==0){
-        return "<script>swal({title:'No employee exist in this post',icon:'info'});</script>";
+        return "<script>swal({title:'No employee record found',icon:'info'});</script>";
     }
-    echo "<h2>".strtoupper($posting)."</h2><br>";
+    $row=mysqli_fetch_array($result);
+    echo "<h2>Employee ID : ".$employeeID." </h2><br>";
+    echo "<h2>Employee Name : ".strtoupper($row['employee_name'])." </h2><br>";
+    echo "<h2>Service Joining Date : ".$row['service_joining_date']." </h2><br>";  //display employee name and service joining date here
     $row_count = 1;
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";
-    echo "<th>Employee ID</th>";
-    echo "<th>Employee Name</th>";
-    echo "<th>Posting joined date</th>";
+    echo "<th>POST</th>";
+    echo "<th>COURT</th>";
+    echo "<th>JOIN DATE</th>";
+    echo "<th>RELIVE DATE</th>";
     echo "</tr>";
-    while ($row=mysqli_fetch_array($result)) {
+    while ($row=mysqli_fetch_array($result1)) {
     echo "<tr>";
-    echo "<td>" . $row['employeeID'] . "</td>";
-    echo "<td>" . $row['employee_name'] . "</td>";
-    echo "<td>" . $row['join_date'] . "</td>";
+    echo "<td>" . $row['posting'] . "</td>";
+    echo "<td>" . $row['court'] . "</td>";
+    echo "<td>" . $row['from_date'] . "</td>";
+    echo "<td>" . $row['to_date'] . "</td>";
     echo "</tr>"; 
     $row_count++;     
     }

@@ -97,4 +97,5 @@ function service_registryTable($result1,$result,$employeeID){
     }
     echo "</table>";
 }
+
 ?>
