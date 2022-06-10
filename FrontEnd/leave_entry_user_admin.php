@@ -63,9 +63,7 @@
                 </div>
                 <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
                 </form>
-                <div id="post_table">
-                    <script>fillResults();</script>
-                </div>
+                <div id="post_table"></div>
             </div>
         </div>
     </div>
