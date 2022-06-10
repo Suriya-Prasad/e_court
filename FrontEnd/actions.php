@@ -31,9 +31,9 @@
                 $join_date = date("Y-m-d",$join_date);
                 $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
                 $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
-                $query_run = mysqli_query($conn, $query2);
+                mysqli_query($conn, $query1);
+                $query_run = mysqli_query($conn,$query2);
                 $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
-                mysqli_query($conn,$query1);
                 $result2 = mysqli_query($conn,$query3);
                 $row = mysqli_fetch_row($result2);
                 $employeeName = $row[0];
@@ -94,8 +94,8 @@
                     $row = mysqli_fetch_row($result2);
                     $employeeName = $row[0];
                     $_SESSION['post_transfer_employeeName'] = $employeeName;
-                    mysqli_query($conn,$query1);
-                    $query_run =  mysqli_query($conn, $query2);
+                    mysqli_query($conn, $query1);
+                    $query_run = mysqli_query($conn,$query2);
                     if($query_run){?>
                     <script>window.location.href = "pdf_generation.php";</script>
                     <?php
