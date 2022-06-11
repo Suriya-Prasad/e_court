@@ -25,9 +25,7 @@
         <div id="content">
             <div id="leave">
                 <h2>PENDING REQUESTS</h2>
-                <div id="post_table">
-                    <script>fillResults();</script>
-                </div>
+                <div id="post_table"></div>
             </div>
         </div>
     </div>
@@ -62,7 +60,8 @@ function GetLeaveRequests(){
 
 function TablePendingLeaveRequests($result){
     if(mysqli_num_rows($result)==0){
-        return "<script>swal({title:'No pending leave requests',icon:'info'});</script>";
+        echo "<center><h2>No Pending Leave Requests</h2></center>";
+        return "";
     }
     $row_count = 1;
     echo "<table id='req_table' class='table table-info table-hover'>";

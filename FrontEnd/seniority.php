@@ -64,7 +64,7 @@ include_once "db_connection.php";
 function GetSeniority(){
     $conn = connectDB();
     $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);
-    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID GROUP BY employeeID ORDER BY join_date;";
+    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID  AND e.employeeID NOT IN(SELECT employeeID from disciplinary_proceeding where end_date is null) GROUP BY employeeID ORDER BY join_date;";
     if($result = mysqli_query( $conn, $query)){
         $returnVal = seniorityTable($result,$posting);
         mysqli_close($conn);
@@ -78,7 +78,8 @@ function GetSeniority(){
 //Function to display the seriority of a posting
 function seniorityTable($result,$posting){
     if(mysqli_num_rows($result)==0){
-        return "<script>swal({title:'No employee exist in this post',icon:'info'});</script>";
+        echo "<center><h2>No Active Employee In This Post</h2></center>";
+        return "";
     }
     echo "<h2>".strtoupper($posting)."</h2><br>";
     $row_count = 1;

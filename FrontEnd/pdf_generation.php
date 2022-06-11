@@ -9,8 +9,15 @@
     $to_post = $_SESSION['post_to'];
     $relive_date = $_SESSION['relive_date'];
     $join_date = $_SESSION['join_date'];
+    $pdj_name = $_SESSION['pdj_name'];
 
+    $join_date = strtotime($join_date);
+    $join_date = date('d.m.Y',$join_date);
     
+    $relive_date = strtotime($relive_date);
+    $relive_date = date('d.m.Y',$relive_date);
+
+
     unset($_SESSION['post_transfer_employeeName']);
     unset($_SESSION['from_court']);
     unset($_SESSION['from_post']);
@@ -32,7 +39,7 @@
 
     $pdf->SetFont('Arial','',11);
     $pdf->Cell(80,5,'Present:',0,0,'R');
-    $pdf->Cell(0,5,'(Name of Officer),',0,1,'L');
+    $pdf->Cell(0,5,$pdj_name.',',0,1,'L');
     $pdf->Cell(80,5,'',0,0,'R');
     $pdf->Cell(0,5,'Principle District Judge,',0,1,'L');
     $pdf->Cell(80,5,'',0,0,'R');
@@ -42,7 +49,7 @@
 
     $pdf->Cell(52,5,'A.No.',0,0,'R');
     $pdf->Cell(3,5,'',0,0);
-    $pdf->Cell(20,5,'/2022',0,0,'L');
+    $pdf->Cell(20,5,'/'.date("Y"),0,0,'L');
     $pdf->Cell(70,5,'Dated: '.date("d.m.Y"),0,1,'R');
 
     $pdf->Cell(0,5,'',0,1);

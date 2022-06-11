@@ -24,19 +24,20 @@ CREATE TABLE `employee` (
   `caste` varchar(250) DEFAULT NULL,
   `permanent_address` varchar(1000) DEFAULT NULL,
   `current_address` varchar(1000) DEFAULT NULL,
+  `role` varchar(25) NOT NULL,
   PRIMARY KEY (`employeeID`)
 ) AUTO_INCREMENT=1;
 
 INSERT INTO employee VALUES ('1','pass', 'Arun', 'Prasad', 'suriya@mdfc.com', '1122334455', '2018-04-05', 'Tiruppur', '1996-05-04', 'male', 'no', 'Ponnusamy', 'no', 
-'111222333444', '1122334455', 'Hindu', 'BC', 'C19', 'Vadugapalayam,Palladam', 'Vadugapalayam,Palladam');
+'111222333444', '1122334455', 'Hindu', 'BC', 'C19', 'Vadugapalayam,Palladam', 'Vadugapalayam,Palladam','superadmin');
 INSERT INTO employee VALUES ('2','pass', 'Arul', 'Prakash', 'arul@mdfc.com', '1209348756', '2010-03-02', 'Madurai', '1976-09-12', 'male', 'yes', 'Narayanan', 'no', 
-'000011112222', '0000011111', 'Hindu', 'FC', 'C71', 'Baker street,Udumelpet', 'Baker street,Udumelpet');
+'000011112222', '0000011111', 'Hindu', 'FC', 'C71', 'Baker street,Udumelpet', 'Baker street,Udumelpet','admin');
 INSERT INTO employee VALUES ('3','pass', 'Joseph', 'Winmer', 'joseph@mdfc.com', '9898980099', '2020-12-24', 'Trichy', '1998-01-30', 'male', 'no', 'Wincent', 'no', 
-'132435465768', '2143658709', 'Christianity', 'BC', 'C3', 'Gandhi nagar,Avinashi', 'Nallur,Tiruppur');
+'132435465768', '2143658709', 'Christianity', 'BC', 'C3', 'Gandhi nagar,Avinashi', 'Nallur,Tiruppur','user');
 INSERT INTO employee VALUES ('4','pass', 'Mohammed', 'Tarik', 'mt@mdfc.com', '1089567423', '2010-07-22', 'Tiruppur', '1989-05-04', 'male', 'no', 'Toufic', 'no', 
-'908766785656', '3243445612', 'Islam', 'MBC', 'C14', 'Pushpa Theatre,Tiruppur', 'Anna Nagar,Theni');
+'908766785656', '3243445612', 'Islam', 'MBC', 'C14', 'Pushpa Theatre,Tiruppur', 'Anna Nagar,Theni','admin');
 INSERT INTO employee VALUES ('5','pass', 'Karam', 'Singh', 'kaam@mdfc.com', '1424335567', '2009-10-10', 'Tuticorin', '1990-10-25', 'male', 'no', 'Vijendar', 'no', 
-'121322333544', '11255693455', 'Sikkism', 'FC', 'C82', 'Sheriff Colony,Tiruppur', 'Golden Temple,Amritasar');
+'121322333544', '11255693455', 'Sikkism', 'FC', 'C82', 'Sheriff Colony,Tiruppur', 'Golden Temple,Amritasar','user');
 
 
 -- Table structure for `Posting` ;
@@ -47,7 +48,7 @@ CREATE TABLE `designation` (
   `employeeID` int(20) NOT NULL,
   `posting` varchar(255) NOT NULL,
   `court` varchar(255) NOT NULL,
-  `from_date` date DEFAULT NULL,
+  `from_date` date NOT NULL,
   `to_date` date DEFAULT NULL,
   CONSTRAINT `fk_employeeID_designation` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -105,9 +106,12 @@ CREATE TABLE `disciplinary_proceeding`(
   `disciplinary_proceeding_court_name` varchar(200) NOT NULL,
   `disciplinary_proceeding_details` varchar(500) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
+  `end_date` date DEFAULT NULL,
   CONSTRAINT `fk_employeeID_disciplinary_proceeding` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+INSERT INTO `disciplinary_proceeding` (`employeeID`, `disciplinary_proceeding_court_name`, `disciplinary_proceeding_details`, `start_date`, `end_date`) VALUES ('2', 'abcd', 'not found', '2022-04-12', NULL);
+INSERT INTO `disciplinary_proceeding` (`employeeID`, `disciplinary_proceeding_court_name`, `disciplinary_proceeding_details`, `start_date`, `end_date`) VALUES ('4', 'xyz', 'stolen', '2021-10-20', '2022-05-03');
 
 -- Table structure for `leave_entry` ;
 
