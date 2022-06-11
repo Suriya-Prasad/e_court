@@ -21,7 +21,7 @@
     </script>
 </head>
 <body onload="fillResults();">
-    <?php include_once "navbars.php"; ?>
+    <?php include_once "navbars_user_admin.php"; ?>
         <div id="content">
             <div id="sr">
                 <h2>VIEW SERVICE REGISTRY</h2>

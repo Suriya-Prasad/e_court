@@ -14,13 +14,13 @@
     <link rel="stylesheet" type="text/css" href="css/posting.css">
 </head>
 <body>
-<?php include_once "navbars.php";?>
+<?php include_once "navbars_superadmin.php";?>
 
         <div id="content">
         <div id="transfer">
         <center>
             <h2>TRANSFER</h2>
-            <form action="" method="POST" onsubmit="return submitForm(this)">
+            <form action="" method="POST">
                 <label for="employeeID">EMPLOYEE ID: </label>
                 <input type="text" id="employeeID" name="employeeID">
                 <p>FROM COURT :
@@ -49,7 +49,7 @@
                 <div class="input col-lg-4 col-md-6 col-sm-6">
                     <input type="date" id="leave_date" required name="relive_date"/>
                 </div>
-                <button type="submit" name="submit_transfer" class="btn btn-outline-success">SUBMIT</button>
+                <button type="submit" name="submit_transfer" class="btn btn-outline-success" onclick="archiveFunction()">SUBMIT</button>
             </form> 
         <center>
         </div>
@@ -63,7 +63,30 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/sweetalert.min.js"></script>
 </body>
 </html>
+
+<script>
+    function archiveFunction() {
+    event.preventDefault(); // prevent form submit
+    var form = event.target.form; // storing the form
+        swal({
+            title: "Are you sure?",
+            text: "The changes made cannot be revoked!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then(
+        function(isConfirm){
+            if (isConfirm) {
+                <?php $_POST['submit_transfer'] = true; ?>
+                form.submit();          // submitting the form when user press yes
+            } else {
+                swal("Cancelled", "No Changes Made", "error");
+            }
+        });
+    }
+</script>
 
 <?php include_once "actions.php"; ?>

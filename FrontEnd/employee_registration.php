@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
-        <?php include_once "navbars.php"; ?>
+        <?php include_once "navbars_superadmin.php"; ?>
 
 
         <div id="content">

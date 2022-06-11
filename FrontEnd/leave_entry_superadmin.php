@@ -21,7 +21,7 @@
     </script>
 </head>
 <body onload="fillResults()">
-    <?php include_once "navbars.php"; ?>
+    <?php include_once "navbars_superadmin.php"; ?>
         <div id="content">
             <div id="leave">
                 <h2>PENDING REQUESTS</h2>

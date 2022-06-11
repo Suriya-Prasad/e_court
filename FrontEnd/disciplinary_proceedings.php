@@ -21,7 +21,7 @@
     </script>
 </head>
 <body>
-    <?php include_once "navbars.php"; ?> 
+    <?php include_once "navbars_superadmin.php"; ?> 
         <div id="content">
             <div id="sr_sa">
                 <form action="" method="POST">

@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
 </head>
 <body>
-    <?php include_once "navbars.php"; ?> 
+    <?php include_once "navbars_superadmin.php"; ?> 
         <div id="content">
             <div id="sr">
                 <h2>SERVICE REGISTRY</h2>

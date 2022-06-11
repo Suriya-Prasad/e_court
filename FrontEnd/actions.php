@@ -52,10 +52,6 @@
                 $_SESSION['status_code'] = "warning";
             }
         }
-        else{
-            $_SESSION['status'] = "Something went wrong";
-            $_SESSION['status_code'] = "warning";
-        }
     }
 
      //Function to add an entry to designation table when submit clicked at transfer page
@@ -110,10 +106,6 @@
                 $_SESSION['status'] = "Employee does not work in the selected court";
                 $_SESSION['status_code'] = "warning";
             }
-        }
-        else{
-            $_SESSION['status'] = "Something went wrong";
-            $_SESSION['status_code'] = "warning";
         }
     }
 

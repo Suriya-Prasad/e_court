@@ -26,7 +26,14 @@
     </script>
 </head>
 <body>
-        <?php include_once "navbars.php"; ?>
+        <?php 
+        if($_SESSION['employeeID'] == 1){
+            include_once "navbars_superadmin.php"; 
+        }
+        else{
+            include_once "navbars_user_admin.php";
+        }
+        ?>
 
 
         <div id="content">

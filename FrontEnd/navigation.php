@@ -6,10 +6,14 @@
 
         
         if (isset($_POST['posting'])) {
-            header("Location:posting.php");
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:posting.php");
+            }
         }
         else if (isset($_POST['transfer'])) {
-            header("Location:transfer.php");
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:transfer.php");
+            }
         }
         else if (isset($_POST['seniority'])) {
             header("Location:seniority.php");
@@ -24,7 +28,9 @@
             header("Location:change_password.php");
         }
         else if (isset($_POST['employee_registration'])) {
-            header("Location:employee_registration.php");
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:employee_registration.php");
+            }
         }
         else if (isset($_POST['leave_entry'])) {
             if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] > 1){
