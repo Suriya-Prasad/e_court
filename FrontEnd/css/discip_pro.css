@@ -1,7 +1,7 @@
 #content{
     padding: 0;
 }
-#content #sr{
+#content #dis_pro{
     padding: 20px 10px;
 }
 #content h2{
@@ -23,9 +23,6 @@ button .btn{
 }
 
 @media (max-width: 500px){    
-    input{
-        width: 8rem;
-    }
     #content table{
         font-size: smaller;
     }
