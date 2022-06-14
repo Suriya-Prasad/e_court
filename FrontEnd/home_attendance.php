@@ -41,7 +41,7 @@
             <h2>ATTENDANCE</h2>
             <script>fillResults();</script>
             <label for="date">DATE: </label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" max="<?php echo date("Y-m-d");?>">
             <table id="op_table" class="table table-info table-hover">
                 <tr>
                     <th>S.No</th><th>Date</th><th>Name</th><th>Id</th><th>Attendance</th><th>Time</th>

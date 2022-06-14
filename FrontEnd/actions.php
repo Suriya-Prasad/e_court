@@ -235,6 +235,21 @@
         }
     }
 
+    //Function to build report for required query
+    // else if(isset($_POST['submit_query_builder'])){
+    //     $conn = connectDB();
+    //     $post = $_POST['posting'];
+    //     $court = $_POST['court'];
+    //     $gender = $_POST['gender'];
+    //     $query_given = $_POST['query'];
+    //     if(strcmp($query_given,'disciplainary_proceedings') == 0){
+
+    //     }
+    //     else if(strcmp($query_given,'')){
+
+    //     }
+    // }
+
 ?>
 
 <?php

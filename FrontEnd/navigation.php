@@ -53,4 +53,9 @@
                 header("Location:disciplinary_proceedings.php");
             }
         }
+        elseif(isset($_POST['query_builder'])){
+            if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
+                header("Location:query_builder.php");
+            }
+        }
 ?>

@@ -68,7 +68,6 @@
                 <form action="" method="POST">
                 <button type="submit" class="btn btn-outline-secondary" id="leave_entry" name="leave_entry">Leave Entry</button>
                 <button type="submit" class="btn btn-outline-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
-                <button type="submit" class="btn btn-outline-secondary" id="query_builder" name="query_builder">Query Builder</button>
                 </form>
             </div>
         </div>
