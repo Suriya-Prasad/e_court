@@ -85,6 +85,34 @@
 
 include_once "db_connection.php";
 
+//Function to Submit Leave Entry
+if(isset($_POST['submit_leave_entry'])){
+    $conn = ConnectDB();
+    $select_day_type = $_POST['select_day_type'];
+    $leave_type = $_POST['leave_type'];
+    $from_date = $_POST['from_date'];
+    $to_date = $_POST['to_date'];
+    $leave_reason = "";
+    $status = "pending";
+    $query="SELECT * from leave_entry where (employeeID='{$_SESSION['employeeID']}' and from_date = '{$from_date}' and to_date = '{$to_date}' and day_type = '{$select_day_type}')";
+    $result = mysqli_query($conn,$query);
+    if(mysqli_num_rows($result) > 0 ){
+        $_SESSION['status'] = "Employee is already registered";
+        $_SESSION['status_code'] = "info";
+    }
+    else{
+        $query = "INSERT INTO leave_entry(employeeID,reason,from_date,to_date,leave_type,day_type,`status`) VALUES('{$_SESSION['employeeID']}','{$leave_reason}','{$from_date}','{$to_date}','{$leave_type}','{$select_day_type}','{$status}')";
+        if(! mysqli_query($conn,$query)){
+            $error = mysqli_error($conn);
+            echo $error;
+        }
+        else{
+            $_SESSION['status'] = "Leave Requested";
+            $_SESSION['status_code'] = "success";
+        }
+    }
+}
+
 function GetLeaveStatus($employeeID){
     $conn = connectDB();    
     $query = "SELECT from_date,to_date,leave_type,reason,`status` FROM leave_entry WHERE employeeID = {$employeeID}";

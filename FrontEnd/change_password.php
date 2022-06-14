@@ -38,4 +38,34 @@
 </body>
 </html>
 
-<?php include_once "actions.php"; ?>
+<?php
+//Function to change password
+
+include_once "actions.php"; 
+
+if (isset($_POST['submit_change_password'])) {
+    $conn = ConnectDB();
+    $old_password = mysqli_real_escape_string($conn,$_POST['old_password']);
+    $new_password = mysqli_real_escape_string($conn,$_POST['new_password']);
+    $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
+    if($old_password === $new_password){
+        $_SESSION['status'] = "New password same as old password";
+        $_SESSION['status_code'] = "info";
+    }
+    else if($new_password != $confirm_password){
+        $_SESSION['status'] = "New passwords does not match";
+        $_SESSION['status_code'] = "info";
+    }
+    else{
+        $employeeID = $_SESSION['employeeID'];
+        $query = "UPDATE employee SET password = '{$new_password}' where employeeID = {$employeeID}";
+        $query_run =  mysqli_query($conn,$query);
+        if($query_run){
+            $_SESSION['status'] = "Password changed successfully";
+            $_SESSION['status_code'] = "success";
+            header('Location: home_attendance.php');
+        }
+    }
+}
+
+?>

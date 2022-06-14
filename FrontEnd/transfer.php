@@ -80,7 +80,6 @@
         }).then(
         function(isConfirm){
             if (isConfirm) {
-                <?php //$_POST['submit_transfer'] = true; ?>
                 form.submit();          // submitting the form when user press yes
             } else {
                 swal("Cancelled", "No Changes Made", "error");
@@ -89,4 +88,68 @@
     }
 </script>
 
-<?php include_once "actions.php"; ?>
+<?php
+
+include_once "actions.php"; 
+
+//Function to add an entry to designation table when submit clicked at transfer page
+if(isset($_POST['court_to'])){
+    $conn = connectDB();
+    if($_POST['join_date'] >= $_POST['relive_date']){
+        $employeeID = $_POST['employeeID'];
+        $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
+        $court_from = mysqli_real_escape_string($conn,$_POST['court_from']);
+        if(strcmp($court_to,$court_from) != 0){
+            $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
+            if($result = mysqli_query($conn,$query1)){
+                $row = mysqli_fetch_row($result);
+                $from_court = $row[2];
+                $from_post = $row[1];
+                if(mysqli_num_rows($result) == 1 ){
+                        $_SESSION['from_court'] = $court_from;
+                        $_SESSION['court_to'] = $court_to;
+                        $relive_date = $_POST['relive_date'];
+                        $join_date = $_POST['join_date'];
+                        $_SESSION['from_post'] = $from_post;
+                        $_SESSION['post_to'] = $from_post;
+                        $relive_date = strtotime(str_replace('.','-',$relive_date));
+                        $relive_date = date("Y-m-d",$relive_date);
+                        $join_date = strtotime(str_replace('.','-', $join_date));
+                        $join_date = date("Y-m-d",$join_date);
+                        $_SESSION['relive_date'] = $relive_date;
+                        $_SESSION['join_date'] = $join_date;
+                        $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                        $query2 = "INSERT INTO designation (employeeID,court,posting,from_date) VALUES({$employeeID},'{$court_to}','{$from_post}','{$join_date}')";
+                        $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                        $result2 = mysqli_query($conn,$query3);
+                        $row = mysqli_fetch_row($result2);
+                        $employeeName = $row[0];
+                        $_SESSION['post_transfer_employeeName'] = $employeeName;
+                        mysqli_query($conn, $query1);
+                        $query_run = mysqli_query($conn,$query2);
+                        if($query_run){?>
+                        <script>window.location.href = "pdf_generation.php";</script>
+                        <?php
+                        }
+                }
+                else if(mysqli_num_rows($result) > 1){
+                    $_SESSION['status'] = "Transfer order already exist";
+                    $_SESSION['status_code'] = "info";
+                }
+                else{
+                    $_SESSION['status'] = "Employee does not work in the selected court";
+                    $_SESSION['status_code'] = "warning";
+                }
+            }
+        }
+        else{
+            $_SESSION['status'] = "Employee works in the same court to be transfered";
+            $_SESSION['status_code'] = "warning";
+        }
+    }
+    else{
+        $_SESSION['status'] = "Joining date must be after or at the relieve date";
+        $_SESSION['status_code'] = "warning";
+    }
+}
+?>
