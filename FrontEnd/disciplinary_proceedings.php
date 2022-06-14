@@ -102,6 +102,7 @@ function AllDisciplinaryProceedingsTable($result,$result1){
         echo "<center><h5 class='disc_head'>No Active Record Found</h5></center>";
     }
     else{
+        echo "<center><h5 class='disc_head'>Active Proccedings</h5></center>";
         $row_count = 1;
         echo "<table class='table table-info table-hover'>";
         echo "<tr>";
@@ -129,6 +130,7 @@ function AllDisciplinaryProceedingsTable($result,$result1){
         echo "<center><h5 class='disc_head'>No Completed Record Found</h5></center>";
     }
     else{
+        echo "<center><h5 class='disc_head'>Completed Proceedings</h5></center>";
         $row_count = 1;
         echo "<table class='table table-info table-hover'>";
         echo "<tr>";
