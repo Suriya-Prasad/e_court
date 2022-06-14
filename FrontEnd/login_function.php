@@ -22,7 +22,7 @@
             //validates if user with the entered credentials exist in database. if yes proceed to next page.
             $query="SELECT * from employee where employeeID='{$employeeID}'";
             $result=mysqli_query($conn,$query);
-            $query1="SELECT CONCAT(first_name,' ',last_name)as employee_name from employee where employeeID=1";
+            $query1="SELECT CONCAT(e.first_name,' ',e.last_name)as employee_name from employee as e,designation as d where `role`='super admin' and e.employeeID=d.employeeID and d.to_date is null";
             if(mysqli_num_rows($result) == 1 ){
                 $row=mysqli_fetch_array($result);
                 $row1 = mysqli_fetch_array(mysqli_query($conn,$query1));
@@ -30,6 +30,7 @@
                     $_SESSION['employeeID'] = $row['employeeID'];
                     $_SESSION['page_employeeName'] = $row['first_name'];
                     $_SESSION['pdj_name'] = $row1['employee_name'];
+                    $_SESSION['employee_role'] = $row['role'];
                     echo isset($_SESSION['employeeID']);
                     header("Location:home_attendance.php");
                 }
