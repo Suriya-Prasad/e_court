@@ -87,7 +87,7 @@ function service_registryTable($result1,$result,$employeeID){
         return "<script>swal({title:'No employee record found',icon:'info'});</script>";
     }
     $row=mysqli_fetch_array($result);
-    echo "<h5 class='service_content'>Employee ID : ".$employeeID." </h5>";
+    echo "<h5 class='service_content1'>Employee ID : ".$employeeID." </h5>";
     echo "<h5 class='service_content'>Employee Name : ".strtoupper($row['employee_name'])." </h5>";
     echo "<h5 class='service_content'>Service Joining Date : ".$row['service_joining_date']." </h5>";  //display employee name and service joining date here
     $row_count = 1;
