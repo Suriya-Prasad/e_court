@@ -15,7 +15,14 @@
     <link rel="stylesheet" type="text/css" href="css/seniority.css">
 </head>
 <body>
-    <?php include_once "navbars_superadmin.php"; ?>
+        <?php 
+        if($_SESSION['employeeID'] == 1){
+            include_once "navbars_superadmin.php"; 
+        }
+        else{
+            include_once "navbars_user_admin.php";
+        }
+        ?>
         <div id="content">
             <div id="seniority">
                 <center>
