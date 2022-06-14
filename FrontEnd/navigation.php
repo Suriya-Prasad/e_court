@@ -48,12 +48,12 @@
                 header("Location:service_register_superadmin.php");
             }
         }
-        elseif(isset($_POST['disciplinary_proceedings'])){
+        else if(isset($_POST['disciplinary_proceedings'])){
             if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
                 header("Location:disciplinary_proceedings.php");
             }
         }
-        elseif(isset($_POST['query_builder'])){
+        else if(isset($_POST['query_builder'])){
             if(isset($_SESSION['employeeID']) && $_SESSION['employeeID'] == 1){
                 header("Location:query_builder.php");
             }

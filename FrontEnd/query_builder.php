@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
+    include_once "actions.php";
 ?>
 
 <html lang="en">
@@ -31,20 +32,20 @@
                         <label for="gender3">OTHER</label>
                     </p>
                     <p>COURT  :
-                    <select id="post-to" name="court_to" class="form-select">
+                    <select id="post-to" name="court" class="form-select">
                         <option selected value="all">All</option>
                         <option value="court one">Court One</option>
                         <option value="court two">Court Two</option>
                         <option value="court three">Court Three</option>
                     </select></p>
                     <p>POST  :
-                    <select id="post-to" name="post_to" class="form-select">
+                    <select id="post-to" name="post" class="form-select">
                         <option selected value="all">All</option>
                         <option value="post 1">Post One</option>
                         <option value="post 2">Post Two</option>
                         <option value="post 3">Post Three</option>
                     </select></p>
-                    <button type="submit" class="btn btn-outline-success">SUBMIT</button>
+                    <button type="submit" name = "submit_query_builder" class="btn btn-outline-success">SUBMIT</button>
                 </form>
             <center>
             <div id="post_table"></div>
@@ -58,21 +59,25 @@
     </script>
     <script>
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetQueryResults();?>";   
+        document.getElementById('post_table').innerHTML="<?php echo GetQueryResults();?>";   
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/sweetalert.min.js" ></script>
 </body>
 </html>
 
-<?php include_once "actions.php"; ?>
+<?php include_once "db_connection.php"; ?>
 <?php 
 
     //Function to build report for required query
     function GetQueryResults(){
         $conn = connectDB();
-        $post = $_POST['posting'];
+        if(!isset($_POST['submit_query_builder'])){
+            return " ";
+        }
+        $post = $_POST['post'];
         $court = $_POST['court'];
         $gender = $_POST['gender'];
         if(strcmp($court,"all") == 0){
@@ -112,16 +117,16 @@
             }
         }
         if($result = mysqli_query( $conn, $query)){
-            $returnVal = queryTable($result,$court,$post,$gender);
+            $returnVal = queryTable($result);
             mysqli_close($conn);
             return $returnVal;
         }
         else{
-            printf("Error: %s\n", mysqli_error($conn));
+            echo "<h2>SOME ERROR</h2>";
         }
     }
 
-    function queryTable($result,$court,$post,$gender){
+    function queryTable($result){
         if(mysqli_num_rows($result)==0){
             echo "<center><h2>No Results Found</h2></center>";
             return "";
@@ -133,24 +138,23 @@
         echo "<th>Employee Name</th>";
         echo "<th>Gender</th>";
         echo "<th>Phone Number</th>";
-        echo "<th>E-mail</th>";
+        echo "<th>Email</th>";
         echo "<th>Posting</th>";
         echo "<th>Current Court</th>";
         echo "</tr>";
         while ($row=mysqli_fetch_array($result)) {
         echo "<tr>";
-        echo "<td>" . $row['e.employeeID'] . "</td>";
+        echo "<td>" . $row['employeeID'] . "</td>";
         echo "<td>" . $row['employee_name'] . "</td>";
-        echo "<td>" . $row['e.gender'] . "</td>";
-        echo "<td>" . $row['e.phone_number'] . "</td>";
-        echo "<td>" . $row['e.e_mail'] . "</td>";
-        echo "<td>" . $row['d.posting'] . "</td>";
-        echo "<td>" . $row['d.court'] . "</td>";
+        echo "<td>" . $row['gender'] . "</td>";
+        echo "<td>" . $row['phone_number'] . "</td>";
+        echo "<td>" . $row['e_mail'] . "</td>";
+        echo "<td>" . $row['posting'] . "</td>";
+        echo "<td>" . $row['court'] . "</td>";
         echo "</tr>"; 
         $row_count++;     
         }
         echo "</table>";
-
     }
 
 ?>

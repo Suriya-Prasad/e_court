@@ -79,7 +79,7 @@
         }).then(
         function(isConfirm){
             if (isConfirm) {
-                <?php $_POST['submit_posting'] = true; ?>
+                <?php //$_POST['submit_posting'] = true; ?>
                 form.submit();          // submitting the form when user press yes
             } else {
                 swal("Cancelled", "No Changes Made", "error");
