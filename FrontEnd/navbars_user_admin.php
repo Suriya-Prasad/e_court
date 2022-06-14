@@ -35,13 +35,13 @@
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
                 <form action="" method="POST">
-                    <button type="submit" class="btn btn-outline-secondary" id="attend" name="attendance">Attendance</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="attend" name="attendance">Attendance</button>
                     <button class="btn btn-outline-secondary" type="submit" id="property" name="property">Property</button>
                     <button class="btn btn-outline-secondary" type="submit" id="service_register" name="service_register">Service Register</button>
                     <button class="btn btn-outline-secondary" type="submit" id="senior" name="seniority">Seniority</button>
                     <button class="btn btn-outline-secondary" type="submit" id="running_note" name="running_note">Running Note</button>
-                    <button type="submit" class="btn btn-outline-secondary" id="leave_entry" name="leave_entry">Leave Entry</button>
-                    <button type="submit" class="btn btn-outline-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="leave_entry" name="leave_entry">Leave Entry</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
                 </form>
             </div>
         </div>
