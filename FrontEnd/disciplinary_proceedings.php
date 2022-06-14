@@ -99,10 +99,10 @@ function SpecificDisciplinaryProceedings(){
 
 function AllDisciplinaryProceedingsTable($result,$result1){
     if(mysqli_num_rows($result)==0){
-        echo "<center><h5 class='disc_head'>No Active Record Found</h5></center>";
+        echo "<center><h5 class='disc_head1'>No Active Record Found</h5></center>";
     }
     else{
-        echo "<center><h5 class='disc_head'>Active Proccedings</h5></center>";
+        echo "<center><h5 class='disc_head1'>Active Proccedings</h5></center>";
         $row_count = 1;
         echo "<table class='table table-info table-hover'>";
         echo "<tr>";
@@ -159,12 +159,12 @@ function AllDisciplinaryProceedingsTable($result,$result1){
 function SpecificDisciplinaryProceedingsTable($result,$result1,$employeeID){
     if(mysqli_num_rows($result)==0){
         $row=mysqli_fetch_array($result);
-        echo "<h5 class='service_content'>Employee ID : ".$employeeID." </h5>";
+        echo "<h5 class='service_content1'>Employee ID : ".$employeeID." </h5>";
         echo "<h5 class='service_content'>Employee Name : ".strtoupper($row['employee_name'])." </h5>";
     }
     else{
         if(mysqli_num_rows($result1)==0){
-            echo "<center><h2>No Disciplinary Record Found</h2></center>";
+            echo "<center><h5 class='service_content1>No Disciplinary Record Found</h5></center>";
         }
         else{
             $row_count = 1;

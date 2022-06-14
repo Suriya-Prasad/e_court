@@ -12,24 +12,32 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/posting.css">
+    <link rel="stylesheet" type="text/css" href="css/query-builder.css">
 </head>
 <body>
-        <?php include_once "navbars_superadmin.php"; ?>
+    <?php include_once "navbars_superadmin.php"; ?>
         <div id="content">
-            <div id="posting">
+            <div id="query">
             <center>
                 <form action="" method="POST">
                     <h2>QUERY BUILDER</h2>
                     <p>GENDER :
-                        <input type="radio" id="gender3" name="gender" value="all"/>
-                        <label for="gender3">ALL</label>
-                        <input type="radio" id="gender1" required name="gender" value="male"/>
-                        <label for="gender1">MALE</label>
-                        <input type="radio" id="gender2" name="gender" value="female"/>
-                        <label for="gender2">FEMALE</label>
-                        <input type="radio" id="gender3" name="gender" value="other"/>
-                        <label for="gender3">OTHER</label>
+                        <span>
+                            <input type="radio" id="gender1" name="gender" value="all"/>
+                            <label for="gender1">ALL</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="gender2" required name="gender" value="male"/>
+                            <label for="gender2">MALE</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="gender3" name="gender" value="female"/>
+                            <label for="gender3">FEMALE</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="gender4" name="gender" value="other"/>
+                            <label for="gender4">OTHER</label>
+                        </span>
                     </p>
                     <p>COURT  :
                     <select id="post-to" name="court" class="form-select">
@@ -45,7 +53,7 @@
                         <option value="post 2">Post Two</option>
                         <option value="post 3">Post Three</option>
                     </select></p>
-                    <button type="submit" name = "submit_query_builder" class="btn btn-outline-success">SUBMIT</button>
+                    <button type="submit" name ="submit_query_builder" class="btn btn-outline-success">SUBMIT</button>
                 </form>
             <center>
             <div id="post_table"></div>

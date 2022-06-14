@@ -15,6 +15,7 @@ form{
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+    box-shadow: 0px 0px 15px grey;
 }
 #logo_name img{
     height: auto;
@@ -59,10 +60,11 @@ form{
 }
 #sidebar{
     float: left;
-    margin: 15px;
-    height: -webkit-fill-content;
-    height: fit-content;
-    height: -webkit-fill-available;
+    width: 220px;
+    height: 84vh;
+    background: rgb(205 223 223);
+    padding: 15px;
+    margin: 0;
 }
 .sidebar {
     height: 100%;
@@ -151,7 +153,7 @@ form{
     margin: 0 0 0 220px;
     padding: 25px;
     background-color: white;
-    height: 84vh;
+    height: auto;
     text-align: center;
 }
 
