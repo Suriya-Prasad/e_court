@@ -17,14 +17,14 @@
             </div>
             <div id="collapseOne" class="collapse" data-bs-parent="#accordion1">
                 <hr class="dropdown-divider">
-                <div class="card-body">
-                        <form action="" method="POST">
-                    <center><button type="submit" id="change_password" name="change_password">Change Password</button></center>
-                </div>
-                <div class="card-body">
-                    <center><button type="submit" id="logout" name="logout">Logout</button></center>
-                    </form>
-                </div>
+                <form action="" method="POST">
+                    <div class="card-body">
+                        <center><button type="submit" id="change_password" name="change_password">Change Password</button></center>
+                    </div>
+                    <div class="card-body">
+                        <center><button type="submit" id="logout" name="logout">Logout</button></center>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -36,38 +36,12 @@
                 <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">&times;</a>
                 <form action="" method="POST">
                     <button type="submit" class="btn btn-outline-secondary" id="attend" name="attendance">Attendance</button>
-                </form>
-                <div id="accordion2" class="card">
-                    <div class="card-header">
-                        <button type="button" id="staff_info" class="btn btn-outline-secondary" name="staff_information" data-bs-toggle="collapse" href="#collapseTwo">
-                            <span>Staff Information<span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion2">
-                        <hr class="dropdown-divider"/>
-                        <form action="" method="POST">
-                            <div class="card-body">
-                                <center><button class="btn btn-outline-secondary" type="submit" id="property" name="property">Property</button></center>
-                            </div>
-                            <div class="card-body">
-                                <center><button class="btn btn-outline-secondary" type="submit" id="service_register" name="service_register">Service Register</button></center>
-                                </div>
-                            <div class="card-body">
-                                <center><button class="btn btn-outline-secondary" type="submit" id="senior" name="seniority">Seniority</button></center>
-                            </div>
-                            <div class="card-body">
-                                <center><button class="btn btn-outline-secondary" type="submit" id="running_note" name="running_note">Running Note</button></center>
-                            </div>
-                        </form>
-                        <hr class="dropdown-divider"/>
-                    </div>
-                </div>
-                <form action="" method="POST">
-                <button type="submit" class="btn btn-outline-secondary" id="leave_entry" name="leave_entry">Leave Entry</button>
-                <button type="submit" class="btn btn-outline-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="property" name="property">Property</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="service_register" name="service_register">Service Register</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="senior" name="seniority">Seniority</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="running_note" name="running_note">Running Note</button>
+                    <button type="submit" class="btn btn-outline-secondary" id="leave_entry" name="leave_entry">Leave Entry</button>
+                    <button type="submit" class="btn btn-outline-secondary" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
                 </form>
             </div>
         </div>

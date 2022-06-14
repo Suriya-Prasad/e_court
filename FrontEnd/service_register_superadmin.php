@@ -12,7 +12,7 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/seniority.css">
+    <link rel="stylesheet" type="text/css" href="css/service_reg.css">
 </head>
 <body>
     <?php include_once "navbars_superadmin.php"; ?> 

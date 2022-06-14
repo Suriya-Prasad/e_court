@@ -12,7 +12,7 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/seniority.css">
+    <link rel="stylesheet" type="text/css" href="css/service_reg.css">
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';

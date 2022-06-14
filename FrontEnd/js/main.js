@@ -13,13 +13,6 @@ const openNav = () => {
         document.getElementById("main").style.marginLeft = "0";
     }        
 }
-// const postTable = () => {
-//     let x = document.getElementById("post").value;
-//     if (x !== "<--None-->")
-//         document.getElementById("post_table").style.display = "block";
-//     else
-//         document.getElementById("post_table").style.display = "none";
-// }
 
 // registration
 const selector = () => {
