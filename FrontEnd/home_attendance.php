@@ -13,16 +13,17 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/attendance.css">
     <script>
-    const dp = () => {
-        let x = document.getElementById('dp_inp').style.display;
-        if (x == "none")
-            document.getElementById("dp_inp").style.display = "block";
-        else
-            document.getElementById("dp_inp").style.display = "none";
-    }
-    function fillResults(){
-        document.getElementById('content').style.display = 'block';   
-    }
+        function dp(){
+            let x = document.getElementById('dp_inp').style.display;
+            if (x == "none")
+                document.getElementById("dp_inp").style.display = "block";
+            else
+                document.getElementById("dp_inp").style.display = "none";
+        }
+
+        function fillResults(){
+            document.getElementById('content').style.display = 'block';   
+        }
     </script>
 </head>
 <body>
