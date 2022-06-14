@@ -21,29 +21,33 @@
                 <form action="" method="POST">
                     <h2>QUERY BUILDER</h2>
                     <p>GENDER :
-                        <input type="radio" id="gender1" required name="gender"/>
+                        <input type="radio" id="gender3" name="gender" value="all"/>
+                        <label for="gender3">ALL</label>
+                        <input type="radio" id="gender1" required name="gender" value="male"/>
                         <label for="gender1">MALE</label>
-                        <input type="radio" id="gender2" name="gender"/>
+                        <input type="radio" id="gender2" name="gender" value="female"/>
                         <label for="gender2">FEMALE</label>
-                        <input type="radio" id="gender3" name="gender"/>
+                        <input type="radio" id="gender3" name="gender" value="other"/>
                         <label for="gender3">OTHER</label>
                     </p>
                     <p>COURT  :
                     <select id="post-to" name="court_to" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
+                        <option selected value="all">All</option>
                         <option value="court one">Court One</option>
                         <option value="court two">Court Two</option>
                         <option value="court three">Court Three</option>
                     </select></p>
                     <p>POST  :
                     <select id="post-to" name="post_to" class="form-select">
-                        <option selected>&lt;--None--&gt;</option>
+                        <option selected value="all">All</option>
                         <option value="post 1">Post One</option>
                         <option value="post 2">Post Two</option>
                         <option value="post 3">Post Three</option>
                     </select></p>
+                    <button type="submit" class="btn btn-outline-success">SUBMIT</button>
                 </form>
             <center>
+            <div id="post_table"></div>
             </div>
         </div>                
     </div>
@@ -52,33 +56,101 @@
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
     </script>
+    <script>
+        document.getElementById('post_table').style.display = 'block';
+        document.getElementById('post_table').innerHTML="<?php GetQueryResults();?>";   
+    </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/sweetalert.min.js"></script>
 </body>
 </html>
 
-<script>
-    function archiveFunction() {
-    event.preventDefault(); // prevent form submit
-    var form = event.target.form; // storing the form
-        swal({
-            title: "Are you sure?",
-            text: "The changes made cannot be revoked!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true
-        }).then(
-        function(isConfirm){
-            if (isConfirm) {
-                <?php $_POST['submit_posting'] = true; ?>
-                form.submit(); // submitting the form when user press yes
-            } else {
-                swal("Cancelled", "No Changes Made", "error");
-            }
-        });
-    }
-</script>
-
 <?php include_once "actions.php"; ?>
+<?php 
+
+    //Function to build report for required query
+    function GetQueryResults(){
+        $conn = connectDB();
+        $post = $_POST['posting'];
+        $court = $_POST['court'];
+        $gender = $_POST['gender'];
+        if(strcmp($court,"all") == 0){
+            if(strcmp($post,"all") == 0){
+                if(strcmp($gender,"all") == 0){
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null ORDER BY d.court,d.posting,e.gender;";
+                }
+                else{
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' ORDER BY d.court,d.posting,e.gender;";
+                }
+            }
+            else{
+                if(strcmp($gender,"all") == 0){
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null and d.posting='{$post}' ORDER BY d.court,d.posting,e.gender;";
+                }
+                else{
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' and d.posting='{$post}' ORDER BY d.court,d.posting,e.gender;";
+                }
+            }
+        }
+        else{
+            if(strcmp($post,"all") == 0){
+                if(strcmp($gender,"all") == 0){
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                }
+                else{
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                }
+            }
+            else{
+                if(strcmp($gender,"all") == 0){
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null and d.posting='{$post}' and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                }
+                else{
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' and d.posting='{$post}' and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                }
+            }
+        }
+        if($result = mysqli_query( $conn, $query)){
+            $returnVal = queryTable($result,$court,$post,$gender);
+            mysqli_close($conn);
+            return $returnVal;
+        }
+        else{
+            printf("Error: %s\n", mysqli_error($conn));
+        }
+    }
+
+    function queryTable($result,$court,$post,$gender){
+        if(mysqli_num_rows($result)==0){
+            echo "<center><h2>No Results Found</h2></center>";
+            return "";
+        }
+        $row_count = 1;
+        echo "<table class='table table-info table-hover'>";
+        echo "<tr>";
+        echo "<th>Employee ID</th>";
+        echo "<th>Employee Name</th>";
+        echo "<th>Gender</th>";
+        echo "<th>Phone Number</th>";
+        echo "<th>E-mail</th>";
+        echo "<th>Posting</th>";
+        echo "<th>Current Court</th>";
+        echo "</tr>";
+        while ($row=mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['e.employeeID'] . "</td>";
+        echo "<td>" . $row['employee_name'] . "</td>";
+        echo "<td>" . $row['e.gender'] . "</td>";
+        echo "<td>" . $row['e.phone_number'] . "</td>";
+        echo "<td>" . $row['e.e_mail'] . "</td>";
+        echo "<td>" . $row['d.posting'] . "</td>";
+        echo "<td>" . $row['d.court'] . "</td>";
+        echo "</tr>"; 
+        $row_count++;     
+        }
+        echo "</table>";
+
+    }
+
+?>
