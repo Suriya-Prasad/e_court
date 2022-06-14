@@ -28,8 +28,10 @@
                 <form action="" method="POST">
                     <label for="employeeID">EMPLOYEE ID: </label>
                     <input type="text" id="employeeID" name="employeeID"/>
-                    <button type="submit" class="btn btn-outline-success" id="submit_disciplinary_proceedings" name="submit_disciplinary_proceedings">VIEW</button>
-                    <button type="submit" class="btn btn-outline-success" id="all_disciplinary_proceedings" name="all_disciplinary_proceedings">VIEW ALL</button>
+                    <span id="dis_btn_center">
+                        <button type="submit" class="disc_btn1 btn btn-outline-success" id="submit_disciplinary_proceedings" name="submit_disciplinary_proceedings">VIEW</button>
+                        <button type="submit" class="disc_btn2 btn btn-outline-success" id="all_disciplinary_proceedings" name="all_disciplinary_proceedings">VIEW ALL</button>
+                    </span>
                 </form>
                 <div id="post_table"><script>fillResults();</script></div>
             </div>    
