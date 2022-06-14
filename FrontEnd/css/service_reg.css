@@ -16,7 +16,7 @@
 .service_content{
     padding: 10px 0px;
 }
-button .btn{
+form .ser_btn{
     padding: 2px;
     margin-bottom: 5px;
     width: 55px;
@@ -24,7 +24,7 @@ button .btn{
 
 @media (max-width: 500px){    
     input{
-        width: s;
+        width: 8rem;
     }
     #content table{
         font-size: smaller;

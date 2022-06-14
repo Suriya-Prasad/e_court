@@ -12,7 +12,7 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/seniority.css">
+    <link rel="stylesheet" type="text/css" href="css/discip_pro.css">
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
@@ -23,18 +23,26 @@
 <body>
     <?php include_once "navbars_superadmin.php"; ?> 
         <div id="content">
-            <div id="sr_sa">
+            <div id="dis_pro">
+                <h2>DISCIPLINARY PROCEEDINGS</h2>
                 <form action="" method="POST">
                     <label for="employeeID">EMPLOYEE ID: </label>
                     <input type="text" id="employeeID" name="employeeID"/>
-                    <button type="submit" class="btn btn-outline-success" id="submit_disciplinary_proceedings" name="submit_disciplinary_proceedings">VIEW</button>
-                    <button type="submit" class="btn btn-outline-success" id="all_disciplinary_proceedings" name="all_disciplinary_proceedings">VIEW ALL</button>
+                    <span id="dis_btn_center">
+                        <button type="submit" class="disc_btn1 btn btn-outline-success" id="submit_disciplinary_proceedings" name="submit_disciplinary_proceedings">VIEW</button>
+                        <button type="submit" class="disc_btn2 btn btn-outline-success" id="all_disciplinary_proceedings" name="all_disciplinary_proceedings">VIEW ALL</button>
+                    </span>
                 </form>
                 <div id="post_table"><script>fillResults();</script></div>
             </div>    
         </div>
     </div>
 
+    <script>
+        var element = document.getElementById("disciplinary_proceedings");
+        element.classList.remove("btn-outline-secondary");
+        element.classList.add("btn-secondary");
+    </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
@@ -91,7 +99,7 @@ function SpecificDisciplinaryProceedings(){
 
 function AllDisciplinaryProceedingsTable($result,$result1){
     if(mysqli_num_rows($result)==0){
-        echo "<center><h2>No Active Record Found</h2></center>";
+        echo "<center><h5 class='disc_head'>No Active Record Found</h5></center>";
     }
     else{
         $row_count = 1;
@@ -118,7 +126,7 @@ function AllDisciplinaryProceedingsTable($result,$result1){
         echo "</table>";
     }
     if(mysqli_num_rows($result1)==0){
-        echo "<center><h2>No Completed Record Found</h2></center>";
+        echo "<center><h5 class='disc_head'>No Completed Record Found</h5></center>";
     }
     else{
         $row_count = 1;

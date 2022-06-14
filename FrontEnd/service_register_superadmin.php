@@ -22,7 +22,7 @@
                 <form action="" method="POST">
                     <label for="employeeID">EMPLOYEE ID: </label>
                     <input type="text" id="employeeID" name="employeeID"/>
-                    <button type="submit" class="btn btn-outline-success">VIEW</button>
+                    <button type="submit" class="ser_btn btn btn-outline-success">VIEW</button>
                 </form>
                 <div id="post_table"></div>
             </div>    

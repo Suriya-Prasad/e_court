@@ -1,0 +1,48 @@
+#content{
+    padding: 0;
+}
+#content #dis_pro{
+    padding: 20px 10px;
+}
+#content h2{
+    padding: 25px;
+}
+#content #post_table{
+    display: none;
+}
+#content .table{
+    text-align: center;
+}
+.disc_head{
+    padding: 10px 0px;
+}
+form .disc_btn1{
+    padding: 2px;
+    margin-bottom: 5px;
+    width: 55px;
+}
+form .disc_btn2{
+    padding: 2px;
+    margin-bottom: 5px;
+    width: 75px;
+}
+
+@media (max-width: 500px){
+    input{
+        width: 8rem;
+    }
+    #content table{
+        font-size: smaller;
+    }
+}
+
+@media (max-width: 390px){    
+    form .disc_btn1 , .disc_btn2{
+        display: block;
+    }
+    span #dis_btn_center{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 15px;
+    }
+}
