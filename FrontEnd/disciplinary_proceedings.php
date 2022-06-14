@@ -2,6 +2,9 @@
 <?php
     include_once "navigation.php";
     include_once "db_connection.php";
+    if(strcmp($_SESSION['employee_role'],"super admin")!=0){
+        header("Location:home_attendance.php");
+    }
 ?>
 
 <html lang="en">

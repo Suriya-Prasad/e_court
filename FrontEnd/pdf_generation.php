@@ -1,6 +1,9 @@
 <?php
     session_start();
     require('fpdf184/fpdf.php');
+    if(strcmp($_SESSION['employee_role'],"super admin")!=0){
+        header("Location:home_attendance.php");
+    }
 
     $employeeName = $_SESSION['post_transfer_employeeName'];
     $from_court = $_SESSION['from_court'];

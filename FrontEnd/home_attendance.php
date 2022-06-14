@@ -28,7 +28,7 @@
 </head>
 <body>
     <?php 
-        if($_SESSION['employeeID'] == 1){
+        if(strcmp($_SESSION['employee_role'],"super admin")==0){
             include_once "navbars_superadmin.php"; 
         }
         else{
