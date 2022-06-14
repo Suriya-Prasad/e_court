@@ -100,23 +100,23 @@ include_once "actions.php";
             $post_to = mysqli_real_escape_string($conn,$_POST['post_to']);
             $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
             if($result = mysqli_query($conn,$query1)){
-                $row = mysqli_fetch_row($result);
-                $from_court = $row[2];
-                $from_post = $row[1];
                 if(strcmp($post_to,$from_post) != 0){
-                    $_SESSION['court_to'] = $court_to; 
-                    $_SESSION['post_to'] = $post_to;
-                    $relive_date = $_POST['relive_date'];
-                    $join_date = $_POST['join_date'];
-                    $_SESSION['from_court'] = $from_court;
-                    $_SESSION['from_post'] = $from_post;
-                    $relive_date = strtotime(str_replace('.','-',$relive_date));
-                    $relive_date = date("Y-m-d",$relive_date);
-                    $join_date = strtotime(str_replace('.','-', $join_date));
-                    $join_date = date("Y-m-d",$join_date);
-                    $_SESSION['relive_date'] = $relive_date;
-                    $_SESSION['join_date'] = $join_date;
                     if(mysqli_num_rows($result) == 1 ){
+                        $row = mysqli_fetch_row($result);
+                        $from_court = $row[2];
+                        $from_post = $row[1];
+                        $_SESSION['court_to'] = $court_to; 
+                        $_SESSION['post_to'] = $post_to;
+                        $relive_date = $_POST['relive_date'];
+                        $join_date = $_POST['join_date'];
+                        $_SESSION['from_court'] = $from_court;
+                        $_SESSION['from_post'] = $from_post;
+                        $relive_date = strtotime(str_replace('.','-',$relive_date));
+                        $relive_date = date("Y-m-d",$relive_date);
+                        $join_date = strtotime(str_replace('.','-', $join_date));
+                        $join_date = date("Y-m-d",$join_date);
+                        $_SESSION['relive_date'] = $relive_date;
+                        $_SESSION['join_date'] = $join_date;
                         $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
                         $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
                         mysqli_query($conn, $query1);

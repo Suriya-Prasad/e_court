@@ -102,10 +102,10 @@ if(isset($_POST['court_to'])){
         if(strcmp($court_to,$court_from) != 0){
             $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
             if($result = mysqli_query($conn,$query1)){
-                $row = mysqli_fetch_row($result);
-                $from_court = $row[2];
-                $from_post = $row[1];
                 if(mysqli_num_rows($result) == 1 ){
+                        $row = mysqli_fetch_row($result);
+                        $from_court = $row[2];
+                        $from_post = $row[1];
                         $_SESSION['from_court'] = $court_from;
                         $_SESSION['court_to'] = $court_to;
                         $relive_date = $_POST['relive_date'];
