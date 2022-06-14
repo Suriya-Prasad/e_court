@@ -85,7 +85,7 @@ function GetSeniority(){
 //Function to display the seriority of a posting
 function seniorityTable($result,$posting){
     if(mysqli_num_rows($result)==0){
-        echo "<center><h2>No Active Employee In This Post</h2></center>";
+        echo "<center><h2>No Active Employee In ".$posting ."</h2></center>";
         return "";
     }
     echo "<h2>".strtoupper($posting)."</h2><br>";
