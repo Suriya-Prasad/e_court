@@ -1,0 +1,61 @@
+#content #co-gr{
+    padding: 20px 10px;
+}
+#content h2{
+    padding: 25px;
+}
+.align div{
+    padding: 15px 2px;
+}
+.align .label{
+    float: left;
+    text-align: end;
+    font-size: medium;
+}
+.align .input{
+    float: left;
+    text-align: start;
+    font-size: 12px;
+    min-height: 78px;
+}
+.align .input input{
+    width: 75%;
+    margin-left: 5px;
+    height: 2rem;
+}
+.align .input textarea{
+    resize: none;
+    width: 75%;
+    margin-left: 5px;
+}
+#content #post_table{
+    margin: 1rem 0;
+}
+#content .table{
+    text-align: center;
+}
+
+@media (max-width: 577px){
+    .align .label{
+        float: left;
+        width: 42%;
+        font-size: smaller;
+    }
+    .align .input{
+        float: left;
+        width: 58%;
+        font-size: x-small;
+    }
+    .align .input input{
+        width: 80%;
+    }
+    .align .input textarea{
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px){
+    #content table{
+        font-size: smaller;
+    }
+}
