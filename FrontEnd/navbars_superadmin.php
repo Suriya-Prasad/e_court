@@ -76,8 +76,3 @@
                 </form>
             </div>
         </div>
-        
-        <div id="dp_body">
-            <button id="dp" onclick="dp()">DP</button>
-            <textarea id="dp_inp" placeholder="Disciplinary Proceedings" style="display: none;"></textarea>
-        </div>

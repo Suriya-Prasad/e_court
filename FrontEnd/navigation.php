@@ -39,7 +39,6 @@
             else{
                 header("Location:leave_entry_user_admin.php");
             }
-
         }
         else if (isset($_POST['service_register'])) {
             if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
@@ -57,6 +56,14 @@
         else if(isset($_POST['query_builder'])){
             if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
                 header("Location:query_builder.php");
+            }
+        }
+        else if (isset($_POST['complaints_greviance'])) {
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
+                header("Location:complaints_greviance_superadmin.php");
+            }
+            else{
+                header("Location:complaints_greviance_user_admin.php");
             }
         }
 ?>
