@@ -94,36 +94,36 @@
         if(strcmp($court,"all") == 0){
             if(strcmp($post,"all") == 0){
                 if(strcmp($gender,"all") == 0){
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE e.employeeID=d.employeeID  and d.postingsID = p.postingsID and d.courtID=c.courtID and d.to_date is null ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
                 else{
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE (e.employeeID=d.employeeID and d.postingsID = p.postingsID and d.courtID=c.courtID  and d.to_date is null) and e.gender='{$gender}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
             }
             else{
                 if(strcmp($gender,"all") == 0){
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null and d.posting='{$post}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE e.employeeID=d.employeeID  and d.postingsID = p.postingsID and d.courtID=c.courtID and d.to_date is null and d.posting='{$post}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
                 else{
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' and d.posting='{$post}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE (e.employeeID=d.employeeID and d.postingsID = p.postingsID and d.courtID=c.courtID  and d.to_date is null) and e.gender='{$gender}' and d.posting='{$post}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
             }
         }
         else{
             if(strcmp($post,"all") == 0){
                 if(strcmp($gender,"all") == 0){
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE e.employeeID=d.employeeID  and d.postingsID = p.postingsID and d.courtID=c.courtID and d.to_date is null and d.court='{$court}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
                 else{
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE (e.employeeID=d.employeeID and d.postingsID = p.postingsID and d.courtID=c.courtID  and d.to_date is null) and e.gender='{$gender}' and d.court='{$court}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
             }
             else{
                 if(strcmp($gender,"all") == 0){
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE e.employeeID=d.employeeID and d.to_date is null and d.posting='{$post}' and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE e.employeeID=d.employeeID  and d.postingsID = p.postingsID and d.courtID=c.courtID and d.to_date is null and d.posting='{$post}' and d.court='{$court}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
                 else{
-                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,d.posting,d.court FROM employee as e,designation as d WHERE (e.employeeID=d.employeeID and d.to_date is null) and e.gender='{$gender}' and d.posting='{$post}' and d.court='{$court}' ORDER BY d.court,d.posting,e.gender;";
+                    $query = "SELECT e.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,e.gender,e.phone_number,e.e_mail,p.postingsName,c.courtName,c.courtPlace FROM employee as e,designation as d,postings as p,courts as c WHERE (e.employeeID=d.employeeID and d.postingsID = p.postingsID and d.courtID=c.courtID  and d.to_date is null) and e.gender='{$gender}' and d.posting='{$post}' and d.court='{$court}' ORDER BY c.courtID,p.postingsID,e.gender;";
                 }
             }
         }
@@ -150,7 +150,7 @@
         echo "<th>Gender</th>";
         echo "<th>Phone Number</th>";
         echo "<th>Email</th>";
-        echo "<th>Posting</th>";
+        echo "<th>Post</th>";
         echo "<th>Current Court</th>";
         echo "</tr>";
         while ($row=mysqli_fetch_array($result)) {
@@ -160,8 +160,8 @@
         echo "<td>" . $row['gender'] . "</td>";
         echo "<td>" . $row['phone_number'] . "</td>";
         echo "<td>" . $row['e_mail'] . "</td>";
-        echo "<td>" . $row['posting'] . "</td>";
-        echo "<td>" . $row['court'] . "</td>";
+        echo "<td>" . $row['postingsName'] . "</td>";
+        echo "<td>" . $row['courtName']." , ".$row['courtPlace'] . "</td>";
         echo "</tr>"; 
         $row_count++;     
         }
