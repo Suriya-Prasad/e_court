@@ -71,8 +71,12 @@ include_once "db_connection.php";
 function GetSeniority(){
     $conn = connectDB();
     $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);
-    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where posting ='{$posting}' and to_date is null AND from_date is not null) AND posting = '{$posting}'  AND e.employeeID = d.employeeID  AND e.employeeID NOT IN(SELECT employeeID from disciplinary_proceeding where end_date is null) GROUP BY employeeID ORDER BY join_date;";
+    $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where postingsID = '{$posting}' and to_date is null AND from_date is not null) AND postingsID = '{$posting}'  AND e.employeeID = d.employeeID  AND e.employeeID NOT IN(SELECT employeeID from disciplinary_proceeding where end_date is null) GROUP BY employeeID ORDER BY join_date;";
+    $query1 = "SELECT postingsName FROM postings where postingsID = $posting";
     if($result = mysqli_query( $conn, $query)){
+        $result1 = mysqli_query($conn,$query1);
+        $row = mysqli_fetch_array($result1);
+        $posting = $row['postingsName'];
         $returnVal = seniorityTable($result,$posting);
         mysqli_close($conn);
         return $returnVal;

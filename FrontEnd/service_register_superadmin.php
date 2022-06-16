@@ -64,7 +64,7 @@ function GetServiceRegistry(){
     $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1 ){
-        $query1 = "SELECT * from designation where employeeID ={$employeeID} ORDER BY from_date;";
+        $query1 = "SELECT d.from_date,d.to_date,p.postingsName,c.courtName,c.courtPlace from designation as d,postings as p,courts as c where employeeID ={$employeeID} and d.courtID=c.courtID and d.postingsID=p.postingsID ORDER BY from_date;";
         if($result1 = mysqli_query( $conn, $query1)){
             $returnVal = service_registryTable($result1,$result,$employeeID);
             mysqli_close($conn);
@@ -100,8 +100,8 @@ function service_registryTable($result1,$result,$employeeID){
     echo "</tr>";
     while ($row=mysqli_fetch_array($result1)) {
     echo "<tr>";
-    echo "<td>" . $row['posting'] . "</td>";
-    echo "<td>" . $row['court'] . "</td>";
+    echo "<td>" . $row['postingsName'] . "</td>";
+    echo "<td>" . $row['courtName']." , ". $row['courtPlace'] . "</td>";
     echo "<td>" . $row['from_date'] . "</td>";
     echo "<td>" . $row['to_date'] . "</td>";
     echo "</tr>"; 

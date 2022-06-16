@@ -4,6 +4,9 @@
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
+    include_once "db_conections.php";
+
+    $conn = connectDB();
 
     $employeeName = $_SESSION['post_transfer_employeeName'];
     $from_court = $_SESSION['from_court'];
@@ -13,6 +16,22 @@
     $relive_date = $_SESSION['relive_date'];
     $join_date = $_SESSION['join_date'];
     $pdj_name = $_SESSION['pdj_name'];
+
+    $query = "SELECT courtName,courtPlace from courts where courtID=$from_court";
+    $row = mysqli_fetch_array(mysqli_query($conn,$query));
+    $from_court = $row['courtName']." , ".$row['courtPlace'];
+
+    $query = "SELECT courtName,courtPlace from courts where courtID=$to_court";
+    $row = mysqli_fetch_array(mysqli_query($conn,$query));
+    $to_court = $row['courtName']." , ".$row['courtPlace'];
+
+    $query = "SELECT postingsName from postings where postingsID=$from_post";
+    $row = mysqli_fetch_array(mysqli_query($conn,$query));
+    $from_post = $row['postingsName'];
+
+    $query = "SELECT postingsName from postings where postingsID=$to_post";
+    $row = mysqli_fetch_array(mysqli_query($conn,$query));
+    $to_post = $row['postingsName'];
 
     $join_date = strtotime($join_date);
     $join_date = date('d.m.Y',$join_date);

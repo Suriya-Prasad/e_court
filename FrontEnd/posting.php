@@ -121,7 +121,7 @@ include_once "actions.php";
                         $_SESSION['relive_date'] = $relive_date;
                         $_SESSION['join_date'] = $join_date;
                         $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
-                        $query2 = "INSERT INTO designation(`employeeID`,`court`,`posting`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
+                        $query2 = "INSERT INTO designation(`employeeID`,`courtID`,`postingsID`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
                         mysqli_query($conn, $query1);
                         $query_run = mysqli_query($conn,$query2);
                         $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
