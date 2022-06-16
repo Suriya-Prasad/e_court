@@ -4,6 +4,9 @@
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
+    include_once "db_connection.php";
+    $conn = connectDB(); 
+    $query2 = "SELECT * FROM courts";
 ?>
 
 <html lang="en">
@@ -29,16 +32,22 @@
                 <p>FROM COURT :
                 <select id="court-from" name="court_from" class="form-select">
                     <option selected value="none">&lt;--None--&gt;</option>
-                    <option value="court one">Court One</option>
-                    <option value="court two">Court Two</option>
-                    <option value="court three">Court Three</option>
+                    <?php
+                    $result = mysqli_query($conn, $query2);
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['courtID'].">".$row['courtName']." , ".$row['courtPlace']."</option>";
+                    }
+                    ?>
                 </select></p>
                 <p>TO COURT  :
                 <select id="post-to" name="court_to" class="form-select">
                     <option selected value="none">&lt;--None--&gt;</option>
-                    <option value="court one">Court One</option>
-                    <option value="court two">Court Two</option>
-                    <option value="court three">Court Three</option>
+                    <?php
+                    $result = mysqli_query($conn, $query2);
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['courtID'].">".$row['courtName']." , ".$row['courtPlace']."</option>";
+                    }
+                    ?>
                 </select></p>
                 <div class="label col-lg-4 col-md-6 col-sm-6">
                     <label for="leave_date">RELIVE DATE: </label>
@@ -93,8 +102,6 @@
 
 <?php
 
-include_once "actions.php"; 
-
 //Function to add an entry to designation table when submit clicked at transfer page
 if(isset($_POST['court_to'])){
     $conn = connectDB();
@@ -102,51 +109,54 @@ if(isset($_POST['court_to'])){
         $employeeID = $_POST['employeeID'];
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
         $court_from = mysqli_real_escape_string($conn,$_POST['court_from']);
-        if(strcmp($court_to,$court_from) != 0){
-            $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
-            if($result = mysqli_query($conn,$query1)){
-                if(mysqli_num_rows($result) == 1 ){
-                        $row = mysqli_fetch_row($result);
-                        $from_court = $row[2];
-                        $from_post = $row[1];
-                        $_SESSION['from_court'] = $court_from;
-                        $_SESSION['court_to'] = $court_to;
-                        $relive_date = $_POST['relive_date'];
-                        $join_date = $_POST['join_date'];
-                        $_SESSION['from_post'] = $from_post;
-                        $_SESSION['post_to'] = $from_post;
-                        $relive_date = strtotime(str_replace('.','-',$relive_date));
-                        $relive_date = date("Y-m-d",$relive_date);
-                        $join_date = strtotime(str_replace('.','-', $join_date));
-                        $join_date = date("Y-m-d",$join_date);
-                        $_SESSION['relive_date'] = $relive_date;
-                        $_SESSION['join_date'] = $join_date;
-                        $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
-                        $query2 = "INSERT INTO designation (employeeID,courtID,postingsID,from_date) VALUES({$employeeID},'{$court_to}','{$from_post}','{$join_date}')";
-                        $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
-                        $result2 = mysqli_query($conn,$query3);
-                        $row = mysqli_fetch_row($result2);
-                        $employeeName = $row[0];
-                        $_SESSION['post_transfer_employeeName'] = $employeeName;
-                        mysqli_query($conn, $query1);
-                        $query_run = mysqli_query($conn,$query2);
-                        if($query_run){?>
-                        <script>window.location.href = "pdf_generation.php";</script>
-                        <?php
-                        }
+        $query = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null and courtID='{$court_from}'";
+        if(mysqli_num_rows(mysqli_query($conn,$query)) == 1){
+            if(strcmp($court_to,$court_from) != 0){
+                $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                if($result = mysqli_query($conn,$query1)){
+                    if(mysqli_num_rows($result) == 1 ){
+                            $row = mysqli_fetch_row($result);
+                            $from_court = $row[2];
+                            $from_post = $row[1];
+                            $_SESSION['from_court'] = $court_from;
+                            $_SESSION['court_to'] = $court_to;
+                            $relive_date = $_POST['relive_date'];
+                            $join_date = $_POST['join_date'];
+                            $_SESSION['from_post'] = $from_post;
+                            $_SESSION['post_to'] = $from_post;
+                            $relive_date = strtotime(str_replace('.','-',$relive_date));
+                            $relive_date = date("Y-m-d",$relive_date);
+                            $join_date = strtotime(str_replace('.','-', $join_date));
+                            $join_date = date("Y-m-d",$join_date);
+                            $_SESSION['relive_date'] = $relive_date;
+                            $_SESSION['join_date'] = $join_date;
+                            $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                            $query2 = "INSERT INTO designation (employeeID,courtID,postingsID,from_date) VALUES({$employeeID},'{$court_to}','{$from_post}','{$join_date}')";
+                            $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                            $result2 = mysqli_query($conn,$query3);
+                            $row = mysqli_fetch_row($result2);
+                            $employeeName = $row[0];
+                            $_SESSION['post_transfer_employeeName'] = $employeeName;
+                            mysqli_query($conn, $query1);
+                            $query_run = mysqli_query($conn,$query2);
+                            if($query_run){?>
+                            <script>window.location.href = "pdf_generation.php";</script>
+                            <?php
+                            }
+                    }
+                    else if(mysqli_num_rows($result) > 1){
+                        $_SESSION['status'] = "Transfer order already exist";
+                        $_SESSION['status_code'] = "info";
+                    }
                 }
-                else if(mysqli_num_rows($result) > 1){
-                    $_SESSION['status'] = "Transfer order already exist";
-                    $_SESSION['status_code'] = "info";
-                }
-                else{
-                    $_SESSION['status'] = "Employee does not work in the selected court";
-                    $_SESSION['status_code'] = "warning";
-                }
+            }
+            else{
+                $_SESSION['status'] = "Employee works in the same court to be transfered";
+                $_SESSION['status_code'] = "warning";
             }
         }
         else{
-            $_SESSION['status'] = "Employee works in the same court to be transfered";
+            $_SESSION['status'] = "Employee does not work in the selected court";
             $_SESSION['status_code'] = "warning";
         }
     }
@@ -155,4 +165,6 @@ if(isset($_POST['court_to'])){
         $_SESSION['status_code'] = "warning";
     }
 }
+
+include_once "actions.php";
 ?>

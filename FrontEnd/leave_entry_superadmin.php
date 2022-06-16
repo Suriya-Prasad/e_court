@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
-    include_once "actions.php";
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
@@ -92,5 +91,7 @@ function TablePendingLeaveRequests($result){
     }
     echo "</table>";
 }
+
+include_once "actions.php";
 
 ?>

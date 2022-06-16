@@ -4,7 +4,7 @@
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
-    include_once "db_conections.php";
+    include_once "db_connection.php";
 
     $conn = connectDB();
 
@@ -99,16 +99,16 @@
     $pdf->Cell(0,7,'',0,1);
 
     $pdf->Cell(34,5,'1. ',0,0,'R');
-    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', (Place) is transferred and posted as '.$to_post.', ',0,1,'L');
+    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', is transferred and posted as '.$to_post.', ',0,1,'L');
     $pdf->Cell(34,5,'',0,0,'R');
     $pdf->Cell(0,5,$to_court.', (Place) vice '. $employeeName.' transferred.',0,1,'L');
 
     $pdf->Cell(0,7,'',0,1);
 
     $pdf->Cell(34,5,'2. ',0,0,'R');
-    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', (Place) is transferred and posted as '.$to_post.', ',0,1,'L');
+    $pdf->Cell(0,5,$employeeName.', ' .$from_post.', '. $from_court.', is transferred and posted as '.$to_post.', ',0,1,'L');
     $pdf->Cell(34,5,'',0,0,'R');
-    $pdf->Cell(0,5,$to_court.', (Place) in the existing vacancy.',0,1,'L');
+    $pdf->Cell(0,5,$to_court.', in the existing vacancy.',0,1,'L');
 
     $pdf->Cell(0,7,'',0,1);
     $pdf->Cell(39,5,'Note:',0,1,'R');

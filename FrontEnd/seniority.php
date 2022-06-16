@@ -2,6 +2,8 @@
 <?php
     include_once "navigation.php";
     include_once "actions.php";
+    $conn = connectDB(); 
+    $query1 = "SELECT * FROM postings";
 ?>
 
 <html lang="en">
@@ -31,9 +33,12 @@
                     <p>POST :
                     <select id="post" class="form-select" name = "SeniorityForm" onchange="this.form.submit()">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="post 1">Post One</option>
-                        <option value="post 2">Post Two</option>
-                        <option value="post 3">Post Three</option>
+                        <?php
+                        $result = mysqli_query($conn, $query1);
+                        while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['postingsID'].">".$row['postingsName']."</option>";
+                        }
+                        ?>
                     </select></p>
                     </form>
                 </center>
@@ -89,7 +94,8 @@ function GetSeniority(){
 //Function to display the seriority of a posting
 function seniorityTable($result,$posting){
     if(mysqli_num_rows($result)==0){
-        echo "<center><h2>No Active Employee In ".$posting ."</h2></center>";
+        echo "<h2>".strtoupper($posting)."</h2><br>";
+        echo "<center><h3>No Active Employee or Employee Undergoing Disciplinary Proceedings</h3></center>";
         return "";
     }
     echo "<h2>".strtoupper($posting)."</h2><br>";

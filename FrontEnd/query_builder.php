@@ -5,6 +5,9 @@
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
+    $conn = connectDB(); 
+    $query1 = "SELECT * FROM postings";
+    $query2 = "SELECT * FROM courts";
 ?>
 
 <html lang="en">
@@ -45,16 +48,22 @@
                     <p>COURT  :
                     <select id="post-to" name="court" class="form-select">
                         <option selected value="all">All</option>
-                        <option value="court one">Court One</option>
-                        <option value="court two">Court Two</option>
-                        <option value="court three">Court Three</option>
+                        <?php
+                        $result = mysqli_query($conn, $query2);
+                        while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['courtID'].">".$row['courtName']." , ".$row['courtPlace']."</option>";
+                        }
+                        ?>
                     </select></p>
                     <p>POST  :
                     <select id="post-to" name="post" class="form-select">
                         <option selected value="all">All</option>
-                        <option value="post 1">Post One</option>
-                        <option value="post 2">Post Two</option>
-                        <option value="post 3">Post Three</option>
+                        <?php
+                        $result = mysqli_query($conn, $query1);
+                        while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['postingsID'].">".$row['postingsName']."</option>";
+                        }
+                        ?>
                     </select></p>
                     <button type="submit" name ="submit_query_builder" class="btn btn-outline-success">SUBMIT</button>
                 </form>
@@ -79,7 +88,6 @@
 </body>
 </html>
 
-<?php include_once "db_connection.php"; ?>
 <?php 
 
     //Function to build report for required query

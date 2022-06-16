@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
+    include_once "db_connection.php";
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
+    $conn = connectDB(); 
+    $query1 = "SELECT * FROM postings";
+    $query2 = "SELECT * FROM courts";
 ?>
 
 <html lang="en">
@@ -28,16 +32,22 @@
                     <p>TO COURT  :
                     <select id="post-to" name="court_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="court one">Court One</option>
-                        <option value="court two">Court Two</option>
-                        <option value="court three">Court Three</option>
+                        <?php
+                        $result = mysqli_query($conn, $query2);
+                        while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['courtID'].">".$row['courtName']." , ".$row['courtPlace']."</option>";
+                        }
+                        ?>
                     </select></p>
                     <p>TO POSTING   :
                     <select id="post-to" name="post_to" class="form-select">
                         <option selected>&lt;--None--&gt;</option>
-                        <option value="post 1">Post One</option>
-                        <option value="post 2">Post Two</option>
-                        <option value="post 3">Post Three</option>
+                        <?php
+                        $result = mysqli_query($conn, $query1);
+                        while ($row = mysqli_fetch_array($result)) {
+                        echo "<option value=".$row['postingsID'].">".$row['postingsName']."</option>";
+                        }
+                        ?>
                     </select></p>
                     <div class="label col-lg-4 col-md-6 col-sm-6">
                         <label for="leave_date">RELIVE DATE: </label>
@@ -92,8 +102,6 @@
 
 <?php
 
-include_once "actions.php"; 
-
 //Function to add an entry to designation table when submit clicked at posting page
     if(isset($_POST['post_to'])){
         $conn = connectDB();
@@ -103,11 +111,11 @@ include_once "actions.php";
             $post_to = mysqli_real_escape_string($conn,$_POST['post_to']);
             $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
             if($result = mysqli_query($conn,$query1)){
+                $row = mysqli_fetch_row($result);
+                $from_court = $row[2];
+                $from_post = $row[1];
                 if(strcmp($post_to,$from_post) != 0){
                     if(mysqli_num_rows($result) == 1 ){
-                        $row = mysqli_fetch_row($result);
-                        $from_court = $row[2];
-                        $from_post = $row[1];
                         $_SESSION['court_to'] = $court_to; 
                         $_SESSION['post_to'] = $post_to;
                         $relive_date = $_POST['relive_date'];
@@ -154,5 +162,7 @@ include_once "actions.php";
             $_SESSION['status_code'] = "warning";
         }
     }
+
+include_once "actions.php";
 
 ?>
