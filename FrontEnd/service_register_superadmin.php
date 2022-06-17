@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
+    include "actions.php";
     include_once "db_connection.php";
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
@@ -54,12 +55,12 @@
 <?php
 
 function GetServiceRegistry(){
-    $conn = ConnectDB();
+    $conn = connectDB();
     if(!isset($_POST['employeeID'])){
         return " ";
     }
-    $employeeID = $_POST['employeeID'];
-    $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
+    $employeeID = mysqli_real_escape_string($conn,$_POST['employeeID']);
+    $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID='{$employeeID}';";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1 ){
         $query1 = "SELECT d.from_date,d.to_date,p.postingsName,c.courtName,c.courtPlace from designation as d,postings as p,courts as c where employeeID ={$employeeID} and c.courtID=d.courtID and p.postingsID=d.postingsID ORDER BY from_date;";
@@ -82,7 +83,7 @@ function GetServiceRegistry(){
 //Function to display the seriority of a posting
 function service_registryTable($result1,$result,$employeeID){
     if(mysqli_num_rows($result)==0){
-        return "<script>swal({title:'No employee record found',icon:'info'});</script>";
+        return "<h3>".$employeeID." does not exist</h3>";
     }
     $row=mysqli_fetch_array($result);
     echo "<h5 class='service_content1'>Employee ID : ".$employeeID." </h5>";
@@ -107,6 +108,17 @@ function service_registryTable($result1,$result,$employeeID){
     }
     echo "</table>";
 }
-
-include_once "actions.php";
+if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+    ?>
+    <script>
+        swal({
+            title:"<?php echo $_SESSION['status']; ?>",
+            icon:"<?php echo $_SESSION['status_code']; ?>",
+            button:"OK",
+        });
+    </script>
+<?php
+    unset($_SESSION['status']);
+    unset($_SESSION['status_code']);
+}
 ?>

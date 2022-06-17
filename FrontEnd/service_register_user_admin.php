@@ -23,12 +23,12 @@
     }
     </script>
 </head>
-<body onload="fillResults();">
+<body>
     <?php include_once "navbars_user_admin.php"; ?>
         <div id="content">
             <div id="sr">
                 <h2>VIEW SERVICE REGISTRY</h2>
-                <div id="post_table"></div>
+                <div id="post_table"><script>fillResults();</script> </div>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
 <?php
 
 function GetServiceRegistry($employeeID){
-    $conn = ConnectDB();
+    $conn = connectDB();
     $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1 ){
@@ -72,7 +72,7 @@ function GetServiceRegistry($employeeID){
 
 function service_registryTable($result1,$result,$employeeID){
     if(mysqli_num_rows($result)==0){
-        return "<center><h3>No Active Employee or Employee Undergoing Disciplinary Proceedings</h3></center>";
+        return "<center><h3>No Record Found</h3></center>";
     }
     $row=mysqli_fetch_array($result);
     echo "<h5 class='service_content'>Employee ID : ".$employeeID." </h5>";
@@ -88,12 +88,26 @@ function service_registryTable($result1,$result,$employeeID){
     echo "</tr>";
     echo "<tr>";
     echo "<td>" . $row['postingsName'] . "</td>";
-    echo "<td>" . $row['courtNmae']." , ". $row['courtPlace']  . "</td>";
+    echo "<td>" . $row['courtName']." , ". $row['courtPlace']  . "</td>";
     echo "<td>" . $row['from_date'] . "</td>";
     echo "<td>" . $row['to_date'] . "</td>";
     echo "</tr>";
     echo "</table>";
 }
+?>
 
-include_once "actions.php";
+<?php
+    if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+        ?>
+        <script>
+            swal({
+                title:"<?php echo $_SESSION['status']; ?>",
+                icon:"<?php echo $_SESSION['status_code']; ?>",
+                button:"OK",
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['status_code']);
+    }
 ?>

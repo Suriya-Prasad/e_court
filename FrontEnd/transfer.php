@@ -106,7 +106,8 @@
 if(isset($_POST['court_to'])){
     $conn = connectDB();
     if($_POST['join_date'] >= $_POST['relive_date']){
-        $employeeID = $_POST['employeeID'];
+        $employeeID = mysqli_real_escape_string($conn,$_POST['employeeID']);
+        if(mysqli_num_rows((mysqli_query($conn,"SELECT * from employee where employeeID = '{$employeeID}'")))){
         $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
         $court_from = mysqli_real_escape_string($conn,$_POST['court_from']);
         $query = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null and courtID='{$court_from}'";
@@ -157,6 +158,11 @@ if(isset($_POST['court_to'])){
         }
         else{
             $_SESSION['status'] = "Employee does not work in the selected court";
+            $_SESSION['status_code'] = "warning";
+        }
+        }
+        else{
+            $_SESSION['status'] = "No such employee exist";
             $_SESSION['status_code'] = "warning";
         }
     }

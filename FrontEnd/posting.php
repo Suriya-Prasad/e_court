@@ -106,16 +106,16 @@
     if(isset($_POST['post_to'])){
         $conn = connectDB();
         if($_POST['join_date'] >= $_POST['relive_date']){
-            $employeeID = $_POST['employeeID'];
+            $employeeID = mysqli_real_escape_string($conn,$_POST['employeeID']);
             $court_to = mysqli_real_escape_string($conn,$_POST['court_to']);
             $post_to = mysqli_real_escape_string($conn,$_POST['post_to']);
-            $query1 = "SELECT * from designation where employeeID = {$employeeID} and to_date is null and from_date is not null";
+            $query1 = "SELECT * from designation where employeeID = '{$employeeID}' and to_date is null and from_date is not null";
             if($result = mysqli_query($conn,$query1)){
-                $row = mysqli_fetch_row($result);
-                $from_court = $row[2];
-                $from_post = $row[1];
-                if(strcmp($post_to,$from_post) != 0){
-                    if(mysqli_num_rows($result) == 1 ){
+                if(mysqli_num_rows($result) == 1 ){
+                    $row = mysqli_fetch_row($result);
+                    $from_court = $row[2];
+                    $from_post = $row[1];
+                    if(strcmp($post_to,$from_post) != 0){
                         $_SESSION['court_to'] = $court_to; 
                         $_SESSION['post_to'] = $post_to;
                         $relive_date = $_POST['relive_date'];
@@ -142,18 +142,18 @@
                         <?php
                         }
                     }
-                    else if(mysqli_num_rows($result) > 1){
-                        $_SESSION['status'] = "Posting order already exist";
-                        $_SESSION['status_code'] = "info";
-                    }
                     else{
-                        $_SESSION['status'] = "Employee does not exist";
+                        $_SESSION['status'] = "Employee works in the same post to be transfered";
                         $_SESSION['status_code'] = "warning";
                     }
                 }
+                else if(mysqli_num_rows($result) > 1){
+                        $_SESSION['status'] = "Posting order already exist";
+                        $_SESSION['status_code'] = "info";
+                }
                 else{
-                    $_SESSION['status'] = "Employee works in the same post to be transfered";
-                    $_SESSION['status_code'] = "warning";
+                        $_SESSION['status'] = "Employee does not exist";
+                        $_SESSION['status_code'] = "warning";
                 }
             }
         }
@@ -163,6 +163,17 @@
         }
     }
 
-include_once "actions.php";
-
+    if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+        ?>
+        <script>
+            swal({
+                title:"<?php echo $_SESSION['status']; ?>",
+                icon:"<?php echo $_SESSION['status_code']; ?>",
+                button:"OK",
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['status_code']);
+    }
 ?>
