@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
+    include_once "db_connection.php";
     if(strcmp($_SESSION['employee_role'],"super admin")==0){
         header("Location:home_attendance.php");
     }
@@ -18,7 +19,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetLeaveStatus($_SESSION['employeeID'])?>";   
+        document.getElementById('post_table').innerHTML="<?php //GetLeaveStatus($_SESSION['employeeID'])?>";   
     }
     </script>
 </head>
@@ -77,15 +78,12 @@
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.min.js" ></script>
     <script src="js/main.js"></script>
 </body>
 </html>
 
-<script src="js/sweetalert.min.js" ></script>
-
 <?php
-
-include_once "db_connection.php";
 
 //Function to Submit Leave Entry
 if(isset($_POST['submit_leave_entry'])){
@@ -130,7 +128,7 @@ function GetLeaveStatus($employeeID){
 
 function TableLeaveStatus($result){
     if(mysqli_num_rows($result)==0){
-        return "<h1>NO pending requests</h1>";
+        return "<h1>No pending requests</h1>";
     }
     $row_count = 1;
     echo "<table id='req_table' class='table table-info table-hover'>";

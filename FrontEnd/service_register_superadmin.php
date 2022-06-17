@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
+    include_once "db_connection.php";
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
@@ -44,15 +45,13 @@
         document.getElementById('post_table').innerHTML="<?php GetServiceRegistry();?>";   
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/sweetalert.min.js" ></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
 
-<script src="js/sweetalert.min.js" ></script>
 <?php
-
-include_once "db_connection.php";
 
 function GetServiceRegistry(){
     $conn = ConnectDB();
@@ -63,7 +62,7 @@ function GetServiceRegistry(){
     $query="SELECT CONCAT(first_name,' ',last_name)as employee_name,service_joining_date from employee where employeeID={$employeeID};";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1 ){
-        $query1 = "SELECT d.from_date,d.to_date,p.postingsName,c.courtName,c.courtPlace from designation as d,postings as p,courts as c where employeeID ={$employeeID} and d.courtID=c.courtID and d.postingsID=p.postingsID ORDER BY from_date;";
+        $query1 = "SELECT d.from_date,d.to_date,p.postingsName,c.courtName,c.courtPlace from designation as d,postings as p,courts as c where employeeID ={$employeeID} and c.courtID=d.courtID and p.postingsID=d.postingsID ORDER BY from_date;";
         if($result1 = mysqli_query( $conn, $query1)){
             $returnVal = service_registryTable($result1,$result,$employeeID);
             mysqli_close($conn);
