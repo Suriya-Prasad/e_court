@@ -69,8 +69,6 @@
 
 <?php
 
-include_once "db_connection.php";
-
 //Function to handle the seniorirty page
     
 function GetSeniority(){

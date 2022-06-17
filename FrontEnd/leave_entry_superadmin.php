@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     include_once "navigation.php";
+    include_once "db_connection.php";
     if(strcmp($_SESSION['employee_role'],"super admin")!=0){
         header("Location:home_attendance.php");
     }
@@ -39,13 +40,12 @@
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.min.js" ></script>
     <script src="js/main.js"></script>
 </body>
 </html>
 
 <?php
-
-include_once "db_connection.php";
 
 function GetLeaveRequests(){
     $conn = connectDB();  
