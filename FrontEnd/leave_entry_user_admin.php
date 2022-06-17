@@ -19,7 +19,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php //GetLeaveStatus($_SESSION['employeeID'])?>";   
+        document.getElementById('post_table').innerHTML="<?php GetLeaveStatus($_SESSION['employeeID'])?>";   
     }
     </script>
 </head>
