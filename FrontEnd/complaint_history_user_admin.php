@@ -11,10 +11,11 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/attendance.css">
+    <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
     <script>
         function fillResults(){
-            document.getElementById('content').style.display = 'block';   
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('post_table').innerHTML="<?php echo GetResults()?>";    
         }
     </script>
 </head>
@@ -22,7 +23,12 @@
     <?php include_once "navbars_user_admin.php";?>
 
         <div id="content">
-           
+            <div id="co-gr">
+                <form action="" method="POST">
+                <h2>YOUR COMPLAINTS</h2>
+                <div id="post_table"><script>fillResults();</script></div>
+                </form>
+            </div>
         </div>
         
     </div>
@@ -41,18 +47,92 @@
 </html>
 
 <?php
+
+function GetResults(){
+    if(isset($_POST['complaintNumber'])){
+        return GetComplaintDetails();
+    }
+    else{
+        return GetMyComplaints();
+    }
+}
+
+function GetComplaintDetails(){
+    $conn = connectDB();
+    $complaintNumber = $_POST['complaintNumber'];
+    $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.complaintNumber='".$complaintNumber."'";
+    $result = mysqli_query($conn,$query);
+    if(mysqli_num_rows($result) == 0){
+        echo "<h3>No Record Found On Complaint Number ".$complaintNumber."</h3>";
+        return " ";
+    }
+    else{
+        return ComplaintDetailsTable($result);
+    }
+}
+
+function GetMyComplaints(){
+    $conn = connectDB();
+    $employeeID = $_SESSION['employeeID'];
+    $query = "SELECT c.complaintNumber,c.status,c.regDate,c.lastUpdationDate from complaints as c where c.employeeID='$employeeID' order by regDate DESC";
+    $result = mysqli_query($conn,$query);
+    if(mysqli_num_rows($result) == 0){
+        echo "<h3>No Record Found</h3>";
+        return " ";
+    }
+    else{
+        return MyComplaintsTable($result);
+    }
+}
+
+function MyComplaintsTable($result){
+    $row=mysqli_fetch_array($result);
     echo "<table class='table table-bordered'>";
     echo "<tr>";
-    echo "<th>Complaint Number</th>";
-    echo "<th>Reg Date</th>";
-    echo "<th>Last Updation Date</th>";
-    echo "<th>Status</th>";
+    echo "<th>COMPLAINT NUMBER</th>";
+    echo "<th>REG. DATE</th>";
+    echo "<th>LAST WPDATION DATE</th>";
+    echo "<th>STATUS</th>";
+    echo "<th>ACTION</th>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>1</td>";
-    echo "<td>2017-03-30 22:22:40</td>";
-    echo "<td>2018-09-05 22:38:27</td>";
-    echo "<td>Closed</td>";
+    echo "<td>".$row['complaintNumber']."</td>";
+    echo "<td>".$row['regDate']."</td>";
+    echo "<td>".$row['lastUpdationDate']."</td>";
+    echo "<td>".$row['status']."</td>";
+    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='complaintNumber' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
     echo "</tr>";
     echo "</table>";
+}
+
+function ComplaintDetailsTable($result){
+    $row=mysqli_fetch_array($result);
+    echo "<h4>Complaint Details</h4>";
+    echo "<table class='table table-bordered'>";
+    echo "<tr>";
+    echo "<td>Complaint Number</td>";
+    echo "<td>".$row['complaintNumber']."</td>";
+    echo "<td>Complaint Name</td>";
+    echo "<td>".$row['employee_name']."</td>";
+    echo "<td>Reg Date</td>";
+    echo "<td>".$row['regDate']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Complaint Details</td>";
+    echo "<td colspan='5'>".$row['complaintDetails']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>File (if-any)</td>";
+    echo "<td colspan='5'>".$row['complaintFiles']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Final Status</td>";
+    echo "<td colspan='5'>closed</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Action</td>";
+    echo "<td><button>Take Action</button></td>";
+    echo "</tr>";
+    echo "</table>";
+}
 ?>

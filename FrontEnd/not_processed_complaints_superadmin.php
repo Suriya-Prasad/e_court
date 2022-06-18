@@ -143,7 +143,6 @@ function ComplaintDetailsTable($result){
     echo "<tr>";
     echo "<td>Action</td>";
     echo "<td><button>Take Action</button></td>";
-    // echo "<td colspan='4'><button>View User Details</button></td>";
     echo "</tr>";
     echo "</table>";
 }
