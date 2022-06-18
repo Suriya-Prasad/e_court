@@ -41,7 +41,24 @@
                     <button class="btn btn-outline-secondary" type="submit" id="senior" name="seniority">Seniority</button>
                     <button class="btn btn-outline-secondary" type="submit" id="running_note" name="running_note">Running Note</button>
                     <button class="btn btn-outline-secondary" type="submit" id="leave_entry" name="leave_entry">Leave Entry</button>
-                    <button class="btn btn-outline-secondary" type="submit" id="complaints_greviance" name="complaints_greviance">Complaints/Greviance</button>
                 </form>
+                <div id="accordion3" class="card">
+                    <div class="card-header">
+                        <button type="button" id="complaints_greviance" class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseThree">
+                            <span>Complaints/Greviance<span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-bs-parent="#accordion3">
+                        <hr class="dropdown-divider"/>
+                        <form action="" method="POST">
+                            <button class="btn btn-outline-secondary" type="submit" id="file_complaint" name="file_complaint">File-Complaint</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="complaint_history" name="complaint_history">Complaint-History</button>
+                        </form>
+                        <hr class="dropdown-divider"/>
+                    </div>
+                </div>
             </div>
         </div>

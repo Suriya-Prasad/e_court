@@ -73,4 +73,10 @@
                 header("Location:closed_complaints_superadmin.php");
             }
         }
+        else if (isset($_POST['file_complaint'])) {
+            header("Location:register_complaint_user_admin.php");
+        }
+        else if (isset($_POST['complaint_history'])) {
+            header("Location:complaint_history_user_admin.php");
+        }
 ?>
