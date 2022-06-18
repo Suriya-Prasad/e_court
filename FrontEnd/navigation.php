@@ -59,12 +59,18 @@
             }
         }
         else if (isset($_POST['in_process'])) {
-            header("Location:in_process_complaints_superadmin.php");
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
+                header("Location:in_process_complaints_superadmin.php");
+            }
         }
         else if (isset($_POST['not_processed'])) {
-            header("Location:not_processed_complaints_superadmin.php");
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
+                header("Location:not_processed_complaints_superadmin.php");
+            }
         }
         else if (isset($_POST['closed'])) {
-            header("Location:closed_complaints_superadmin.php");
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
+                header("Location:closed_complaints_superadmin.php");
+            }
         }
 ?>

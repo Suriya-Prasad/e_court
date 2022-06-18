@@ -64,6 +64,7 @@
                 <button type="submit" class="btn btn-outline-secondary" id="leave_entry" name="leave_entry">Leave Entry</button>
                 <button type="submit" class="btn btn-outline-secondary" id="posti" name="posting">Posting</button>
                 <button type="submit" class="btn btn-outline-secondary" id="transfering" name="transfer">Transfer</button>
+                </form>
 
                 <div id="accordion3" class="card">
                     <div class="card-header">
@@ -84,7 +85,8 @@
                         <hr class="dropdown-divider"/>
                     </div>
                 </div>
-
+                
+                <form action="" method="POST">
                 <button type="submit" class="btn btn-outline-secondary" id="query_builder" name="query_builder">Query Builder</button>
                 <button type="submit" class="btn btn-outline-secondary" id="employee_registration" name="employee_registration">Employee Registration</button>
                 <button type="submit" class="btn btn-outline-secondary" id="disciplinary_proceedings" name="disciplinary_proceedings">Disciplinary Proceedings</button>
