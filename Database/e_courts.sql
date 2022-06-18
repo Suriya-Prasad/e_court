@@ -221,3 +221,28 @@ CREATE TABLE `leave_entry`(
   `status` varchar(10) NOT NULL,
   CONSTRAINT `fk_employeeID_leave_entry` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- Table structure for table `complaints`;
+
+CREATE TABLE `complaints` (
+  `complaintNumber` int(11) NOT NULL AUTO_INCREMENT,
+  `employeeId` int(11) NOT NULL,
+  `category` int(11) NOT NULL,
+  `complaintDetails` mediumtext NOT NULL,
+  `complaintFile` varchar(255) DEFAULT NULL,
+  `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(50) DEFAULT NULL,
+  `lastUpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`complaintNumber`)
+);
+
+-- Table structure for table `complaintremark`;
+
+CREATE TABLE `complaintremark` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `complaintNumber` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `remark` mediumtext NOT NULL,
+  `remarkDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
