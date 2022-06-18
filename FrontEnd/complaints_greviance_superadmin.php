@@ -34,6 +34,34 @@
                 <form action="" method="POST">
                     <h2>CLOSED COMPLAINTS</h2>
                     <div id="post_table"><script>fillResults();</script></div>
+                    echo "<h4>Complaint Details</h4>";
+                    echo "<table class='table table-bordered'>";
+                    echo "<tr>";
+                    echo "<td>Complaint Number</td>";
+                    echo "<td>6</td>";
+                    echo "<td>Complaint Name</td>";
+                    echo "<td>Anuj Kumar</td>";
+                    echo "<td>Reg Date</td>";
+                    echo "<td>2017-03-30</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>Complaint Details</td>";
+                    echo "<td colspan="5">hfghfgh</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>File (if-any)</td>";
+                    echo "<td colspan="5">View File</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>Final Status</td>";
+                    echo "<td colspan="5">Not Process Yet</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>Action</td>";
+                    echo "<td><button>Take Action</button></td>";
+                    echo "<td colspan="4"><button>View User Details</button></td>";
+                    echo "</tr>";
+                    echo "</table>";
                 </form>
             </div>
         </div>
