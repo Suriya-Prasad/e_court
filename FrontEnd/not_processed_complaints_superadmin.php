@@ -2,6 +2,9 @@
 <?php
     include_once "navigation.php";
     include_once "actions.php";
+    if(strcmp($_SESSION['employee_role'],"super admin")!=0){
+        header("Location:home_attendance.php");
+    }
 ?>
 <html lang="en">
 <head>
@@ -114,6 +117,34 @@ function ClosedComplaintsTable($result){
 }
 
 function ComplaintDetailsTable($result){
-
+    $row=mysqli_fetch_array($result);
+    echo "<h4>Complaint Details</h4>";
+    echo "<table class='table table-bordered'>";
+    echo "<tr>";
+    echo "<td>Complaint Number</td>";
+    echo "<td>".$row['complaintNumber']."</td>";
+    echo "<td>Complaint Name</td>";
+    echo "<td>".$row['employee_name']."</td>";
+    echo "<td>Reg Date</td>";
+    echo "<td>".$row['regDate']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Complaint Details</td>";
+    echo "<td colspan='5'>".$row['complaintDetails']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>File (if-any)</td>";
+    echo "<td colspan='5'>".$row['complaintFiles']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Final Status</td>";
+    echo "<td colspan='5'>not processed</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Action</td>";
+    echo "<td><button>Take Action</button></td>";
+    // echo "<td colspan='4'><button>View User Details</button></td>";
+    echo "</tr>";
+    echo "</table>";
 }
 ?>
