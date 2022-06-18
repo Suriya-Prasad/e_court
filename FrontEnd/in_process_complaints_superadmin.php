@@ -48,8 +48,8 @@
         element.classList.remove("btn-outline-secondary");
         element.classList.add("btn-secondary");
         var element1 = document.getElementById("in_process");
-        element.classList.remove("btn-outline-secondary");
-        element.classList.add("btn-secondary");
+        element1.classList.remove("btn-outline-secondary");
+        element1.classList.add("btn-secondary");
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
