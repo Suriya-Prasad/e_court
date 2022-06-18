@@ -1,0 +1,32 @@
+#content{
+    padding: 0;
+}
+#content #sr{
+    padding: 20px 10px;
+}
+#content h2{
+    padding: 25px;
+}
+#content .table{
+    text-align: center;
+}
+.service_content{
+    padding: 10px 0px;
+}
+.service_content1{
+    padding: 30px 0px 10px 0px;
+}
+form .ser_btn{
+    padding: 2px;
+    margin-bottom: 5px;
+    width: 55px;
+}
+
+@media (max-width: 500px){    
+    input{
+        width: 8rem;
+    }
+    #content table{
+        font-size: smaller;
+    }
+}
