@@ -63,8 +63,9 @@ function GetResults(){
 
 function GetComplaintDetails(){
     $conn = connectDB();
+    $employeeID = $_SESSION['employeeID'];
     $complaintNumber = $_POST['complaintNumber'];
-    $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.complaintNumber='".$complaintNumber."'";
+    $query = "SELECT c.* from complaints as c c.employeeID='$employeeID' where c.complaintNumber='".$complaintNumber."'";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
         echo "<h3>No Record Found On Complaint Number ".$complaintNumber."</h3>";
@@ -130,12 +131,16 @@ function ComplaintDetailsTable($result){
     echo "<td colspan='5'>".$row['complaintFiles']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Final Status</td>";
-    echo "<td colspan='5'>closed</td>";
+    echo "<td>Status</td>";
+    echo "<td colspan='5'>".$row['status']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Last Updated</td>";
+    echo "<td colspan='5'>".$row['lastUpdationDate']."</td>";
     echo "</tr>";
     echo "<tr>";
     echo "<td>Action</td>";
-    echo "<td><button>Take Action</button></td>";
+    echo "<td>None</td>";
     echo "</tr>";
     echo "</table>";
 }
