@@ -111,6 +111,6 @@ function ClosedComplaintsTable($result){
 }
 
 function ComplaintDetailsTable($result){
-
+    
 }
 ?>
