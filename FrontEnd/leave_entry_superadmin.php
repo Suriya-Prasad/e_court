@@ -23,12 +23,12 @@
     }
     </script>
 </head>
-<body onload="fillResults()">
+<body>
     <?php include_once "navbars_superadmin.php"; ?>
         <div id="content">
             <div id="leave">
                 <h2>PENDING REQUESTS</h2>
-                <div id="post_table"></div>
+                <div id="post_table"><script>fillResults();</script></div>
             </div>
         </div>
     </div>
@@ -78,12 +78,12 @@ function TablePendingLeaveRequests($result){
     echo "</tr>";
     while ($row=mysqli_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['l.employeeID'] . "</td>";
+    echo "<td>" . $row['employeeID'] . "</td>";
     // echo "<td>" . $row['employee_name'] . "</td>";
-    echo "<td>" . $row['l.from_date'] . "</td>";
-    echo "<td>" . $row['l.to_date'] . "</td>";
-    echo "<td>" . $row['l.leave_type'] . "</td>";
-    echo "<td>" . $row['l.reason'] . "</td>";
+    echo "<td>" . $row['from_date'] . "</td>";
+    echo "<td>" . $row['to_date'] . "</td>";
+    echo "<td>" . $row['leave_type'] . "</td>";
+    echo "<td>" . $row['reason'] . "</td>";
     echo "<td><button type='submit' id='acc' class='btn btn-outline-success'>APPROVE</button></td>";
     echo "<td><button type='submit' id='dec' class='btn btn-outline-danger'>DECLINE</button></td>";
     echo "</tr>"; 

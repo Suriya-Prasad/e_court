@@ -20,7 +20,7 @@
             $conn=connectDB();
             
             //validates if user with the entered credentials exist in database. if yes proceed to next page.
-            $query="SELECT * from employee where employeeID='{$employeeID}'";
+            $query="SELECT e.employeeID,e.role,e.first_name,e.password from employee as e,designation as d where e.employeeID='{$employeeID}' and e.employeeID=d.employeeID and d.to_date is null";
             $result=mysqli_query($conn,$query);
             $query1="SELECT CONCAT(e.first_name,' ',e.last_name)as employee_name from employee as e,designation as d where `role`='super admin' and e.employeeID=d.employeeID and d.to_date is null";
             if(mysqli_num_rows($result) == 1 ){

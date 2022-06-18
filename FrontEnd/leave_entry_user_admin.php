@@ -23,7 +23,7 @@
     }
     </script>
 </head>
-<body onload="fillResults()">
+<body>
     <?php include_once "navbars_user_admin.php"; ?>
         <div id="content">
             <div id="leave">
@@ -66,7 +66,7 @@
                 </div>
                 <center><button type="submit" name = "submit_leave_entry" id="l_btn" class="btn btn-outline-success">APPLY</button></center>
                 </form>
-                <div id="post_table"></div>
+                <div id="post_table"><script>fillResults();</script> </div>
             </div>
         </div>
     </div>
@@ -128,7 +128,7 @@ function GetLeaveStatus($employeeID){
 
 function TableLeaveStatus($result){
     if(mysqli_num_rows($result)==0){
-        return "<h1>No pending requests</h1>";
+        echo "<h1>No pending requests</h1>";
     }
     $row_count = 1;
     echo "<table id='req_table' class='table table-info table-hover'>";
