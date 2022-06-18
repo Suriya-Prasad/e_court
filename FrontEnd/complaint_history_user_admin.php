@@ -11,7 +11,7 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/attendance.css">
+    <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
     <script>
         function fillResults(){
             document.getElementById('content').style.display = 'block';   
