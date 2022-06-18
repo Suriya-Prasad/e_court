@@ -16,7 +16,12 @@
             }
         }
         else if (isset($_POST['seniority'])) {
-            header("Location:seniority.php");
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")==0){
+                header("Location:seniority_superadmin.php");
+            }
+            else{
+                header("Location:seniority_user_admin.php");
+            }
         }
         else if (isset($_POST['attendance'])) {
             header("Location:home_attendance.php");
@@ -74,9 +79,13 @@
             }
         }
         else if (isset($_POST['file_complaint'])) {
-            header("Location:register_complaint_user_admin.php");
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")!=0){
+                header("Location:register_complaint_user_admin.php");
+            }
         }
         else if (isset($_POST['complaint_history'])) {
-            header("Location:complaint_history_user_admin.php");
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")!=0){
+                header("Location:complaint_history_user_admin.php");
+            }
         }
 ?>

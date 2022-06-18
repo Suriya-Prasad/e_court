@@ -29,7 +29,7 @@
         <div id="content">
             <div id="co-gr">
                 <form>
-                    <h2>Create a Complaint/Greviance</h2>
+                    <h2>File a Complaint/Greviance</h2>
                     <div class="align">
                         <div class="label col-lg-5 col-md-5 col-sm-5">
                             <label for="subject"> Category : </label>

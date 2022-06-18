@@ -48,13 +48,9 @@
     </div>
 
     <script>
-        <?php
-        if($_SESSION['employeeID'] == 1){
-            echo "var element = document.getElementById('staff_info');
-            element.classList.remove('btn-outline-secondary');
-            element.classList.add('btn-secondary');"; 
-        } 
-        ?>
+        var element = document.getElementById('staff_info');
+        element.classList.remove('btn-outline-secondary');
+        element.classList.add('btn-secondary');
         var element2 = document.getElementById("senior");
         element2.classList.remove("btn-outline-secondary");
         element2.classList.add("btn-secondary");
@@ -77,6 +73,9 @@
     
 function GetSeniority(){
     $conn = connectDB();
+    if(!isset($_POST["SeniorityForm"])){
+        return " ";
+    }
     $posting = mysqli_real_escape_string($conn,$_POST["SeniorityForm"]);
     $query = "SELECT d.employeeID,CONCAT(e.first_name,' ',e.last_name)as employee_name,MIN(d.from_date) as join_date from employee as e, designation as d WHERE d.employeeID IN(select employeeID from designation where postingsID = '{$posting}' and to_date is null AND from_date is not null) AND postingsID = '{$posting}'  AND e.employeeID = d.employeeID  AND e.employeeID NOT IN(SELECT employeeID from disciplinary_proceeding where end_date is null) GROUP BY employeeID ORDER BY join_date;";
     $query1 = "SELECT postingsName FROM postings where postingsID = $posting";
