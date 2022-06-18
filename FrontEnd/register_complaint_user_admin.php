@@ -85,7 +85,21 @@
             $cmpn=$row['complaintNumber'];
         }
         $complainno = $cmpn;
-        echo '<script> alert("Your complain has been successfully filled and your complaintno is  "+"'.$complainno.'")</script>';
+        $_SESSION['status'] = "This is your complaint number : ".$complainno;
+        $_SESSION['status_code'] = "success";
     }
-
+    
+    if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+        ?>
+        <script>
+            swal({
+                title:"<?php echo $_SESSION['status']; ?>",
+                icon:"<?php echo $_SESSION['status_code']; ?>",
+                button:"OK",
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['status_code']);
+    }
 ?>
