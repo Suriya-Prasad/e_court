@@ -65,6 +65,7 @@ form{
     background: rgb(205 223 223);
     padding: 15px;
     margin: 0;
+    overflow: auto;
 }
 .sidebar {
     height: 100%;
@@ -109,6 +110,8 @@ form{
     width: 184px;
     border-radius: 30px;
     margin-bottom: 5px;
+    border: 0;
+    background-color: transparent;
 }
 #sidebar .card-header{
     padding: 0;
@@ -133,17 +136,7 @@ form{
     width: 100%;
     height: 40.5px;
 }
-#sidebar #accordion2{
-    border: 0;
-    background-color: transparent;
-}
-#sidebar .card-body{
-    margin: 0;
-    padding: 0;
-    padding-bottom: .6rem;
-    width: 100%;
-}
-#sidebar .card-body button{
+#sidebar #collapseTwo button{
     margin: 0;
     padding: 5px;
     border: 0;
