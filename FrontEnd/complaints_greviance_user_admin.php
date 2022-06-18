@@ -25,7 +25,26 @@
 
         <div id="content">
             <div id="co-gr">
-                
+                <form>
+                    <h2>Create a Complaint/Greviance</h2>
+                    <div class="align">
+                        <div class="label col-lg-5 col-md-5 col-sm-5">
+                            <label for="subject"> Subject : </label>
+                        </div>
+                        <div class="input col-lg-7 col-md-7 col-sm-7">
+                            <input type="text" id="subject" name="subject" required />
+                        </div>
+                    </div>
+                    <div class="align">
+                        <div class="label col-lg-5 col-md-5 col-sm-5">
+                            <label for="co_gr_desc"> Description : </label>
+                        </div>
+                        <div class="input col-lg-7 col-md-7 col-sm-7">
+                            <textarea id="co_gr_desc" name="co_gr_desc" rows="5" cols="55" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" id="co-gr-btn" name="submit_complaint" class="btn btn-outline-success">SUBMIT</button>
+                </form>
             </div>
         </div>
     

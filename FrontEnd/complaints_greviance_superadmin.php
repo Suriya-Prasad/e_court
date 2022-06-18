@@ -32,8 +32,8 @@
         <div id="content">
             <div id="co-gr">
                 <form action="" method="POST">
-                <h2>CLOSED COMPLAINTS</h2>
-                <div id="post_table"><script>fillResults();</script></div>
+                    <h2>CLOSED COMPLAINTS</h2>
+                    <div id="post_table"><script>fillResults();</script></div>
                 </form>
             </div>
         </div>
