@@ -15,7 +15,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php echo GetResults()?>";   
+        document.getElementById('post_table').innerHTML="<?php GetResults()?>";   
     }
     </script>
 </head>
@@ -32,7 +32,7 @@
         <div id="content">
             <div id="co-gr">
                 <form action="" method="POST">
-                <h2>CLOSED COMPLAINTS</h2>
+                <h2>IN PROCESS COMPLAINTS</h2>
                 <div id="post_table"><script>fillResults();</script></div>
                 </form>
             </div>
@@ -59,7 +59,7 @@ function GetResults(){
         return GetComplaintDetails();
     }
     else{
-        return GetClosedComplaints();
+        return GetInProcessComplaints();
     }
 }
 
@@ -77,20 +77,20 @@ function GetComplaintDetails(){
     }
 }
 
-function GetClosedComplaints(){
+function GetInProcessComplaints(){
     $conn = connectDB();
-    $query = "SELECT c.complaintNumber,c.status,c.regDate,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.status='closed' order by regDate DESC";
+    $query = "SELECT c.complaintNumber,c.status,c.regDate,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.status='in process' order by regDate DESC";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
-        echo "<h3>No Record Found</h3>";
+        echo "<h3>No Records Found</h3>";
         return " ";
     }
     else{
-        return ClosedComplaintsTable($result);
+        return InProcessComplaintsTable($result);
     }
 }
 
-function ClosedComplaintsTable($result){
+function InprocessComplaintsTable($result){
     $row=mysqli_fetch_array($result);
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";
@@ -104,8 +104,8 @@ function ClosedComplaintsTable($result){
     echo "<td>" . $row['complaintNumber'] . "</td>";
     echo "<td>" . $row['employee_name']. "</td>";
     echo "<td>" .  $row['regDate'] . "</td>";
-    echo "<td>closed</td>";
-    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='complaintNumber' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
+    echo "<td>in process</td>";
+    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='view_complaint_details' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
     echo "</tr>";
     echo "</table>";
 }

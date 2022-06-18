@@ -196,22 +196,25 @@ CREATE TABLE `bank_details` (
 DROP TABLE IF EXISTS `disciplinary_proceeding`;
 
 CREATE TABLE `disciplinary_proceeding`(
+  `disciplinary_proceedingID` int(20) NOT NULL AUTO_INCREMENT,
   `employeeID` int(20) NOT NULL,
   `disciplinary_proceeding_court_name` varchar(200) NOT NULL,
   `disciplinary_proceeding_details` varchar(500) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
+  PRIMARY KEY (`disciplinary_proceedingID`),
   CONSTRAINT `fk_employeeID_disciplinary_proceeding` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO `disciplinary_proceeding` (`employeeID`, `disciplinary_proceeding_court_name`, `disciplinary_proceeding_details`, `start_date`, `end_date`) VALUES ('2', 'abcd', 'not found', '2022-04-12', NULL);
-INSERT INTO `disciplinary_proceeding` (`employeeID`, `disciplinary_proceeding_court_name`, `disciplinary_proceeding_details`, `start_date`, `end_date`) VALUES ('4', 'xyz', 'stolen', '2021-10-20', '2022-05-03');
+INSERT INTO `disciplinary_proceeding` (`disciplinary_proceedingID`,`employeeID`, `disciplinary_proceeding_court_name`, `disciplinary_proceeding_details`, `start_date`, `end_date`) VALUES ('1','2', 'abcd', 'not found', '2022-04-12', NULL);
+INSERT INTO `disciplinary_proceeding` (`disciplinary_proceedingID`,`employeeID`, `disciplinary_proceeding_court_name`, `disciplinary_proceeding_details`, `start_date`, `end_date`) VALUES ('2','4', 'xyz', 'stolen', '2021-10-20', '2022-05-03');
 
 -- Table structure for `leave_entry` ;
 
 DROP TABLE IF EXISTS `leave_entry`;
 
 CREATE TABLE `leave_entry`(
+  `leave_entryID`int(20) NOT NULL AUTO_INCREMENT,
   `employeeID` int(20) NOT NULL,
   `reason` varchar(500) NOT NULL,
   `from_date` date NOT NULL,
@@ -219,6 +222,7 @@ CREATE TABLE `leave_entry`(
   `day_type` varchar(20) NOT NULL,
   `leave_type` varchar(50) NOT NULL,
   `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`leave_entryID`),
   CONSTRAINT `fk_employeeID_leave_entry` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -226,23 +230,25 @@ CREATE TABLE `leave_entry`(
 
 CREATE TABLE `complaints` (
   `complaintNumber` int(11) NOT NULL AUTO_INCREMENT,
-  `employeeId` int(11) NOT NULL,
+  `employeeID` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `complaintDetails` mediumtext NOT NULL,
   `complaintFile` varchar(255) DEFAULT NULL,
   `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` varchar(50) DEFAULT NULL,
   `lastUpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`complaintNumber`)
+  PRIMARY KEY (`complaintNumber`),
+  CONSTRAINT `fk_employeeID_complaints` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Table structure for table `complaintremark`;
 
-CREATE TABLE `complaintremark` (
+CREATE TABLE `complaint_remark` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `complaintNumber` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `remark` mediumtext NOT NULL,
   `remarkDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_complaintNumber_complaint_remark` FOREIGN KEY (`complaintNumber`) REFERENCES `complaints` (`complaintNumber`) ON DELETE CASCADE ON UPDATE CASCADE
 );

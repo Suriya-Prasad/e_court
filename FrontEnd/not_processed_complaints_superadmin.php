@@ -15,7 +15,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php echo GetResults()?>";   
+        document.getElementById('post_table').innerHTML="<?php GetResults()?>";   
     }
     </script>
 </head>
@@ -31,8 +31,8 @@
 
         <div id="content">
             <div id="co-gr">
-                <form action="" method="POST">
-                <h2>CLOSED COMPLAINTS</h2>
+                <form>
+                <h2>NOT PROCESSED COMPLAINTS</h2>
                 <div id="post_table"><script>fillResults();</script></div>
                 </form>
             </div>
@@ -59,7 +59,7 @@ function GetResults(){
         return GetComplaintDetails();
     }
     else{
-        return GetClosedComplaints();
+        return GetNotProcessedComplaints();
     }
 }
 
@@ -77,12 +77,12 @@ function GetComplaintDetails(){
     }
 }
 
-function GetClosedComplaints(){
+function GetNotProcessedComplaints(){
     $conn = connectDB();
-    $query = "SELECT c.complaintNumber,c.status,c.regDate,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.status='closed' order by regDate DESC";
+    $query = "SELECT c.complaintNumber,c.status,c.regDate,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.status='not processed' order by regDate DESC";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
-        echo "<h3>No Record Found</h3>";
+        echo "<h3>No Records Found</h3>";
         return " ";
     }
     else{
@@ -104,8 +104,8 @@ function ClosedComplaintsTable($result){
     echo "<td>" . $row['complaintNumber'] . "</td>";
     echo "<td>" . $row['employee_name']. "</td>";
     echo "<td>" .  $row['regDate'] . "</td>";
-    echo "<td>closed</td>";
-    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='complaintNumber' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
+    echo "<td>not processed</td>";
+    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='view_complaint_details' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
     echo "</tr>";
     echo "</table>";
 }

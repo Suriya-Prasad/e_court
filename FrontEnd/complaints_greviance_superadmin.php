@@ -15,7 +15,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetClosedComplaints()?>";   
+        document.getElementById('post_table').innerHTML="<?php echo GetResults()?>";   
     }
     </script>
 </head>
@@ -31,7 +31,7 @@
 
         <div id="content">
             <div id="co-gr">
-                <form>
+                <form action="" method="POST">
                 <h2>CLOSED COMPLAINTS</h2>
                 <div id="post_table"><script>fillResults();</script></div>
                 </form>
@@ -54,13 +54,35 @@
 
 <?php
 
-function GetClosedComplaints(){
+function GetResults(){
+    if(isset($_POST['complaintNumber'])){
+        return GetComplaintDetails();
+    }
+    else{
+        return GetClosedComplaints();
+    }
+}
+
+function GetComplaintDetails(){
     $conn = connectDB();
-    $query = "SELECT c.complaintNumber,c.status,c.regDate,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeid=c.employeeId where c.status='closed'";
-    
+    $complaintNumber = $_POST['complaintNumber'];
+    $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.complaintNumber='".$complaintNumber."'";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
-        echo "<h3>No Records Found</h3>";
+        echo "<h3>No Record Found On Complaint Number ".$complaintNumber."</h3>";
+        return " ";
+    }
+    else{
+        return ComplaintDetailsTable($result);
+    }
+}
+
+function GetClosedComplaints(){
+    $conn = connectDB();
+    $query = "SELECT c.complaintNumber,c.status,c.regDate,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.status='closed' order by regDate DESC";
+    $result = mysqli_query($conn,$query);
+    if(mysqli_num_rows($result) == 0){
+        echo "<h3>No Record Found</h3>";
         return " ";
     }
     else{
@@ -83,8 +105,12 @@ function ClosedComplaintsTable($result){
     echo "<td>" . $row['employee_name']. "</td>";
     echo "<td>" .  $row['regDate'] . "</td>";
     echo "<td>closed</td>";
-    echo "<td><a href='complaint-details.php?cid=".htmlentities($row['complaintNumber'])."> View Details</a></td>";
+    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='complaintNumber' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
     echo "</tr>";
     echo "</table>";
+}
+
+function ComplaintDetailsTable($result){
+
 }
 ?>
