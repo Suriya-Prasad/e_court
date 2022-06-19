@@ -72,7 +72,7 @@
         $employeeID = $_SESSION['employeeID'];
         $category = mysqli_real_escape_string($conn,$_POST['category']);
         $complaintDetails = mysqli_real_escape_string($conn,$_POST['complaint_details']);
-        if(isset($_POST['complaint_file'])){
+        if(isset($_FILES['complaint_file'])){
         $compfile=$_FILES["complaint_file"]["name"];
         move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$_FILES["complaint_file"]["name"]);
         $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','{$compfile}','not processed')";

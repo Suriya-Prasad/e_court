@@ -25,19 +25,20 @@ CREATE TABLE `employee` (
   `permanent_address` varchar(1000) DEFAULT NULL,
   `current_address` varchar(1000) DEFAULT NULL,
   `role` varchar(25) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`employeeID`)
 ) AUTO_INCREMENT=1;
 
 INSERT INTO employee VALUES ('1','pass', 'Arun', 'Prasad', 'suriya@mdfc.com', '1122334455', '2018-04-05', 'Tiruppur', '1996-05-04', 'male', 'no', 'Ponnusamy', 'no', 
-'111222333444', '1122334455', 'Hindu', 'BC', 'C19', 'Vadugapalayam,Palladam', 'Vadugapalayam,Palladam','super admin');
+'111222333444', '1122334455', 'Hindu', 'BC', 'C19', 'Vadugapalayam,Palladam', 'Vadugapalayam,Palladam','super admin','cartoon.png');
 INSERT INTO employee VALUES ('2','pass', 'Arul', 'Prakash', 'arul@mdfc.com', '1209348756', '2010-03-02', 'Madurai', '1976-09-12', 'male', 'yes', 'Narayanan', 'no', 
-'000011112222', '0000011111', 'Hindu', 'FC', 'C71', 'Baker street,Udumelpet', 'Baker street,Udumelpet','admin');
+'000011112222', '0000011111', 'Hindu', 'FC', 'C71', 'Baker street,Udumelpet', 'Baker street,Udumelpet','admin','cartoon.png');
 INSERT INTO employee VALUES ('3','pass', 'Joseph', 'Winmer', 'joseph@mdfc.com', '9898980099', '2020-12-24', 'Trichy', '1998-01-30', 'male', 'no', 'Wincent', 'no', 
-'132435465768', '2143658709', 'Christianity', 'BC', 'C3', 'Gandhi nagar,Avinashi', 'Nallur,Tiruppur','user');
+'132435465768', '2143658709', 'Christianity', 'BC', 'C3', 'Gandhi nagar,Avinashi', 'Nallur,Tiruppur','user','cartoon.png');
 INSERT INTO employee VALUES ('4','pass', 'Mohammed', 'Tarik', 'mt@mdfc.com', '1089567423', '2010-07-22', 'Tiruppur', '1989-05-04', 'male', 'no', 'Toufic', 'no', 
-'908766785656', '3243445612', 'Islam', 'MBC', 'C14', 'Pushpa Theatre,Tiruppur', 'Anna Nagar,Theni','admin');
+'908766785656', '3243445612', 'Islam', 'MBC', 'C14', 'Pushpa Theatre,Tiruppur', 'Anna Nagar,Theni','admin',NULL);
 INSERT INTO employee VALUES ('5','pass', 'Karam', 'Singh', 'kaam@mdfc.com', '1424335567', '2009-10-10', 'Tuticorin', '1990-10-25', 'male', 'no', 'Vijendar', 'no', 
-'121322333544', '11255693455', 'Sikkism', 'FC', 'C82', 'Sheriff Colony,Tiruppur', 'Golden Temple,Amritasar','user');
+'121322333544', '11255693455', 'Sikkism', 'FC', 'C82', 'Sheriff Colony,Tiruppur', 'Golden Temple,Amritasar','user',NULL);
 
 -- Table structure for `postings` ;
 
