@@ -81,7 +81,7 @@
         $complaintDetails = $_POST['complaint_details'];
         $compfile=$_FILES["complaint_file"]["name"];
         move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$_FILES["complaint_file"]["name"]);
-        $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile) values('$employeeID','$category','$complaintDetials','$compfile')";
+        $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('$employeeID','$category','$complaintDetials','$compfile','not processed')";
         mysqli_query($conn,$query);
         $sql=mysqli_query($conn,"SELECT complaintNumber from complaints  order by complaintNumber desc limit 1");
         while($row=mysqli_fetch_array($sql)){
