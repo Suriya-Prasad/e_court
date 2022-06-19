@@ -75,7 +75,9 @@ function GetComplaintDetails(){
         return " ";
     }
     else{
-        return ComplaintDetailsTable($result);
+        $query = "SELECT cr.remark as remark,cr.status as sstatus,cr.remarkDate as rdate from complaint_remark as cr join complaints as c on c.complaintNumber=cr.complaintNumber where cr.complaintNumber='".$complaintNumber."'";
+        $result1 = mysqli_query($conn,$query);
+        return ComplaintDetailsTable($result,$result1);
     }
 }
 
@@ -112,7 +114,7 @@ function InprocessComplaintsTable($result){
     echo "</table>";
 }
 
-function ComplaintDetailsTable($result){
+function ComplaintDetailsTable($result,$result1){
     $row=mysqli_fetch_array($result);
     echo "<h4>Complaint Details</h4><br>";
     echo "<table class='table table-bordered'>";
@@ -137,6 +139,21 @@ function ComplaintDetailsTable($result){
         echo "<td colspan='5'><a href='../user_admin/complaintdocs/".$row['complaintFile']." target='_blank'/> View File</a></td>";
     }
     echo "</tr>";
+    if(mysqli_num_rows($result1)==0){
+        echo "<tr>";
+        echo "<th>Remarks</th>";
+        echo "<td colspan='5'>No remarks yet</td>";
+        echo "</tr>";
+    }
+    else{
+        $row1=mysqli_fetch_array($result1);
+        echo "<tr>";
+        echo "<th>Remarks</th>";
+        echo "<td colspan='3'>".$row1['remark']."</td>";
+        echo "<th>Remark Date</th>";
+        echo "<td colspan='3'>".$row1['remarkDate']."</td>";
+        echo "</tr>";
+    }
     echo "<tr>";
     echo "<th>Status</th>";
     echo "<td colspan='5'>in process</td>";
@@ -148,6 +165,7 @@ function ComplaintDetailsTable($result){
     echo "<tr>";
     echo "<th>Action</th>";
     echo "<td><button type='button'><a href='update_complaint.php?cid=".$row['complaintNumber']."' onClick='basicPopup(this.href);return false'>Take Action</a></button></td>";
+    echo "<td colspan='4'><button type='submit' name='view_all'>&lt; &lt; VIEW ALL</button></td>";
     echo "</tr>";
     echo "</table>";
 }
