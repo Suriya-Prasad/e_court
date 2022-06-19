@@ -240,3 +240,15 @@ CREATE TABLE `complaints` (
   PRIMARY KEY (`complaintNumber`),
   CONSTRAINT `fk_employeeID_complaints` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- Table structure for table `complaint_remark`;
+
+CREATE TABLE `complaint_remark` (
+  `remarkID` int(11) NOT NULL AUTO_INCREMENT,
+  `complaintNumber` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `remark` mediumtext NOT NULL,
+  `remarkDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`remarkID`),
+  CONSTRAINT `fk_complaintNumber_complaint_remark` FOREIGN KEY (`complaintNumber`) REFERENCES `complaints` (`complaintNumber`) ON DELETE CASCADE ON UPDATE CASCADE
+);

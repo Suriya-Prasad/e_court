@@ -20,6 +20,9 @@
         document.getElementById('post_table').style.display = 'block';
         document.getElementById('post_table').innerHTML="<?php GetResults()?>";   
     }
+    function basicPopup(url) {
+        popupWindow = window.open(url,'popUpWindow','height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+	}
     </script>
 </head>
 <body>
@@ -37,12 +40,12 @@
     </div>
 
     <script>
-        var element = document.getElementById("complaints_greviance");
-        element.classList.remove("btn-outline-secondary");
-        element.classList.add("btn-secondary");
-        var element1 = document.getElementById("not_processed");
-        element1.classList.remove("btn-outline-secondary");
-        element1.classList.add("btn-secondary");
+        // var element = document.getElementById("complaints_greviance");
+        // element.classList.remove("btn-outline-secondary");
+        // element.classList.add("btn-secondary");
+        // var element1 = document.getElementById("not_processed");
+        // element1.classList.remove("btn-outline-secondary");
+        // element1.classList.add("btn-secondary");
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -142,10 +145,12 @@ function ComplaintDetailsTable($result){
     echo "<th>Last Updated</th>";
     echo "<td colspan='5'>".$row['lastUpdationDate']."</td>";
     echo "</tr>";
+    echo "</form>";
     echo "<tr>";
     echo "<th>Action</th>";
-    echo "<td><button>Take Action</button></td>";
+    echo "<td><button type='button'><a href='update_complaint.php?cid=".$row['complaintNumber']."' onClick='basicPopup(this.href);return false'>Take Action</a></button></td>";
     echo "</tr>";
     echo "</table>";
+    echo "<form>";
 }
 ?>

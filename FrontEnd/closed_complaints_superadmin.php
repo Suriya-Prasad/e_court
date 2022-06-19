@@ -144,7 +144,7 @@ function ComplaintDetailsTable($result){
     echo "</tr>";
     echo "<tr>";
     echo "<th>Action</th>";
-    echo "<td><button>Take Action</button></td>";
+    echo "<td>None</td>";
     echo "</tr>";
     echo "</table>";
 }
