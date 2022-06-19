@@ -23,14 +23,7 @@
     </script>
 </head>
 <body>
-    <?php 
-        if($_SESSION['employeeID'] == 1){
-            include_once "navbars_superadmin.php"; 
-        }
-        else{
-            include_once "navbars_user_admin.php";
-        }
-    ?>
+    <?php include_once "navbars_superadmin.php"; ?>
 
         <div id="content">
             <div id="co-gr">
@@ -61,7 +54,7 @@
 <?php
 
 function GetResults(){
-    if(isset($_POST['complaintNumber'])){
+    if(isset($_POST['view_complaint_details'])){
         return GetComplaintDetails();
     }
     else{
@@ -111,37 +104,46 @@ function InprocessComplaintsTable($result){
     echo "<td>" . $row['employee_name']. "</td>";
     echo "<td>" .  $row['regDate'] . "</td>";
     echo "<td>in process</td>";
-    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='view_complaint_details' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
+    echo "<td><input type='hidden' id='complaintNumber' name='complaintNumber' value='".$row['complaintNumber']."'><button type='submit' id='acc' class='btn btn-outline-success' name='view_complaint_details'> View Details</button></td>";
     echo "</tr>";
     echo "</table>";
 }
 
 function ComplaintDetailsTable($result){
     $row=mysqli_fetch_array($result);
-    echo "<h4>Complaint Details</h4>";
+    echo "<h4>Complaint Details</h4><br>";
     echo "<table class='table table-bordered'>";
     echo "<tr>";
-    echo "<td>Complaint Number</td>";
+    echo "<th>Complaint Number</th>";
     echo "<td>".$row['complaintNumber']."</td>";
-    echo "<td>Complaint Name</td>";
+    echo "<th>Complaint Name</th>";
     echo "<td>".$row['employee_name']."</td>";
-    echo "<td>Reg Date</td>";
+    echo "<th>Reg Date</th>";
     echo "<td>".$row['regDate']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Complaint Details</td>";
+    echo "<th>Complaint Details</th>";
     echo "<td colspan='5'>".$row['complaintDetails']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>File (if-any)</td>";
-    echo "<td colspan='5'>".$row['complaintFiles']."</td>";
+    echo "<th>File (if-any)</th>";
+    if(is_null($row['complaintFile'])){
+        echo "<td colspan='5'>No files attached</td>";
+    }
+    else{
+        echo "<td colspan='5'><a href='../user_admin/complaintdocs/".$row['complaintFile']." target='_blank'/> View File</a></td>";
+    }
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Final Status</td>";
+    echo "<th>Status</th>";
     echo "<td colspan='5'>in process</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Action</td>";
+    echo "<th>Last Updated</th>";
+    echo "<td colspan='5'>".$row['lastUpdationDate']."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<th>Action</th>";
     echo "<td><button>Take Action</button></td>";
     echo "</tr>";
     echo "</table>";

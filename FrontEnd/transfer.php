@@ -120,6 +120,7 @@ if(isset($_POST['court_to'])){
                                 $row = mysqli_fetch_row($result);
                                 $from_court = $row[2];
                                 $from_post = $row[1];
+                                $from_date = $row[3];
                                 $_SESSION['from_court'] = $court_from;
                                 $_SESSION['court_to'] = $court_to;
                                 $relive_date = $_POST['relive_date'];
@@ -128,22 +129,28 @@ if(isset($_POST['court_to'])){
                                 $_SESSION['post_to'] = $from_post;
                                 $relive_date = strtotime(str_replace('.','-',$relive_date));
                                 $relive_date = date("Y-m-d",$relive_date);
-                                $join_date = strtotime(str_replace('.','-', $join_date));
-                                $join_date = date("Y-m-d",$join_date);
-                                $_SESSION['relive_date'] = $relive_date;
-                                $_SESSION['join_date'] = $join_date;
-                                $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
-                                $query2 = "INSERT INTO designation (employeeID,courtID,postingsID,from_date) VALUES({$employeeID},'{$court_to}','{$from_post}','{$join_date}')";
-                                $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
-                                $result2 = mysqli_query($conn,$query3);
-                                $row = mysqli_fetch_row($result2);
-                                $employeeName = $row[0];
-                                $_SESSION['post_transfer_employeeName'] = $employeeName;
-                                mysqli_query($conn, $query1);
-                                $query_run = mysqli_query($conn,$query2);
-                                if($query_run){?>
-                                <script>window.location.href = "pdf_generation.php";</script>
-                                <?php
+                                if($relive_date >= $from_date){
+                                    $join_date = strtotime(str_replace('.','-', $join_date));
+                                    $join_date = date("Y-m-d",$join_date);
+                                    $_SESSION['relive_date'] = $relive_date;
+                                    $_SESSION['join_date'] = $join_date;
+                                    $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                                    $query2 = "INSERT INTO designation (employeeID,courtID,postingsID,from_date) VALUES({$employeeID},'{$court_to}','{$from_post}','{$join_date}')";
+                                    $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                                    $result2 = mysqli_query($conn,$query3);
+                                    $row = mysqli_fetch_row($result2);
+                                    $employeeName = $row[0];
+                                    $_SESSION['post_transfer_employeeName'] = $employeeName;
+                                    mysqli_query($conn, $query1);
+                                    $query_run = mysqli_query($conn,$query2);
+                                    if($query_run){?>
+                                    <script>window.location.href = "pdf_generation.php";</script>
+                                    <?php
+                                    }
+                                }
+                                else{
+                                    $_SESSION['status'] = "Invalid relive date..Employee has not joined in the court";
+                                    $_SESSION['status_code'] = "warning";
                                 }
                         }
                         else if(mysqli_num_rows($result) > 1){

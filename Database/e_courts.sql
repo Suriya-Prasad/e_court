@@ -147,10 +147,10 @@ CREATE TABLE `designation` (
   CONSTRAINT `fk_courtID_designation` FOREIGN KEY (`courtID`) REFERENCES `courts` (`courtID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO designation VALUES ('2','2','2','2010-03-02','2014-09-22');
-INSERT INTO designation VALUES ('2','2','3','2014-10-02','2016-06-01');
-INSERT INTO designation (`employeeID`,`postingsID`,`courtID`,`from_date`) VALUES ('2','1','3','2016-06-04');
-INSERT INTO designation (`employeeID`,`postingsID`,`courtID`,`from_date`) VALUES ('1','2','1','2018-04-05');
+INSERT INTO designation VALUES ('2','3','2','2010-03-02','2014-09-22');
+INSERT INTO designation VALUES ('2','3','3','2014-10-02','2016-06-01');
+INSERT INTO designation (`employeeID`,`postingsID`,`courtID`,`from_date`) VALUES ('2','2','3','2016-06-04');
+INSERT INTO designation (`employeeID`,`postingsID`,`courtID`,`from_date`) VALUES ('1','1','1','2018-04-05');
 INSERT INTO designation VALUES ('4','3','3','2010-07-22','2017-09-22');
 INSERT INTO designation (`employeeID`,`postingsID`,`courtID`,`from_date`) VALUES ('4','2','2','2017-09-25');
 INSERT INTO designation (`employeeID`,`postingsID`,`courtID`,`from_date`) VALUES ('3','3','2','2020-12-24');
@@ -235,7 +235,7 @@ CREATE TABLE `complaints` (
   `complaintDetails` mediumtext NOT NULL,
   `complaintFile` varchar(255) DEFAULT NULL,
   `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` varchar(50) DEFAULT NULL,
+  `status` varchar(50) DEFAULT 'not processed',
   `lastUpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`complaintNumber`),
   CONSTRAINT `fk_employeeID_complaints` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE

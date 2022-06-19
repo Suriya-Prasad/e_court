@@ -17,18 +17,11 @@
     <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
 </head>
 <body>
-    <?php 
-        if($_SESSION['employeeID'] == 1){
-            include_once "navbars_superadmin.php"; 
-        }
-        else{
-            include_once "navbars_user_admin.php";
-        }
-    ?>
+    <?php include_once "navbars_user_admin.php"; ?>
 
         <div id="content">
             <div id="co-gr">
-                <form>
+                <form action="" method="POST">
                     <h2>File a Complaint/Greviance</h2>
                     <div class="align">
                         <div class="label col-lg-5 col-md-5 col-sm-5">
@@ -74,14 +67,19 @@
 </html>
 
 <?php 
-    if(isset($_POST['complaint_submit'])){
+    if(isset($_POST['submit_complaint'])){
         $conn = connectDB();
         $employeeID = $_SESSION['employeeID'];
-        $category = $_POST['category'];
-        $complaintDetails = $_POST['complaint_details'];
+        $category = mysqli_real_escape_string($conn,$_POST['category']);
+        $complaintDetails = mysqli_real_escape_string($conn,$_POST['complaint_details']);
+        if(isset($_POST['complaint_file'])){
         $compfile=$_FILES["complaint_file"]["name"];
         move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$_FILES["complaint_file"]["name"]);
-        $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('$employeeID','$category','$complaintDetials','$compfile','not processed')";
+        $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','{$compfile}','not processed')";
+        }
+        else{
+            $query = "INSERT into complaints(employeeID,category,complaintDetails,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','not processed')";
+        }
         mysqli_query($conn,$query);
         $sql=mysqli_query($conn,"SELECT complaintNumber from complaints  order by complaintNumber desc limit 1");
         while($row=mysqli_fetch_array($sql)){

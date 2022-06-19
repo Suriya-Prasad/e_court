@@ -19,7 +19,7 @@
     <script>
         function fillResults(){
             document.getElementById('content').style.display = 'block';
-            document.getElementById('post_table').innerHTML="<?php echo GetResults()?>";    
+            document.getElementById('post_table').innerHTML="<?php GetResults()?>";    
         }
     </script>
 </head>
@@ -53,7 +53,7 @@
 <?php
 
 function GetResults(){
-    if(isset($_POST['complaintNumber'])){
+    if(isset($_POST['view_complaint_details'])){
         return GetComplaintDetails();
     }
     else{
@@ -65,7 +65,7 @@ function GetComplaintDetails(){
     $conn = connectDB();
     $employeeID = $_SESSION['employeeID'];
     $complaintNumber = $_POST['complaintNumber'];
-    $query = "SELECT c.* from complaints as c c.employeeID='$employeeID' where c.complaintNumber='".$complaintNumber."'";
+    $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.complaintNumber='".$complaintNumber."'";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
         echo "<h3>No Record Found On Complaint Number ".$complaintNumber."</h3>";
@@ -91,55 +91,63 @@ function GetMyComplaints(){
 }
 
 function MyComplaintsTable($result){
-    $row=mysqli_fetch_array($result);
+    $row_count = 1;
     echo "<table class='table table-bordered'>";
     echo "<tr>";
     echo "<th>COMPLAINT NUMBER</th>";
     echo "<th>REG. DATE</th>";
-    echo "<th>LAST WPDATION DATE</th>";
+    echo "<th>LAST UPDATION DATE</th>";
     echo "<th>STATUS</th>";
     echo "<th>ACTION</th>";
     echo "</tr>";
+    while($row=mysqli_fetch_array($result)){
     echo "<tr>";
     echo "<td>".$row['complaintNumber']."</td>";
     echo "<td>".$row['regDate']."</td>";
     echo "<td>".$row['lastUpdationDate']."</td>";
     echo "<td>".$row['status']."</td>";
-    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' name='complaintNumber' value=".htmlentities($row['complaintNumber'])."> View Details</button></td>";
+    echo "<td><input type='hidden' id='complaintNumber' name='complaintNumber' value='".$row['complaintNumber']."'><button type='submit' id='acc' class='btn btn-outline-success' name='view_complaint_details'> View Details</button></td>";
     echo "</tr>";
+    $row_count++;
+    }
     echo "</table>";
 }
 
 function ComplaintDetailsTable($result){
     $row=mysqli_fetch_array($result);
-    echo "<h4>Complaint Details</h4>";
+    echo "<h4>Complaint Details</h4><br>";
     echo "<table class='table table-bordered'>";
     echo "<tr>";
-    echo "<td>Complaint Number</td>";
+    echo "<th>Complaint Number</th>";
     echo "<td>".$row['complaintNumber']."</td>";
-    echo "<td>Complaint Name</td>";
+    echo "<th>Complaint Name</th>";
     echo "<td>".$row['employee_name']."</td>";
-    echo "<td>Reg Date</td>";
+    echo "<th>Reg Date</th>";
     echo "<td>".$row['regDate']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Complaint Details</td>";
+    echo "<th>Complaint Details</th>";
     echo "<td colspan='5'>".$row['complaintDetails']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>File (if-any)</td>";
-    echo "<td colspan='5'>".$row['complaintFiles']."</td>";
+    echo "<th>File (if-any)</th>";
+    if(is_null($row['complaintFile'])){
+        echo "<td colspan='5'>No files attached</td>";
+    }
+    else{
+        echo "<td colspan='5'><a href='complaintdocs/".$row['complaintFile']." target='_blank'/> View File</a></td>";
+    }
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Status</td>";
+    echo "<th>Status</th>";
     echo "<td colspan='5'>".$row['status']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Last Updated</td>";
+    echo "<th>Last Updated</th>";
     echo "<td colspan='5'>".$row['lastUpdationDate']."</td>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>Action</td>";
+    echo "<th>Action</th>";
     echo "<td>None</td>";
     echo "</tr>";
     echo "</table>";

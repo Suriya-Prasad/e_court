@@ -116,6 +116,7 @@
                         $row = mysqli_fetch_row($result);
                         $from_court = $row[2];
                         $from_post = $row[1];
+                        $from_date = $row[3];
                         if(strcmp($post_to,$from_post) != 0){
                             $_SESSION['court_to'] = $court_to; 
                             $_SESSION['post_to'] = $post_to;
@@ -125,22 +126,36 @@
                             $_SESSION['from_post'] = $from_post;
                             $relive_date = strtotime(str_replace('.','-',$relive_date));
                             $relive_date = date("Y-m-d",$relive_date);
-                            $join_date = strtotime(str_replace('.','-', $join_date));
-                            $join_date = date("Y-m-d",$join_date);
-                            $_SESSION['relive_date'] = $relive_date;
-                            $_SESSION['join_date'] = $join_date;
-                            $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
-                            $query2 = "INSERT INTO designation(`employeeID`,`courtID`,`postingsID`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
-                            mysqli_query($conn, $query1);
-                            $query_run = mysqli_query($conn,$query2);
-                            $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
-                            $result2 = mysqli_query($conn,$query3);
-                            $row = mysqli_fetch_row($result2);
-                            $employeeName = $row[0];
-                            $_SESSION['post_transfer_employeeName'] = $employeeName;
-                            if($query_run){?>
-                                <script>window.location.href = "pdf_generation.php";</script>
-                            <?php
+                            if($relive_date >= $from_date){
+                                $join_date = strtotime(str_replace('.','-', $join_date));
+                                $join_date = date("Y-m-d",$join_date);
+                                $_SESSION['relive_date'] = $relive_date;
+                                $_SESSION['join_date'] = $join_date;
+                                $query1 = "UPDATE designation SET to_date = '{$relive_date}' where employeeID = {$employeeID} and to_date is null and from_date is not null";
+                                $query2 = "INSERT INTO designation(`employeeID`,`courtID`,`postingsID`,`from_date`) VALUES({$employeeID},'{$court_to}','{$post_to}','{$join_date}')";
+                                mysqli_query($conn, $query1);
+                                $query_run = mysqli_query($conn,$query2);
+                                $query3 = "SELECT CONCAT(first_name,' ',last_name)as employee_name FROM employee WHERE employeeID = {$employeeID}";
+                                $result2 = mysqli_query($conn,$query3);
+                                if($post_to == 1){
+                                    $query4 = "UPDATE employee SET `role` = 'super admin' where employeeID = {$employeeID}";
+                                    mysqli_query($conn,$query4);
+                                }
+                                else if($from_post == 1 && $post_to > $from_post){
+                                    $query4 = "UPDATE employee SET `role` = 'admin' where employeeID = {$employeeID}";
+                                    mysqli_query($conn,$query4);
+                                }
+                                $row = mysqli_fetch_row($result2);
+                                $employeeName = $row[0];
+                                $_SESSION['post_transfer_employeeName'] = $employeeName;
+                                if($query_run){?>
+                                    <script>window.location.href = "pdf_generation.php";</script>
+                                <?php
+                                }
+                            }
+                            else{
+                                $_SESSION['status'] = "Invalid relive date..Employee has not joined in the court";
+                                $_SESSION['status_code'] = "warning";
                             }
                         }
                         else{
