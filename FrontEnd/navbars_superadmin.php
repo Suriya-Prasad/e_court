@@ -102,7 +102,7 @@
 		                            <b class="label orange pull-right"><?php echo htmlentities($num1); ?></b>
 							<?php } ?>
                             </button>
-                            <button class="btn btn-outline-secondary" type="submit" id="not-processed" name="not_processed">Not-Processed
+                            <button class="btn btn-outline-secondary" type="submit" id="not_processed" name="not_processed">Not-Processed
                             <?php
                                 $rt = mysqli_query($conn,"SELECT * FROM complaints where `status`='not processed'");
                                 $num1 = mysqli_num_rows($rt);
