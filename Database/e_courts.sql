@@ -264,4 +264,4 @@ CREATE TABLE `e_property` (
   `uploadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`e_property_statementID`),
   CONSTRAINT `fk_employee_e_property` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
