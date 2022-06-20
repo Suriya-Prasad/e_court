@@ -133,7 +133,7 @@ function ComplaintDetailsTable($result,$result1){
         echo "<td colspan='5'>No files attached</td>";
     }
     else{
-        echo "<td colspan='5'><a href='../user_admin/complaintdocs/".$row['complaintFile']." target='_blank'/> View File</a></td>";
+        echo "<td colspan='5'><a href='../user_admin/complaintdocs/".$row['complaintFile']."' target='_blank'/> View File</a></td>";
     }
     echo "</tr>";
     if(mysqli_num_rows($result1)==0){

@@ -65,7 +65,7 @@ function GetComplaintDetails(){
     $conn = connectDB();
     $employeeID = $_SESSION['employeeID'];
     $complaintNumber = $_POST['view_complaint_details'];
-    $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.complaintNumber='".$complaintNumber."'";
+    $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID and c.employeeID='$employeeID' where c.complaintNumber='".$complaintNumber."'";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
         echo "<h3>No Record Found On Complaint Number ".$complaintNumber."</h3>";
@@ -137,7 +137,7 @@ function ComplaintDetailsTable($result,$result1){
         echo "<td colspan='5'>No files attached</td>";
     }
     else{
-        echo "<td colspan='5'><a href='complaintdocs/".$row['complaintFile']." target='_blank'/> View File</a></td>";
+        echo "<td colspan='5'><a href='complaintdocs/".$row['complaintFile']."' target='_blank'/> View File</a></td>";
     }
     echo "</tr>";
     if(mysqli_num_rows($result1)==0){

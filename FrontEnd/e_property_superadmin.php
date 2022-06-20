@@ -101,7 +101,7 @@ function service_registryTable($result1,$result,$employeeID){
     while ($row=mysqli_fetch_array($result1)) {
     echo "<tr>";
     echo "<td>" . $row['e_property_statementDetails'] . "</td>";
-    echo "<td colspan='5'><a href='e_propertydocs/".$row['e_property_statementFile']." target='_blank'/> View File</a></td>";
+    echo "<td><a href='e_propertydocs/".$row['e_property_statementFile']."' target='_blank'/> View File</a></td>";
     echo "<td>" . $row['uploadDate'] . "</td>";
     echo "</tr>"; 
     $row_count++;     

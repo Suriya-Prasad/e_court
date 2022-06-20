@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 
+use LDAP\Result;
+
     include_once "navigation.php";
     include_once "actions.php";
     if(strcmp($_SESSION['employee_role'],"super admin")==0){
@@ -22,7 +24,7 @@
     <?php include_once "navbars_user_admin.php"; ?> 
         <div id="content">
             <div id="co-gr">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                 <h2>PROPERTY</h2>
                 <div class="align">
                     <div class="label col-lg-5 col-md-5 col-sm-5">
@@ -63,15 +65,26 @@
             $conn = connectDB();
             $employeeID = $_SESSION['employeeID'];
             $propertyDetails = mysqli_real_escape_string($conn,$_POST['property_details']);
-            if(isset($_FILES['property_file'])){
+            if($_FILES['property_file']['size'] != 0){
             $propertyfile=$_FILES["property_file"]["name"];
-            move_uploaded_file($_FILES["property_file"]["tmp_name"],"e_propertydocs/".$_FILES["property_file"]["name"]);
-            $query = "INSERT into e_property(employeeID,e_property_statementDetails,e_property_statementFile) values('{$employeeID}','{$propertyDetails}','{$propertyfile}'";
+            $query = "INSERT into e_property(employeeID,e_property_statementDetails,e_property_statementFile) values('$employeeID','$propertyDetails','$propertyfile')";
+                if($result = mysqli_query($conn,$query)){
+                    move_uploaded_file($_FILES["property_file"]["tmp_name"],"e_propertydocs/".$_FILES["property_file"]["name"]);
+                    $_SESSION['status'] = "Document updated successfully";
+                    $_SESSION['status_code'] = "success";
+                }
+                else{
+                    // $_SESSION['status'] = "Something went wrong";
+                    // $_SESSION['status_code'] = "warning";
+                    echo mysqli_error($conn);
+                }
             }
-            mysqli_query($conn,$query);
-            $_SESSION['status'] = "Document updated successfully";
-            $_SESSION['status_code'] = "success";
+            else{
+                $_SESSION['status'] = "You must upload a document";
+                $_SESSION['status_code'] = "warning";
+            }
         }
+
         if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
             ?>
             <script>

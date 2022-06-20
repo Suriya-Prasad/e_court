@@ -21,7 +21,7 @@
 
         <div id="content">
             <div id="co-gr">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <h2>File A Complaint/Greviance</h2>
                     <div class="align">
                         <div class="label col-lg-5 col-md-5 col-sm-5">
@@ -75,13 +75,13 @@
         $employeeID = $_SESSION['employeeID'];
         $category = mysqli_real_escape_string($conn,$_POST['category']);
         $complaintDetails = mysqli_real_escape_string($conn,$_POST['complaint_details']);
-        if(isset($_FILES['complaint_file'])){
-        $compfile=$_FILES["complaint_file"]["name"];
-        move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$_FILES["complaint_file"]["name"]);
-        $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','{$compfile}','not processed')";
+        if($_FILES['complaint_file']['size'] == 0){
+            $query = "INSERT into complaints(employeeID,category,complaintDetails,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','not processed')";
         }
         else{
-            $query = "INSERT into complaints(employeeID,category,complaintDetails,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','not processed')";
+            $compfile=$_FILES["complaint_file"]["name"];
+            move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$_FILES["complaint_file"]["name"]);
+            $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','{$compfile}','not processed')";
         }
         mysqli_query($conn,$query);
         $sql=mysqli_query($conn,"SELECT complaintNumber from complaints  order by complaintNumber desc limit 1");

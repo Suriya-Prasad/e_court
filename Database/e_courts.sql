@@ -53,7 +53,7 @@ CREATE TABLE `postings`(
 
 INSERT INTO postings (`postingsID`, `postingsName`) 
 VALUES 
-(1,'Cheif Administrative Officer'),
+(1,'Chief Administrative Officer'),
 (2,'Sherishtadar (category-1)'),
 (3,'Bench Clerk Grade-1'),
 (4,'Head Clerk (Cat-2/Senior Sherishtadar (Cat-11)/Protocal Officer/Central Nazir'),
@@ -232,7 +232,7 @@ CREATE TABLE `leave_entry`(
 CREATE TABLE `complaints` (
   `complaintNumber` int(11) NOT NULL AUTO_INCREMENT,
   `employeeID` int(11) NOT NULL,
-  `category` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL,
   `complaintDetails` mediumtext NOT NULL,
   `complaintFile` varchar(255) DEFAULT NULL,
   `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
