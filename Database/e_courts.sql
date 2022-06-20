@@ -254,7 +254,7 @@ CREATE TABLE `complaint_remark` (
   CONSTRAINT `fk_complaintNumber_complaint_remark` FOREIGN KEY (`complaintNumber`) REFERENCES `complaints` (`complaintNumber`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
---Table structure for table `e_property`;
+-- Table structure for table `e_property`;
 
 CREATE TABLE `e_property` (
   `e_property_statementID` int(11) NOT NULL AUTO_INCREMENT,
