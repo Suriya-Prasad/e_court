@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 
-include_once "navigation.php";
+    include_once "navigation.php";
     include_once "actions.php";
     if(strcmp($_SESSION['employee_role'],"super admin")==0){
         header("Location:home_attendance.php");
@@ -66,10 +66,23 @@ include_once "navigation.php";
             if(isset($_FILES['property_file'])){
             $propertyfile=$_FILES["property_file"]["name"];
             move_uploaded_file($_FILES["property_file"]["tmp_name"],"e_propertydocs/".$_FILES["property_file"]["name"]);
-            $query = "INSERT into e_property(employeeID,e_property_statementDetails,e_property_statementFile) values('{$employeeID}','{$complaintDetails}','{$propertyfile}'";
+            $query = "INSERT into e_property(employeeID,e_property_statementDetails,e_property_statementFile) values('{$employeeID}','{$propertyDetails}','{$propertyfile}'";
             }
             mysqli_query($conn,$query);
             $_SESSION['status'] = "Document updated successfully";
             $_SESSION['status_code'] = "success";
+        }
+        if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
+            ?>
+            <script>
+                swal({
+                    title:"<?php echo $_SESSION['status']; ?>",
+                    icon:"<?php echo $_SESSION['status_code']; ?>",
+                    button:"OK",
+                });
+            </script>
+        <?php
+            unset($_SESSION['status']);
+            unset($_SESSION['status_code']);
         }
 ?>
