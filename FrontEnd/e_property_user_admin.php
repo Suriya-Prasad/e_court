@@ -66,17 +66,20 @@ use LDAP\Result;
             $employeeID = $_SESSION['employeeID'];
             $propertyDetails = mysqli_real_escape_string($conn,$_POST['property_details']);
             if($_FILES['property_file']['size'] != 0){
+            $query = "SELECT * from e_property order by e_property_statementID DESC limit 1";
+            $row = mysqli_fetch_array(mysqli_query($conn,$query));
+            $e_property_statementID = $row['e_property_statementID'] + 1;
             $propertyfile=$_FILES["property_file"]["name"];
+            $propertyfile=$e_property_statementID."_".$propertyfile;
             $query = "INSERT into e_property(employeeID,e_property_statementDetails,e_property_statementFile) values('$employeeID','$propertyDetails','$propertyfile')";
                 if($result = mysqli_query($conn,$query)){
-                    move_uploaded_file($_FILES["property_file"]["tmp_name"],"e_propertydocs/".$_FILES["property_file"]["name"]);
+                    move_uploaded_file($_FILES["property_file"]["tmp_name"],"e_propertydocs/".$propertyfile);
                     $_SESSION['status'] = "Document updated successfully";
                     $_SESSION['status_code'] = "success";
                 }
                 else{
-                    // $_SESSION['status'] = "Something went wrong";
-                    // $_SESSION['status_code'] = "warning";
-                    echo mysqli_error($conn);
+                    $_SESSION['status'] = "Something went wrong";
+                    $_SESSION['status_code'] = "warning";
                 }
             }
             else{

@@ -75,12 +75,16 @@
         $employeeID = $_SESSION['employeeID'];
         $category = mysqli_real_escape_string($conn,$_POST['category']);
         $complaintDetails = mysqli_real_escape_string($conn,$_POST['complaint_details']);
+        $query = "SELECT * from complaints order by complaintNumber DESC limit 1";
+        $row = mysqli_fetch_array(mysqli_query($conn,$query));
+        $complaintNumber = $row['complaintNumber'] + 1;
         if($_FILES['complaint_file']['size'] == 0){
             $query = "INSERT into complaints(employeeID,category,complaintDetails,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','not processed')";
         }
         else{
             $compfile=$_FILES["complaint_file"]["name"];
-            move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$_FILES["complaint_file"]["name"]);
+            $compfile=$complaintNumber."_".$compfile;
+            move_uploaded_file($_FILES["complaint_file"]["tmp_name"],"complaintdocs/".$compfile);
             $query = "INSERT into complaints(employeeID,category,complaintDetails,complaintFile,`status`) values('{$employeeID}','{$category}','{$complaintDetails}','{$compfile}','not processed')";
         }
         mysqli_query($conn,$query);
