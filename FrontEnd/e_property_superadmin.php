@@ -20,7 +20,8 @@
 <body>
     <?php include_once "navbars_superadmin.php"; ?> 
         <div id="content">
-            <div id="e_property">
+            <div id="co-gr">
+                <h2>PROPERTY</h2>
                 <div class="align">
                     <form action="" method="POST">
                     <h2>E PROPERTY STATEMENTS</h2>
@@ -29,6 +30,7 @@
                     <button type="submit" class="ser_btn btn btn-outline-success">VIEW</button>
                     </form>
                 </div>
+                <center><button type="submit" id="get_prop_btn" name="get_property" class="btn btn-outline-success">GET PROPERTY</button></center>
             </div>
         </div>
     </div>
@@ -36,6 +38,12 @@
     <script>
         document.getElementById('post_table').style.display = 'block';
         document.getElementById('post_table').innerHTML="<?php GetEPropertyStatements();?>";   
+        var element = document.getElementById("staff_info");
+        element.classList.remove("btn-outline-secondary");
+        element.classList.add("btn-secondary");
+        var element1 = document.getElementById("property");
+        element1.classList.remove("btn-outline-secondary");
+        element1.classList.add("btn-secondary");
     </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

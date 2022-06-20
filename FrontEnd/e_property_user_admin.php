@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
-    include_once "navigation.php";
-    include_once "db_connection.php";
+
+include_once "navigation.php";
+    include_once "actions.php";
     if(strcmp($_SESSION['employee_role'],"super admin")==0){
         header("Location:home_attendance.php");
     }
@@ -15,12 +16,13 @@
     <title>Court</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/discip_pro.css">
+    <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
 </head>
 <body>
     <?php include_once "navbars_user_admin.php"; ?> 
         <div id="content">
-            <div id="e_property">
+            <div id="co-gr">
+                <h2>PROPERTY</h2>
                 <div class="align">
                     <div class="label col-lg-5 col-md-5 col-sm-5">
                         <label for="property_details"> Description : </label>
@@ -34,13 +36,19 @@
                         <label class="control-label" for="property_file"> File Upload : </label>
                     </div>    
                     <div class="input col-lg-7 col-md-7 col-sm-7">
-                        <input type="file" name="property_file" id="property_file" class="form-control">
+                        <input type="file" name="property_file" id="property_file" class="form-control" required>
                     </div>
                 </div>
+                <center><button type="submit" id="prop_up_btn" name="property_upload" class="btn btn-outline-success">UPLOAD</button></center>
             </div>
         </div>
     </div>
 
+    <script>
+        var element1 = document.getElementById("property");
+        element1.classList.remove("btn-outline-secondary");
+        element1.classList.add("btn-secondary");
+    </script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
