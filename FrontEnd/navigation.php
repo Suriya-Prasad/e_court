@@ -88,4 +88,13 @@
                 header("Location:complaint_history_user_admin.php");
             }
         }
+        else if (isset($_POST['property'])) {
+            if(isset($_SESSION['employeeID']) && strcmp($_SESSION['employee_role'],"super admin")!=0){
+                header("Location:e_property_user_admin.php");
+            }
+            else{
+                header("Location:e_property_superadmin.php");
+            }
+        }
+        
 ?>

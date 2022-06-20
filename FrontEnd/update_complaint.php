@@ -36,10 +36,10 @@
                         <label for="comp_status"> Category : </label>
                     </div>
                     <div class="input col-lg-7 col-md-7 col-sm-7">
-                        <select id="comp_status" name ="comp_status" class="form-select">
+                        <select id="comp_status" name ="comp_status" required class="form-select">
                             <option selected>Select Status</option>
-                            <option value="in_process">In Process</option>
-                            <option value="not_processed">Not Processed</option>
+                            <option value="in process">In Process</option>
+                            <option value="not processed">Not Processed</option>
                             <option value="closed">Closed</option>
                         </select>
                     </div>
@@ -52,6 +52,9 @@
                         <textarea id="co_up_remark" name="remark_details" rows="10" cols="55" required></textarea>
                     </div>
                 </div>
+                <button type="submit" class="ser_btn btn btn-outline-success" name="submit_update_complaint">SUBMIT</button>
+                <br><br>
+                <button type="submit" class="ser_btn btn btn-outline-danger" name="submit_update_complaint" onclick="window.close()">BACK TO MAIN window</button>
             </div>
         </div>
     

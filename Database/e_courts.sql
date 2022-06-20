@@ -253,3 +253,15 @@ CREATE TABLE `complaint_remark` (
   PRIMARY KEY (`remarkID`),
   CONSTRAINT `fk_complaintNumber_complaint_remark` FOREIGN KEY (`complaintNumber`) REFERENCES `complaints` (`complaintNumber`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+--Table structure for table `e_property`;
+
+CREATE TABLE `e_property` (
+  `e_property_statementID` int(11) NOT NULL AUTO_INCREMENT,
+  `employeeID` int(11) NOT NULL,
+  `e_property_statementDetails` mediumtext NOT NULL,
+  `e_property_statementFile` varchar(255) NOT NULL,
+  `uploadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`e_property_statementID`),
+  CONSTRAINT `fk_employee_e_property` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE
+)
