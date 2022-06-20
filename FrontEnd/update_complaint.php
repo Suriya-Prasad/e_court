@@ -6,10 +6,61 @@
         header("Location:home_attendance.php");
     }
 ?>
+
 <html lang="en">
-<head></head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
+    <script>
+        function fillResults(){
+            document.getElementById('post_table').style.display = 'block';
+            document.getElementById('post_table').innerHTML="<?php GetResults()?>";   
+        }
+        function basicPopup(url) {
+            popupWindow = window.open(url,'popUpWindow','height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+        }
+    </script>
+</head>
 <body>
+    <?php include_once "navbars_superadmin.php"; ?>
+
+        <div id="content">
+            <div id="co-gr">
+                <div class="align">
+                    <div class="label col-lg-5 col-md-5 col-sm-5">
+                        <label for="comp_status"> Category : </label>
+                    </div>
+                    <div class="input col-lg-7 col-md-7 col-sm-7">
+                        <select id="comp_status" name ="comp_status" class="form-select">
+                            <option selected>Select Status</option>
+                            <option value="in_process">In Process</option>
+                            <option value="not_processed">Not Processed</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="align">
+                    <div class="label col-lg-5 col-md-5 col-sm-5">
+                        <label for="co_up_remark"> Remark : </label>
+                    </div>
+                    <div class="input col-lg-7 col-md-7 col-sm-7">
+                        <textarea id="co_up_remark" name="remark_details" rows="10" cols="55" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
     
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.min.js" ></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 

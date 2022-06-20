@@ -6,6 +6,7 @@
         header("Location:home_attendance.php");
     }
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -165,8 +166,8 @@ function ComplaintDetailsTable($result,$result1){
     echo "</form>";
     echo "<tr>";
     echo "<th>Action</th>";
-    echo "<td><button type='button'><a href='update_complaint.php?cid=".$row['complaintNumber']."' onClick='basicPopup(this.href);return false'>Take Action</a></button></td>";
-    echo "<td colspan='4'><button type='submit' name='view_all'>&lt; &lt; VIEW ALL</button></td>";
+    echo "<td><a href='update_complaint.php?cid=".$row['complaintNumber']."' class='btn btn-outline-danger' onClick='basicPopup(this.href);return false'>Take Action</a></td>";
+    echo "<td colspan='4'><button type='submit' class='btn btn-outline-success' name='view_all'>&lt; &lt; VIEW ALL</button></td>";
     echo "</tr>";
     echo "</table>";
     echo "<form>";
