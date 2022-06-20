@@ -189,9 +189,9 @@ function SpecificDisciplinaryProceedingsTable($result,$result1,$employeeID){
                     echo "<td>Completed</td>";
                 }
                 echo "</tr>";
-                echo "</table>";
                 $row_count ++;
             }
+            echo "</table>";
         }
 }
 

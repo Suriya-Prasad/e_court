@@ -1,92 +1,76 @@
-<!DOCTYPE html>
 <?php
-    session_start();
-    include_once "db_connection.php";
-    if(strcmp($_SESSION['employee_role'],"super admin")!=0){
-        header("Location:home_attendance.php");
+  session_start();
+  include_once('db_connection.php');
+  if(strcmp($_SESSION['employee_role'],"super admin")!=0){
+      header("Location:home_attendance.php");
+  }
+  else {
+    if(isset($_POST['update'])){
+      $con = connectDB();
+      $complaintnumber=$_GET['cid'];
+      $status=$_POST['status'];
+      $remark=$_POST['remark'];
+      $query=mysqli_query($con,"insert into complaint_remark(complaintNumber,status,remark) values('$complaintnumber','$status','$remark')");
+      $sql=mysqli_query($con,"update complaints set status='$status' where complaintNumber='$complaintnumber'");
+      echo "<script>alert('Complaint details updated successfully');</script>";
     }
-?>
-
+ ?>
+<script language="javascript" type="text/javascript">
+  function f2(){
+    window.close();
+  }
+  function f3(){
+    window.print(); 
+  }
+</script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Court</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Court</title>
 </head>
 <body>
-    <?php include_once "navbars_superadmin.php"; ?>
 
-        <div id="content">
-            <div id="co-gr">
-                <form action="" method="POST">
-                <div class="align">
-                    <div class="label col-lg-5 col-md-5 col-sm-5">
-                        <label for="comp_status"> Category : </label>
-                    </div>
-                    <div class="input col-lg-7 col-md-7 col-sm-7">
-                        <select id="comp_status" name ="status" required class="form-select">
-                            <option selected>Select Status</option>
-                            <option value="in process">In Process</option>
-                            <option value="not processed">Not Processed</option>
-                            <option value="closed">Closed</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="align">
-                    <div class="label col-lg-5 col-md-5 col-sm-5">
-                        <label for="co_up_remark"> Remark : </label>
-                    </div>
-                    <div class="input col-lg-7 col-md-7 col-sm-7">
-                        <textarea id="co_up_remark" name="remark" rows="10" cols="55" required></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="ser_btn btn btn-outline-success" name="submit_update_complaint">SUBMIT</button>
-                <br><br>
-                <button type="button" class="ser_btn btn btn-outline-danger" onclick="window.close()">BACK TO MAIN window</button>
-                </form>
-            </div>
-        </div>
-    
-    </div>
+<div style="margin-left:50px;">
+  <form name="updateticket" id="updatecomplaint" method="post"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td  >&nbsp;</td>
+      <td >&nbsp;</td>
+    </tr>
+    <tr height="50">
+      <td><b>Complaint Number</b></td>
+      <td><?php echo htmlentities($_GET['cid']); ?></td>
+    </tr>
+    <tr height="50">
+      <td><b>Status</b></td>
+      <td><select name="status" required="required">
+      <option value="">Select Status</option>
+      <option value="in process">In Process</option>
+      <option value="closed">Closed</option>
+      </select></td>
+    </tr>
+      <tr height="50">
+      <td><b>Remark</b></td>
+      <td><textarea name="remark" cols="50" rows="10" required="required"></textarea></td>
+    </tr>
+      <tr height="50">
+      <td>&nbsp;</td>
+      <td><input type="submit" name="update" value="Submit"></td>
+    </tr>
+      <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+  <td></td>
+      <td >   
+      <input name="Submit2" type="submit" class="txtbox4" value="Close this window " onClick="return f2();" style="cursor: pointer;"  /></td>
+    </tr>
+</table>
+ </form>
+</div>
 
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/sweetalert.min.js" ></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
 
-
-<?php
-
-if(isset($_post['submit_update_complaint'])){
-    $conn = connectDB();
-    $complaintNumber=$_GET['cid'];
-    $status = $_POST['status'];
-    $remark = mysqli_real_escape_string($conn,$_POST['remark']);
-    $query = "INSERT into complaint_remark(complaintNumber,`status`,remark) values('$complaintNumber','$status','$remark')";
-    mysqli_query($conn,$query);
-    $query = "UPDATE complaints set `status`='$status' where complaintNumber='$complaintNumber'";
-    mysqli_query($conn,$query);
-    $_SESSION['status'] = "Updated Successfully";
-    $_SESSION['status_code'] = "success";
-}
-if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
-    ?>
-    <script>
-        swal({
-            title:"<?php echo $_SESSION['status']; ?>",
-            icon:"<?php echo $_SESSION['status_code']; ?>",
-            button:"OK",
-        });
-    </script>
-<?php
-    unset($_SESSION['status']);
-    unset($_SESSION['status_code']);
-}
-
-?>
+<?php } ?>

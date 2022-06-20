@@ -96,22 +96,31 @@ function GetInProcessComplaints(){
 
 function InprocessComplaintsTable($result){
     $row=mysqli_fetch_array($result);
-    echo "<table class='table table-info table-hover'>";
-    echo "<tr>";
-    echo "<th>COMPLAINT NUMBER</th>";
-    echo "<th>PERSON NAME</th>";
-    echo "<th>REG. DATE</th>";
-    echo "<th>STATUS</th>";
-    echo "<th>ACTION</th>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td>" . $row['complaintNumber'] . "</td>";
-    echo "<td>" . $row['employee_name']. "</td>";
-    echo "<td>" .  $row['regDate'] . "</td>";
-    echo "<td>in process</td>";
-    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' value='".$row['complaintNumber']."' name='view_complaint_details'> View Details</button></td>";
-    echo "</tr>";
-    echo "</table>";
+    if(mysqli_num_rows($result)==0){
+        echo "<center><h5 class='service_content1>No Record Found</h5></center><br>";
+    }
+    else{
+        $row_count = 1;
+        echo "<table class='table table-info table-hover'>";
+        echo "<tr>";
+        echo "<th>COMPLAINT NUMBER</th>";
+        echo "<th>PERSON NAME</th>";
+        echo "<th>REG. DATE</th>";
+        echo "<th>STATUS</th>";
+        echo "<th>ACTION</th>";
+        echo "</tr>";
+        while ($row=mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['complaintNumber'] . "</td>";
+        echo "<td>" . $row['employee_name']. "</td>";
+        echo "<td>" .  $row['regDate'] . "</td>";
+        echo "<td>in process</td>";
+        echo "<td><button type='submit' id='acc' class='btn btn-outline-success' value='".$row['complaintNumber']."' name='view_complaint_details'> View Details</button></td>";
+        echo "</tr>";
+        $row_count ++;
+        }
+        echo "</table>";
+    }
 }
 
 function ComplaintDetailsTable($result,$result1){
@@ -136,7 +145,7 @@ function ComplaintDetailsTable($result,$result1){
         echo "<td colspan='5'>No files attached</td>";
     }
     else{
-        echo "<td colspan='5'><a href='../user_admin/complaintdocs/".$row['complaintFile']."' target='_blank'/> View File</a></td>";
+        echo "<td colspan='5'><a href='complaintdocs/".$row['complaintFile']."' target='_blank'/> View File</a></td>";
     }
     echo "</tr>";
     if(mysqli_num_rows($result1)==0){
