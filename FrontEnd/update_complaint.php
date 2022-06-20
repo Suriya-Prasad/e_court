@@ -31,7 +31,27 @@
 
         <div id="content">
             <div id="co-gr">
-                
+                <div class="align">
+                    <div class="label col-lg-5 col-md-5 col-sm-5">
+                        <label for="comp_status"> Category : </label>
+                    </div>
+                    <div class="input col-lg-7 col-md-7 col-sm-7">
+                        <select id="comp_status" name ="comp_status" class="form-select">
+                            <option selected>Select Status</option>
+                            <option value="in_process">In Process</option>
+                            <option value="not_processed">Not Processed</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="align">
+                    <div class="label col-lg-5 col-md-5 col-sm-5">
+                        <label for="co_up_remark"> Remark : </label>
+                    </div>
+                    <div class="input col-lg-7 col-md-7 col-sm-7">
+                        <textarea id="co_up_remark" name="remark_details" rows="10" cols="55" required></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     

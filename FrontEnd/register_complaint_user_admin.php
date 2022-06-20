@@ -39,12 +39,15 @@
                             <textarea id="co_gr_desc" name="complaint_details" rows="10" cols="55" required maxlength="2000"></textarea>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Complaint Related Doc(if any) </label>
-                    <div class="col-sm-6">
-                    <input type="file" name="complaint_file" class="form-control" value="">
-                    </div> -->
-                    <button type="submit" id="co-gr-btn" name="submit_complaint" class="btn btn-outline-success">SUBMIT</button>
+                    <div class="align">
+                        <div class="form-group label col-lg-5 col-md-5 col-sm-5">
+                            <label class="control-label" for="complaint_file">Complaint Related Doc (IF ANY) </label>
+                        </div>    
+                        <div class="input col-lg-7 col-md-7 col-sm-7">
+                            <input type="file" name="complaint_file" id="complaint_file" class="form-control">
+                        </div>
+                    </div>
+                    <center><button type="submit" id="co-gr-btn" name="submit_complaint" class="btn btn-outline-success">SUBMIT</button></center>
                 </form>
             </div>
         </div>
