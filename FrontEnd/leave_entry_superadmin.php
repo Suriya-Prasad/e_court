@@ -19,7 +19,7 @@
     <script>
     function fillResults(){
         document.getElementById('post_table').style.display = 'block';
-        document.getElementById('post_table').innerHTML="<?php GetLeaveRequests();?>";   
+        document.getElementById('post_table').innerHTML="<?php GetResults();?>";   
     }
     </script>
 </head>
@@ -27,8 +27,10 @@
     <?php include_once "navbars_superadmin.php"; ?>
         <div id="content">
             <div id="leave">
+                <form action="" method="POST">
                 <h2>PENDING REQUESTS</h2>
                 <div id="post_table"><script>fillResults();</script></div>
+                </form>
             </div>
         </div>
     </div>
@@ -47,9 +49,39 @@
 
 <?php
 
+function GetResults(){
+    if(isset($_POST['approve_leave_enrty'])){
+        return ApproveLeave();
+    }
+    else if(isset($_POST['decline_leave_enrty'])){
+        return DeclineLeave();
+    }
+    else{
+        return GetLeaveRequests();
+    }
+}
+
+function ApproveLeave(){
+    $conn = connectDB();
+    $leave_entryID = $_POST['approve_leave_enrty'];
+    $query = "UPDATE leave_entry SET status = 'approved' where leave_entryID='$leave_entryID'";
+    mysqli_query($conn,$query);
+    $_SESSION['status'] = "Leave granted successfully";
+    $_SESSION['status_code'] = "success";
+}
+
+function DeclineLeave(){
+    $conn = connectDB();
+    $leave_entryID = $_POST['decline_leave_enrty'];
+    $query = "UPDATE leave_entry SET status = 'declined' where leave_entryID='$leave_entryID'";
+    mysqli_query($conn,$query);
+    $_SESSION['status'] = "Leave declined successfully";
+    $_SESSION['status_code'] = "success";
+}
+
 function GetLeaveRequests(){
     $conn = connectDB();  
-    $query = "SELECT l.employeeID,l.from_date,l.to_date,l.leave_type,l.reason FROM leave_entry as l WHERE l.status = 'pending'";
+    $query = "SELECT CONCAT(e.first_name,' ',e.last_name)as employee_name,l.* FROM leave_entry as l,employee as e WHERE e.employeeID=l.employeeID and l.status = 'pending' ORDER BY from_date DESC";
     if($result = mysqli_query( $conn, $query)){
         $returnVal = TablePendingLeaveRequests($result);
         mysqli_close($conn);
@@ -69,7 +101,7 @@ function TablePendingLeaveRequests($result){
     echo "<table id='req_table' class='table table-info table-hover'>";
     echo "<tr>";
     echo "<th>Employee ID</th>";
-    // echo "<th>Employee Name</th>";
+    echo "<th>Employee Name</th>";
     echo "<th>From date</th>";
     echo "<th>To date</th>";
     echo "<th>Leave Type</th>";
@@ -79,13 +111,13 @@ function TablePendingLeaveRequests($result){
     while ($row=mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $row['employeeID'] . "</td>";
-    // echo "<td>" . $row['employee_name'] . "</td>";
+    echo "<td>" . $row['employee_name'] . "</td>";
     echo "<td>" . $row['from_date'] . "</td>";
     echo "<td>" . $row['to_date'] . "</td>";
     echo "<td>" . $row['leave_type'] . "</td>";
     echo "<td>" . $row['reason'] . "</td>";
-    echo "<td><button type='submit' id='acc' class='btn btn-outline-success'>APPROVE</button></td>";
-    echo "<td><button type='submit' id='dec' class='btn btn-outline-danger'>DECLINE</button></td>";
+    echo "<td><button type='submit' id='acc' name='approve_leave_enrty' value='".$row['leave_entryID']."' class='btn btn-outline-success'>APPROVE</button></td>";
+    echo "<td><button type='submit' id='dec' name='decline_leave_enrty' value='".$row['leave_entryID']."' class='btn btn-outline-danger'>DECLINE</button></td>";
     echo "</tr>"; 
     $row_count++;     
     }

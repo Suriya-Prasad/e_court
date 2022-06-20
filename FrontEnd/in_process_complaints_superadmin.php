@@ -67,7 +67,7 @@ function GetResults(){
 
 function GetComplaintDetails(){
     $conn = connectDB();
-    $complaintNumber = $_POST['complaintNumber'];
+    $complaintNumber = $_POST['view_complaint_details'];
     $query = "SELECT c.*,CONCAT(e.first_name,' ',e.last_name)as employee_name from complaints as c join employee as e on e.employeeID=c.employeeID where c.complaintNumber='".$complaintNumber."'";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 0){
@@ -109,7 +109,7 @@ function InprocessComplaintsTable($result){
     echo "<td>" . $row['employee_name']. "</td>";
     echo "<td>" .  $row['regDate'] . "</td>";
     echo "<td>in process</td>";
-    echo "<td><input type='hidden' id='complaintNumber' name='complaintNumber' value='".$row['complaintNumber']."'><button type='submit' id='acc' class='btn btn-outline-success' name='view_complaint_details'> View Details</button></td>";
+    echo "<td><button type='submit' id='acc' class='btn btn-outline-success' value='".$row['complaintNumber']."' name='view_complaint_details'> View Details</button></td>";
     echo "</tr>";
     echo "</table>";
 }
