@@ -21,7 +21,6 @@
     <?php include_once "navbars_superadmin.php"; ?> 
         <div id="content">
             <div id="co-gr">
-                <h2>PROPERTY</h2>
                 <div class="align">
                     <form action="" method="POST">
                     <h2>E PROPERTY STATEMENTS</h2>
@@ -30,7 +29,8 @@
                     <button type="submit" class="ser_btn btn btn-outline-success">VIEW</button>
                     </form>
                 </div>
-                <center><button type="submit" id="get_prop_btn" name="get_property" class="btn btn-outline-success">GET PROPERTY</button></center>
+                <!-- <center><button type="submit" id="get_prop_btn" name="get_property" class="btn btn-outline-success">GET PROPERTY</button></center> -->
+            <div id="post_table"></div>
             </div>
         </div>
     </div>
@@ -87,6 +87,10 @@ function service_registryTable($result1,$result,$employeeID){
     $row=mysqli_fetch_array($result);
     echo "<h5 class='service_content1'>Employee ID : ".$employeeID." </h5>";
     echo "<h5 class='service_content'>Employee Name : ".strtoupper($row['employee_name'])." </h5>";
+    if(mysqli_num_rows($result1)==0){
+        echo "<h3> No property statements uploaded yet</h3>";
+        return " ";
+    }
     $row_count = 1;
     echo "<table class='table table-info table-hover'>";
     echo "<tr>";

@@ -22,6 +22,7 @@ include_once "navigation.php";
     <?php include_once "navbars_user_admin.php"; ?> 
         <div id="content">
             <div id="co-gr">
+                <form action="" method="POST">
                 <h2>PROPERTY</h2>
                 <div class="align">
                     <div class="label col-lg-5 col-md-5 col-sm-5">
@@ -40,6 +41,7 @@ include_once "navigation.php";
                     </div>
                 </div>
                 <center><button type="submit" id="prop_up_btn" name="property_upload" class="btn btn-outline-success">UPLOAD</button></center>
+                </form>
             </div>
         </div>
     </div>
@@ -55,3 +57,19 @@ include_once "navigation.php";
     <script src="js/sweetalert.min.js"></script>
 </body>
 </html>
+
+<?php
+        if(isset($_POST['property_upload'])){
+            $conn = connectDB();
+            $employeeID = $_SESSION['employeeID'];
+            $propertyDetails = mysqli_real_escape_string($conn,$_POST['property_details']);
+            if(isset($_FILES['property_file'])){
+            $propertyfile=$_FILES["property_file"]["name"];
+            move_uploaded_file($_FILES["property_file"]["tmp_name"],"e_propertydocs/".$_FILES["property_file"]["name"]);
+            $query = "INSERT into e_property(employeeID,e_property_statementDetails,e_property_statementFile) values('{$employeeID}','{$complaintDetails}','{$propertyfile}'";
+            }
+            mysqli_query($conn,$query);
+            $_SESSION['status'] = "Document updated successfully";
+            $_SESSION['status_code'] = "success";
+        }
+?>

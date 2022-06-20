@@ -16,27 +16,19 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/comp_gre.css">
-    <script>
-        function fillResults(){
-            document.getElementById('post_table').style.display = 'block';
-            document.getElementById('post_table').innerHTML="<?php GetResults()?>";   
-        }
-        function basicPopup(url) {
-            popupWindow = window.open(url,'popUpWindow','height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
-        }
-    </script>
 </head>
 <body>
     <?php include_once "navbars_superadmin.php"; ?>
 
         <div id="content">
             <div id="co-gr">
+                <form action="" method="POST">
                 <div class="align">
                     <div class="label col-lg-5 col-md-5 col-sm-5">
                         <label for="comp_status"> Category : </label>
                     </div>
                     <div class="input col-lg-7 col-md-7 col-sm-7">
-                        <select id="comp_status" name ="comp_status" required class="form-select">
+                        <select id="comp_status" name ="status" required class="form-select">
                             <option selected>Select Status</option>
                             <option value="in process">In Process</option>
                             <option value="not processed">Not Processed</option>
@@ -49,12 +41,13 @@
                         <label for="co_up_remark"> Remark : </label>
                     </div>
                     <div class="input col-lg-7 col-md-7 col-sm-7">
-                        <textarea id="co_up_remark" name="remark_details" rows="10" cols="55" required></textarea>
+                        <textarea id="co_up_remark" name="remark" rows="10" cols="55" required></textarea>
                     </div>
                 </div>
                 <button type="submit" class="ser_btn btn btn-outline-success" name="submit_update_complaint">SUBMIT</button>
                 <br><br>
-                <button type="submit" class="ser_btn btn btn-outline-danger" name="submit_update_complaint" onclick="window.close()">BACK TO MAIN window</button>
+                <button type="button" class="ser_btn btn btn-outline-danger" onclick="window.close()">BACK TO MAIN window</button>
+                </form>
             </div>
         </div>
     
@@ -77,7 +70,7 @@ if(isset($_post['submit_update_complaint'])){
     $remark = mysqli_real_escape_string($conn,$_POST['remark']);
     $query = "INSERT into complaint_remark(complaintNumber,`status`,remark) values('$complaintNumber','$status','$remark')";
     mysqli_query($conn,$query);
-    $query = "UPDATE complaints set `status`='$status' where complaintNumber='$complaintnumber'";
+    $query = "UPDATE complaints set `status`='$status' where complaintNumber='$complaintNumber'";
     mysqli_query($conn,$query);
     $_SESSION['status'] = "Updated Successfully";
     $_SESSION['status_code'] = "success";
